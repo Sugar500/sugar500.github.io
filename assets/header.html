@@ -1,6 +1,6 @@
 
 <!-- solid state like -->
-<header>
+<header class="alt">
   <h1><!--suppress HtmlUnknownTarget -->
     <a href="./index.html">Branding</a></h1>
   <nav>
@@ -29,7 +29,9 @@
   }
 
   header nav {
+    visibility: visible;
     color: #ffffff;
+    opacity: 1;
 
     font-family: Raleway, Helvetica, sans-serif;
     letter-spacing: 0.1rem;
@@ -52,6 +54,10 @@
     unicode-bidi: isolate;
   }
 
+  header.alt {
+    background: transparent;
+  }
+
   header h1 {
     transition: opacity 0.2s ease-in-out, visibility 0.2s;
     color: #ffffff;
@@ -69,6 +75,11 @@
     unicode-bidi: isolate;
     visibility: visible;
     opacity: 1;
+  }
+
+  header.alt h1 {
+    visibility: hidden;
+    opacity: 0;
   }
 
   header h1 a {
@@ -89,7 +100,7 @@
     cursor: pointer;
   }
 
-  header button {
+  header nav button {
     text-transform: uppercase;
     letter-spacing: 0.075rem;
     text-decoration: none;
