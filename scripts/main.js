@@ -1,5 +1,6 @@
 
 loadHTML("assets/header.html", "header");
+loadHTML("assets/banner.html", "banner");
 
 async function loadData(url, func) {
     try {

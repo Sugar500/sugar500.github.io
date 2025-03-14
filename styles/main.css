@@ -1,4 +1,12 @@
 
+* {
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
 /* region Row Style */
 :root {
     --total-columns: 12;
