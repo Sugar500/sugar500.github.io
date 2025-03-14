@@ -1,6 +1,7 @@
 
 loadHTML("assets/header.html", "header");
 loadHTML("assets/banner.html", "banner");
+loadHTML("assets/project_landings.html", "project-landings");
 
 async function loadData(url, func) {
     try {
