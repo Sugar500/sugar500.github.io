@@ -1,73 +1,75 @@
 <!-- feature section 3: blogging section -->
-<section id="featured-blogs" class="col-12">
+<section id="featured-blogs" class="col-12 style-featured-3">
   <!-- txt blog like -->
-  <div class="major"><h2>Featured Blogs</h2></div>
-  <div class="row">
-    <!-- Big Featured Blog -->
-    <div class="col-9 col-12-narrow">
-      <article class="post-preview">
-        <div class="header">
-          <h3>Article Title</h3>
-          <p>Subtitle</p>
-          <ul class="meta">
-            <li class="icon fa-clock-o time-since">Calculating...</li>
-          </ul>
-        </div>
-        <p>Phasellus quam turpis, feugiat sit amet ornare in, a
-          hendrerit in lectus. Praesent semper mod quis eget mi.
-          Etiam sed ante risus aliquam erat et volutpat. Praesent a
-          dapibus velit. Curabitur sed nisi nunc, accumsan vestibulum lectus.
-          Lorem ipsum dolor sit non aliquet sed, tempor et dolor.
-          Praesent a dapibus velit. Curabitur accumsan.</p>
-        <button>Continue Reading</button>
-      </article>
-    </div>
+  <div class="content">
+    <div class="major"><h2>Featured Blogs</h2></div>
+    <div class="row">
+      <!-- Big Featured Blog -->
+      <div class="col-9 col-12-narrow">
+        <article class="post-preview">
+          <div class="header">
+            <h3>Article Title</h3>
+            <p>Subtitle</p>
+            <ul class="meta">
+              <li class="icon fa-clock-o time-since">Calculating...</li>
+            </ul>
+          </div>
+          <p>Phasellus quam turpis, feugiat sit amet ornare in, a
+            hendrerit in lectus. Praesent semper mod quis eget mi.
+            Etiam sed ante risus aliquam erat et volutpat. Praesent a
+            dapibus velit. Curabitur sed nisi nunc, accumsan vestibulum lectus.
+            Lorem ipsum dolor sit non aliquet sed, tempor et dolor.
+            Praesent a dapibus velit. Curabitur accumsan.</p>
+          <button>Continue Reading</button>
+        </article>
+      </div>
 
-    <!-- Little Featured Blogs -->
-    <div class="col-3 col-12-narrow sidebar">
-      <ul class="divided">
-        <!-- article -->
-        <li>
-          <article class="post-summary">
-            <h3>Article Title</h3>
-            <ul class="meta">
-              <li class="icon fa-clock-o time-since">Calculating...</li>
-            </ul>
-          </article>
-        </li>
-        <!-- article -->
-        <li>
-          <article class="post-summary">
-            <h3>Article Title</h3>
-            <ul class="meta">
-              <li class="icon fa-clock-o time-since">Calculating...</li>
-            </ul>
-          </article>
-        </li>
-        <!-- article -->
-        <li>
-          <article class="post-summary">
-            <h3>Article Title</h3>
-            <ul class="meta">
-              <li class="icon fa-clock-o time-since">Calculating...</li>
-            </ul>
-          </article>
-        </li>
-      </ul>
+      <!-- Little Featured Blogs -->
+      <div class="col-3 col-12-narrow sidebar">
+        <ul class="divided">
+          <!-- article -->
+          <li>
+            <article class="post-summary">
+              <h3>Article Title</h3>
+              <ul class="meta">
+                <li class="icon fa-clock-o time-since">Calculating...</li>
+              </ul>
+            </article>
+          </li>
+          <!-- article -->
+          <li>
+            <article class="post-summary">
+              <h3>Article Title</h3>
+              <ul class="meta">
+                <li class="icon fa-clock-o time-since">Calculating...</li>
+              </ul>
+            </article>
+          </li>
+          <!-- article -->
+          <li>
+            <article class="post-summary">
+              <h3>Article Title</h3>
+              <ul class="meta">
+                <li class="icon fa-clock-o time-since">Calculating...</li>
+              </ul>
+            </article>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   <!--  -->
-  #featured-blogs {
-    margin: 5rem auto;
+  #featured-blogs .content {
+    padding-top: 1rem;
+    margin: 0 auto;
     width: 90%;
   }
   #featured-blogs .major {
-    border-top: solid 5px #e7eae8;
+    border-top: solid 5px;
 
-    font-family: 'Open Sans Condensed', sans-serif;
     font-size: 1.05rem;
     text-align: center;
     font-weight: 700;
@@ -78,10 +80,7 @@
   }
 
   #featured-blogs .major h2 {
-    background: #fff;
-
     text-transform: uppercase;
-    color: #6b7770;
 
     top: calc(-1 * (0.775rem + 0.3rem));
     padding: 0 1.25rem 0 1.25rem;
@@ -90,11 +89,9 @@
   }
 
   #featured-blogs .post-preview h3 {
-    font-family: 'Open Sans Condensed', sans-serif;
     text-transform: uppercase;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #6b7770;
   }
 
   #featured-blogs .post-preview .header {
@@ -103,11 +100,9 @@
   }
 
   #featured-blogs .post-preview .header p {
-    font-family: 'Open Sans Condensed', sans-serif;
     text-transform: uppercase;
     font-size: 1.25rem;
     font-weight: 700;
-    color: #c1cac5;
 
     margin: 1rem auto 0.2rem auto;
     display: block;
@@ -115,7 +110,6 @@
 
   #featured-blogs .post-preview p {
     margin-bottom: 2rem;
-    color: #6b7770;
   }
 
   #featured-blogs .post-summary h3 {
@@ -140,7 +134,7 @@
   }
 
   ul.divided > li {
-    border-top: solid 2px #e7eae8;
+    border-top: solid 2px;
     padding-top: 2.35rem;
     margin-top: 2.35rem;
     padding-left: 0;
@@ -148,7 +142,6 @@
 
   #featured-blogs ul {
     font-size: 0.85rem;
-    color: #a1aaa5;
 
     list-style: none;
 
@@ -161,7 +154,7 @@
   }
 
   #featured-blogs ul li {
-    color: #a1aaa5;
+    color: inherit;
 
     list-style: none;
 

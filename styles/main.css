@@ -6,6 +6,17 @@
     border: 0;
 }
 
+h1 {
+    font-family: Raleway, Helvetica, sans-serif;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+}
+
+p {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
 
 /* region Row Style */
 :root {
@@ -434,17 +445,35 @@ button {
 }
 
 /* fonts: color, family */
-#header {
-    font-family: 'Roboto', sans-serif;
-    color: #fff;
+.style-header {
+        color: white;
 }
 
-#header:not(.not-visible){
+.style-header:not(.not-visible){
     background: cadetblue;
 }
 
-#header nav, #header h1, #header h2, #header h3, #header h4, #header h5, #header h6 {
-    font-family: Raleway, Helvetica, sans-serif;
+.style-banner {
+    background-color: antiquewhite;
+    color: black;
+}
+
+.style-featured-1 {
+    background-color: white;
+    color: darkslategrey;
+}
+
+.style-featured-3,
+.style-featured-3 h2, .style-featured-3 h3,
+.style-featured-3 p,
+.style-featured-3 .major h2 {
+    background-color: antiquewhite;
+    color: black;
+}
+
+.style-featured-3 ul,
+.style-featured-3 .post-preview .header p {
+    color: dimgrey;
 }
 
 /* background */
