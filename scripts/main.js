@@ -2,6 +2,7 @@
 loadHTML("assets/components/header.html", "header");
 loadHTML("assets/components/banner.html", "banner");
 loadHTML("assets/components/project_landings.html", "project-landings");
+loadHTML("assets/components/code_projects.html", "code-projects");
 loadHTML("assets/components/featured_blogs.html", "featured-blogs");
 
 async function loadData(url, func) {

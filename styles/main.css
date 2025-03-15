@@ -7,15 +7,15 @@
 }
 
 h1 {
-    font-family: Raleway, Helvetica, sans-serif;
+    font-family: "Brush Script MT", cursive;
 }
 
 h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Lucida Handwriting", cursive;
 }
 
 p {
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: Garamond, serif;
 }
 
 /* region Row Style */
@@ -463,17 +463,32 @@ button {
     color: darkslategrey;
 }
 
-.style-featured-3,
+.style-featured-2,
 .style-featured-3 h2, .style-featured-3 h3,
-.style-featured-3 p,
 .style-featured-3 .major h2 {
     background-color: antiquewhite;
     color: black;
 }
 
+.style-featured-2 p {
+    color: darkslategrey;
+}
+
+.style-featured-2 .major h2 {
+    background-color: antiquewhite;
+}
+
+.style-featured-3,
+.style-featured-3 h2, .style-featured-3 h3,
+.style-featured-3 p,
+.style-featured-3 .major h2 {
+    background-color: white;
+    color: black;
+}
+
 .style-featured-3 ul,
 .style-featured-3 .post-preview .header p {
-    color: dimgrey;
+    color: darkslategrey;
 }
 
 /* background */
