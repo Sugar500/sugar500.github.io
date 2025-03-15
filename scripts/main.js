@@ -1,4 +1,5 @@
 
+loadHTML("assets/components/menu.html", "menu");
 loadHTML("assets/components/header.html", "header");
 loadHTML("assets/components/banner.html", "banner");
 loadHTML("assets/components/project_landings.html", "project-landings");
