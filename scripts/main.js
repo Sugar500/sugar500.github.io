@@ -1,7 +1,8 @@
 
-loadHTML("assets/header.html", "header");
-loadHTML("assets/banner.html", "banner");
-loadHTML("assets/project_landings.html", "project-landings");
+loadHTML("assets/components/header.html", "header");
+loadHTML("assets/components/banner.html", "banner");
+loadHTML("assets/components/project_landings.html", "project-landings");
+loadHTML("assets/components/featured_blogs.html", "featured-blogs");
 
 async function loadData(url, func) {
     try {
@@ -25,7 +26,7 @@ async function loadHTML(url, targetID) {
             return;
         }
 
-        document.getElementById(targetID).innerHTML = await response.text();
+        document.getElementById(targetID).outerHTML = await response.text();
         postMessage(targetID);
     } catch (error) {
         console.log(error);

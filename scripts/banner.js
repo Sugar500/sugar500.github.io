@@ -1,12 +1,12 @@
 
-onmessage(event => {
+self.addEventListener("message", (event) => {
     if (event.data === "banner") {
-        setUpObserver(0, document.getElementById("banner"),
-            () => {
-                const header = document.getElementById("header");
-                header.classList.toggle("alt");
-            });
-    }
+        const header = document.getElementById("header");
+        const banner = document.getElementById("banner");
+
+        setUpObserver(0, banner, () => {
+                header.classList.toggle("not-visible");
+            })}
 })
 
 function setUpObserver(threshold, element, callback) {
@@ -14,8 +14,9 @@ function setUpObserver(threshold, element, callback) {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 console.log("Intersecting");
-                callback();
             }
+
+            callback();
         }, { threshold: threshold });
     })
 

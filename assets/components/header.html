@@ -1,6 +1,6 @@
 
 <!-- solid state like -->
-<header class="alt">
+<header id="header" class="is-banner-visible">
   <h1><!--suppress HtmlUnknownTarget -->
     <a href="./index.html" title="TODO">Branding</a></h1>
   <nav>
@@ -10,9 +10,6 @@
 
 <style>
   header {
-    background: cadetblue;
-    color: #ffffff;
-
     vertical-align: baseline;
     line-height: 3.5rem;
     padding: 0 1.25rem;
@@ -30,10 +27,8 @@
 
   header nav {
     visibility: visible;
-    color: #ffffff;
     opacity: 1;
 
-    font-family: Raleway, Helvetica, sans-serif;
     letter-spacing: 0.1rem;
     font-size: 0.8rem;
     font-weight: 700;
@@ -54,15 +49,13 @@
     unicode-bidi: isolate;
   }
 
-  header.alt {
+  header.not-visible {
     background: transparent;
   }
 
   header h1 {
     transition: opacity 0.2s ease-in-out, visibility 0.2s;
-    color: #ffffff;
 
-    font-family: Raleway, Helvetica, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 0.8rem;
@@ -77,7 +70,7 @@
     opacity: 1;
   }
 
-  header.alt h1 {
+  header.not-visible h1 {
     visibility: hidden;
     opacity: 0;
   }
@@ -101,21 +94,6 @@
   }
 
   header nav button {
-    text-transform: uppercase;
-    letter-spacing: 0.075rem;
-    text-decoration: none;
-    white-space: nowrap;
     font-size: 0.95rem;
-    font-weight: 800;
-
-    display: inline-block;
-    position: relative;
-    border-radius: 8px;
-    padding: 0.8rem 1.6rem;
-    outline: 0;
-    border: 0;
-    vertical-align: middle;
-
-    cursor: pointer;
   }
 </style>
