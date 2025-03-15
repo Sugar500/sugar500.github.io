@@ -416,6 +416,8 @@ p {
 /* endregion */
 
 button {
+    background: whitesmoke;
+
     text-transform: uppercase;
     letter-spacing: 0.075rem;
     text-decoration: none;
@@ -436,20 +438,28 @@ button {
 /* fonts: color, family */
 
 .style-header {
-        color: white;
+    color: white;
 }
 
 .style-header:not(.not-visible){
     background: cadetblue;
+    box-shadow: 2px 1px rgba(128, 128, 128, 0.6);
 }
 
 .style-banner {
-    background-color: floralwhite;
-    color: black;
+    background: url(../assets/images/bg01.png), url(../assets/images/header.jpg);
+    background-position: top left, center center;
+    background-size: auto, cover;
+    color: white;
 }
 
 .style-featured-1 {
-    background-color: darkgrey;
+    text-shadow: 1px 1px 0 #fff;
+    background-color: #fff;
+    background-image: url(../assets/images/bg03.png), url(../assets/images/bg04.png), url(../assets/images/bg02.png);
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-size: 100% 15em, 100% 15em, auto auto;
+    background-position: top center, bottom center, top left;
     color: black;
 }
 
@@ -460,7 +470,7 @@ button {
 .style-featured-2,
 .style-featured-3 h2, .style-featured-3 h3,
 .style-featured-3 .major h2 {
-    background-color: floralwhite;
+    background-color: whitesmoke;
     color: black;
 }
 
@@ -469,14 +479,26 @@ button {
 }
 
 .style-featured-2 .major h2 {
-    background-color: floralwhite;
+    background-color: whitesmoke;
 }
 
-.style-featured-3,
+.style-featured-3 {
+    text-shadow: 1px 1px 0 #fff;
+    background-color: #fff;
+    background-image: url(../assets/images/bg03.png), url(../assets/images/bg02.png);
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 15em, auto auto;
+    background-position: top center, top left;
+    color: black;
+}
+
 .style-featured-3 h2, .style-featured-3 h3,
-.style-featured-3 p,
+.style-featured-3 p {
+    color: black;
+}
+
 .style-featured-3 .major h2 {
-    background-color: darkgrey;
+    background-color: whitesmoke;
     color: black;
 }
 
@@ -507,6 +529,11 @@ body.is-menu-visible .overlay {
 
 .style-menu .inner {
     background-color: cadetblue;
+    background-image: url(../assets/images/bg03.png), url(../assets/images/bg04.png), url(../assets/images/bg02.png);
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-size: 100% 15em, 100% 15em, auto auto;
+    background-position: top center, bottom center, top left;
+    box-shadow: 2px 3px rgba(128, 128, 128, 0.6);
     color: white;
 }
 
