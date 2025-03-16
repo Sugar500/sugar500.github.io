@@ -415,8 +415,24 @@ p {
 }
 /* endregion */
 
+/* fonts: color, family */
+:root {
+    --main-header: #404248;
+    --main-paragraph: #7b818c;
+
+    --main-color: whitesmoke;
+    --overlay-color: rgba(128, 128, 128, 0.6);
+
+    --accent-color: cadetblue;
+    --accent-color-dark: #292b2c;
+    --accent-header: white;
+    --accent-paragraph: #404248;
+}
+
 button {
-    background: whitesmoke;
+    transition: all 0.35s ease;
+    background: var(--main-color);
+    color: var(--main-header);
 
     text-transform: uppercase;
     letter-spacing: 0.075rem;
@@ -435,85 +451,82 @@ button {
     cursor: pointer;
 }
 
-/* fonts: color, family */
+button:hover {
+    color: var(--accent-color);
+    padding: 0.9rem 1.7rem;
+}
 
 .style-header {
-    color: white;
+    color: var(--accent-header);
 }
 
 .style-header:not(.not-visible){
-    background: cadetblue;
-    box-shadow: 2px 1px rgba(128, 128, 128, 0.6);
+    background: var(--accent-color);
 }
 
 .style-banner {
     background: url(../assets/images/bg01.png), url(../assets/images/header.jpg);
     background-position: top left, center center;
     background-size: auto, cover;
-    color: white;
+    color: var(--accent-header);
 }
 
 .style-featured-1 {
-    text-shadow: 1px 1px 0 #fff;
-    background-color: #fff;
+    text-shadow: 1px 1px 0 var(--main-color);
+    background-color: var(--main-color);
     background-image: url(../assets/images/bg03.png), url(../assets/images/bg04.png), url(../assets/images/bg02.png);
     background-repeat: no-repeat, no-repeat, repeat;
     background-size: 100% 15em, 100% 15em, auto auto;
     background-position: top center, bottom center, top left;
-    color: black;
 }
 
-.style-featured-1 p {
-    color: darkslategrey;
+.style-featured-1 {
+    color: var(--main-paragraph);
 }
 
-.style-featured-2,
+.style-featured-1 h2, .style-featured-1 h3 {
+    color: var(--main-header);
+}
+
+.style-featured-2 {
+    background-color: var(--main-color);
+    color: var(--main-paragraph);
+}
+
+.style-featured-2 h2, .style-featured-2 h3 {
+    color: var(--main-header);
+}
+
 .style-featured-3 h2, .style-featured-3 h3,
 .style-featured-3 .major h2 {
-    background-color: whitesmoke;
-    color: black;
-}
-
-.style-featured-2 p {
-    color: darkslategrey;
+    color: var(--main-header);
 }
 
 .style-featured-2 .major h2 {
-    background-color: whitesmoke;
+    background-color: var(--main-color);
 }
 
 .style-featured-3 {
-    text-shadow: 1px 1px 0 #fff;
-    background-color: #fff;
+    text-shadow: 1px 1px 0 var(--main-color);
+    background-color: var(--main-color);
     background-image: url(../assets/images/bg03.png), url(../assets/images/bg02.png);
     background-repeat: no-repeat, repeat;
     background-size: 100% 15em, auto auto;
     background-position: top center, top left;
-    color: black;
+    color: var(--main-paragraph);
 }
 
-.style-featured-3 h2, .style-featured-3 h3,
-.style-featured-3 p {
-    color: black;
+.style-featured-3 h2, .style-featured-3 h3 {
+    color: var(--main-header);
 }
 
 .style-featured-3 .major h2 {
-    background-color: whitesmoke;
-    color: black;
-}
-
-.style-featured-3 ul,
-.style-featured-3 .post-preview .header p {
-    color: darkslategrey;
+    background-color: var(--main-color);
+    color: var(--main-header);
 }
 
 .overlay {
-    opacity: 0;
-    visibility: hidden;
-}
-body.is-menu-visible .overlay {
     transition: opacity 0.35s ease;
-    background: rgba(128, 128, 128, 0.6);
     text-align: center;
     display: block;
     position: fixed;
@@ -521,20 +534,45 @@ body.is-menu-visible .overlay {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 1;
-    visibility: visible;
 
     z-index: 2;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+body.is-menu-visible .overlay {
+    background: var(--overlay-color);
+    opacity: 1;
+    visibility: visible;
 }
 
 .style-menu .inner {
-    background-color: cadetblue;
+    background-color: var(--accent-color);
     background-image: url(../assets/images/bg03.png), url(../assets/images/bg04.png), url(../assets/images/bg02.png);
     background-repeat: no-repeat, no-repeat, repeat;
     background-size: 100% 15em, 100% 15em, auto auto;
     background-position: top center, bottom center, top left;
-    box-shadow: 2px 3px rgba(128, 128, 128, 0.6);
-    color: white;
+    box-shadow: 2px 3px var(--overlay-color);
+    color: var(--accent-header);
+}
+
+/* rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) */
+#footer {
+    background-image: linear-gradient(var(--accent-color), var(--accent-color-dark)),
+        url(../assets/images/bg03.png), url(../assets/images/bg02.png);
+    background-repeat: repeat-x, no-repeat, repeat;
+    background-size: 100% 100%, 100% 15em, auto auto;
+    background-position: top left, top center, top left;
+    color: var(--accent-paragraph);
+}
+
+#footer input, #footer textarea {
+    background: var(--accent-color);
+}
+
+#footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
+    color: var(--accent-header);
 }
 
 /* background */

@@ -3,8 +3,9 @@ loadHTML("assets/components/menu.html", "menu");
 loadHTML("assets/components/header.html", "header");
 loadHTML("assets/components/banner.html", "banner");
 loadHTML("assets/components/project_landings.html", "project-landings");
-loadHTML("assets/components/code_projects.html", "code-projects");
+loadHTML("assets/components/other_projects.html", "code-projects");
 loadHTML("assets/components/featured_blogs.html", "featured-blogs");
+loadHTML("assets/components/footer.html", "footer");
 
 async function loadData(url, func) {
     try {
