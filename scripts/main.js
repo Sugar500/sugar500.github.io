@@ -3,35 +3,16 @@ loadHTML("assets/components/menu.html", "menu");
 loadHTML("assets/components/header.html", "header");
 loadHTML("assets/components/banner.html", "banner");
 loadHTML("assets/components/project_landings.html", "project-landings");
-loadHTML("assets/components/other_projects.html", "code-projects");
-loadHTML("assets/components/featured_blogs.html", "featured-blogs");
+loadHTML("assets/components/featured_projects.html", "code-projects");
+loadHTML("assets/components/featured_posts.html", "featured-posts");
 loadHTML("assets/components/footer.html", "footer");
 
-async function loadData(url, func) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            console.log(`Response status: ${response.status}`);
-            return;
-        }
+function setUpObserver(threshold, element, callback) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(() => {
+            callback();
+        }, { threshold: threshold });
+    })
 
-        const json = await response.json();
-        func(json);
-    } catch (error) {
-        console.log(error);
-    }
-}
-async function loadHTML(url, targetID) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            console.log(`Response status: ${response.status}`);
-            return;
-        }
-
-        document.getElementById(targetID).outerHTML = await response.text();
-        postMessage(targetID);
-    } catch (error) {
-        console.log(error);
-    }
+    observer.observe(element);
 }
