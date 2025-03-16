@@ -451,9 +451,14 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+button:hover:not([disabled]) {
     color: var(--accent-color);
     padding: 0.9rem 1.7rem;
+}
+
+button:disabled, button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .style-header {
