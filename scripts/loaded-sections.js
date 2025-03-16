@@ -45,8 +45,8 @@ self.addEventListener("message", (event) => {
 // banner
 self.addEventListener("message", (event) => {
     if (event.data === "banner") {
-        const header = document.getElementById("header");
-        const banner = document.getElementById("banner");
+        const header = document.querySelector(".header");
+        const banner = document.querySelector(".banner");
 
         setUpObserver(0, banner, () => {
                 header.classList.toggle("not-visible");

@@ -508,8 +508,13 @@ table tbody tr:nth-child(2n + 1) {
     color: var(--main-paragraph);
 }
 
-.style-featured-1 h2, .style-featured-1 h3 {
-    color: var(--main-header);
+.style-featured-1 h2, .style-featured-1 h3,
+.style-featured-1 .major h2{
+    background-color: var(--main-color);
+}
+
+.style-featured-2 .major h2 {
+    background-color: var(--main-color);
 }
 
 .style-featured-2 {
@@ -582,7 +587,7 @@ body.is-menu-visible .overlay {
 }
 
 /* rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) */
-#footer {
+.style-footer {
     background-image: linear-gradient(var(--accent-color), var(--accent-color-dark)),
         url(../assets/images/bg03.png), url(../assets/images/bg02.png);
     background-repeat: repeat-x, no-repeat, repeat;
@@ -591,11 +596,11 @@ body.is-menu-visible .overlay {
     color: var(--accent-paragraph);
 }
 
-#footer input, #footer textarea {
+.style-footer input, .style-footer textarea {
     background: var(--accent-color);
 }
 
-#footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
+.style-footer h1, .style-footer h2, .style-footer h3, .style-footer h4, .style-footer h5, .style-footer h6 {
     color: var(--accent-header);
 }
 

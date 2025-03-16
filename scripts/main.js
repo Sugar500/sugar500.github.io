@@ -11,22 +11,24 @@ function init() {
         "project-landings",
         "featured-projects",
         "featured-posts",
+        "table-section",
         "footer"
     ]
 
     sections.forEach(section => {
-        loadHTML(file_source.dataset.source + section + ".html", section);
+        loadData(file_source.dataset.source + section + ".html")
+            .then((result) => {
+                replaceComponent(section, result);
+            })
     })
 
     if (file_source.dataset.hasOwnProperty("json")) {
-        sections.forEach(section => {
-            if (!file_source.dataset.replacements.includes(section)) {
-                console.log(`Section ${section} not found in replacements.`);
-                return;
-            }
-
-            loadData(file_source.dataset.json + section + ".json",
-                replaceComponentData)
+        const replacements = file_source.dataset.replacements = file_source.dataset.replacements.split(",");
+        replacements.forEach(section => {
+            loadData(file_source.dataset.json + section + ".json")
+                .then((result) => {
+                    replaceComponentData(JSON.parse(result));
+                })
         })
     }
 

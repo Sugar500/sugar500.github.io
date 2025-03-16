@@ -7,41 +7,40 @@ async function loadData(url, func) {
             return;
         }
 
-        const json = await response.json();
-        func(json);
+        return await response.text();
     } catch (error) {
         console.log(error);
     }
 }
 
-async function loadHTML(url, targetID) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            console.log(`Response status: ${response.status}`);
-            return;
-        }
-
-        const target =  document.getElementById(targetID);
-
-        if (target) {
-            target.outerHTML = await response.text();
-            postMessage(targetID);
-        }
-        else {
-            console.log(`Target element ${targetID} not found.`);
-        }
-    } catch (error) {
-        console.log(error);
-    }
+function replaceComponent(target, data) {
+    const elements = document.querySelectorAll("." + target);
+    elements.forEach(element => {
+        element.outerHTML = data;
+        postMessage(target);
+    })
 }
 
 function replaceComponentData(data) {
     data.Replacements.forEach(element => {
         const target = document.querySelector(element.Structure);
+        if (target === null) {
+            console.error(`There was an error finding ${element.Structure}`);
+        }
         target.title = element.Title;
         target.innerHTML = element.Content;
     })
+
+    if (data.hasOwnProperty("RemoveClass")) {
+        const parent = document.querySelector('.' + data.RemoveClass);
+        let classes = parent.getAttribute("class").split(" ");
+        for (let i = 0; i < classes.length; i++) {
+            if (classes[i] === data.RemoveClass) {
+                classes.splice(i, 1);
+            }
+        }
+        parent.setAttribute("class", classes.join(" "));
+    }
 }
 
 // TODO fix to call actual blog post
