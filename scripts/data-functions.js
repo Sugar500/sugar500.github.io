@@ -13,6 +13,7 @@ async function loadData(url, func) {
         console.log(error);
     }
 }
+
 async function loadHTML(url, targetID) {
     try {
         const response = await fetch(url);
@@ -21,18 +22,33 @@ async function loadHTML(url, targetID) {
             return;
         }
 
-        document.getElementById(targetID).outerHTML = await response.text();
-        postMessage(targetID);
+        const target =  document.getElementById(targetID);
+
+        if (target) {
+            target.outerHTML = await response.text();
+            postMessage(targetID);
+        }
+        else {
+            console.log(`Target element ${targetID} not found.`);
+        }
     } catch (error) {
         console.log(error);
     }
+}
+
+function replaceComponentData(data) {
+    data.Replacements.forEach(element => {
+        const target = document.querySelector(element.Structure);
+        target.title = element.Title;
+        target.innerHTML = element.Content;
+    })
 }
 
 // TODO fix to call actual blog post
 function dateData() {
     const timeSinceElements = document.querySelectorAll(".time-since");
     timeSinceElements.forEach(element => {
-        const url = "../assets/components/featured_posts.html"
+        const url = "../pages/featured-posts.html"
         fetch(url).then(r => {
             const lastMod = new Date(r.headers.get('Last-Modified'));
             element.innerHTML = calculateTimeSince(lastMod);

@@ -429,6 +429,10 @@ p {
     --accent-paragraph: #404248;
 }
 
+a {
+    color: var(--accent-color);
+}
+
 button {
     transition: all 0.35s ease;
     background: var(--main-color);
@@ -459,6 +463,21 @@ button:hover:not([disabled]) {
 button:disabled, button[disabled] {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+table {
+    margin: 0 0 2em 0;
+    width: 100%;
+}
+
+table tbody tr {
+    border: solid 1px var(--accent-color);
+    border-left: 0;
+    border-right: 0;
+}
+
+table tbody tr:nth-child(2n + 1) {
+    background-color: var(--accent-color-dark);
 }
 
 .style-header {
