@@ -23,7 +23,7 @@ function init() {
     })
 
     if (file_source.dataset.hasOwnProperty("json")) {
-        const replacements = file_source.dataset.replacements = file_source.dataset.replacements.split(",");
+        const replacements = file_source.dataset.replacements.split(",");
         replacements.forEach(section => {
             loadData(file_source.dataset.json + section + ".json")
                 .then((result) => {

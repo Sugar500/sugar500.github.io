@@ -1,5 +1,5 @@
 
-async function loadData(url, func) {
+async function loadData(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -22,12 +22,17 @@ function replaceComponent(target, data) {
 }
 
 function replaceComponentData(data) {
+    // noinspection JSUnresolvedReference
     data.Replacements.forEach(element => {
+        // noinspection JSUnresolvedReference
         const target = document.querySelector(element.Structure);
         if (target === null) {
+            // noinspection JSUnresolvedReference
             console.error(`There was an error finding ${element.Structure}`);
         }
+        // noinspection JSUnresolvedReference
         target.title = element.Title;
+        // noinspection JSUnresolvedReference
         target.innerHTML = element.Content;
     })
 

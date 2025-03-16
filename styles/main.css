@@ -369,6 +369,7 @@ p {
     /* endregion */
 }
 
+/*noinspection SpellCheckingInspection*/
 @media screen and (max-width: 480px) {
 
     :root {
@@ -489,8 +490,7 @@ table tbody tr:nth-child(2n + 1) {
 }
 
 .style-banner {
-    background: url(../assets/images/bg01.png), url(../assets/images/header.jpg);
-    background-position: top left, center center;
+    background: url(../assets/images/bg01.png), url(../assets/images/header.jpg) top left, center center;
     background-size: auto, cover;
     color: var(--accent-header);
 }
