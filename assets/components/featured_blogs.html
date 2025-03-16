@@ -1,0 +1,174 @@
+<!-- feature section 3: blogging section -->
+<section id="featured-blogs" class="row col-12 style-featured-3">
+  <!-- txt blog like -->
+  <div class="content">
+    <div class="major"><h2>Featured Blogs</h2></div>
+    <div class="row">
+      <!-- Big Featured Blog -->
+      <div class="col-9 col-12-narrow">
+        <article class="post-preview">
+          <div class="header">
+            <h3>Article Title</h3>
+            <p>Subtitle</p>
+            <ul class="meta">
+              <li class="icon fa-clock-o time-since">Calculating...</li>
+            </ul>
+          </div>
+          <p>Phasellus quam turpis, feugiat sit amet ornare in, a
+            hendrerit in lectus. Praesent semper mod quis eget mi.
+            Etiam sed ante risus aliquam erat et volutpat. Praesent a
+            dapibus velit. Curabitur sed nisi nunc, accumsan vestibulum lectus.
+            Lorem ipsum dolor sit non aliquet sed, tempor et dolor.
+            Praesent a dapibus velit. Curabitur accumsan.</p>
+          <button>Continue Reading</button>
+        </article>
+      </div>
+
+      <!-- Little Featured Blogs -->
+      <div class="col-3 col-12-narrow sidebar">
+        <ul class="divided">
+          <!-- article -->
+          <li>
+            <article class="post-summary">
+              <h3>Article Title</h3>
+              <ul class="meta">
+                <li class="icon fa-clock-o time-since">Calculating...</li>
+              </ul>
+            </article>
+          </li>
+          <!-- article -->
+          <li>
+            <article class="post-summary">
+              <h3>Article Title</h3>
+              <ul class="meta">
+                <li class="icon fa-clock-o time-since">Calculating...</li>
+              </ul>
+            </article>
+          </li>
+          <!-- article -->
+          <li>
+            <article class="post-summary">
+              <h3>Article Title</h3>
+              <ul class="meta">
+                <li class="icon fa-clock-o time-since">Calculating...</li>
+              </ul>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  <!--  -->
+  #featured-blogs .content {
+    padding-top: 1rem;
+    margin: 0 auto;
+    width: 80%;
+  }
+
+  #featured-blogs .major {
+    border-top: solid 5px;
+
+    font-size: 1.05rem;
+    text-align: center;
+    font-weight: 700;
+
+    position: relative;
+    margin: 0 0 3rem 0;
+    top: 0.775rem;
+  }
+
+  #featured-blogs .major h2 {
+    text-transform: uppercase;
+
+    top: calc(-1 * (0.775rem + 0.3rem));
+    padding: 0 1.25rem 0 1.25rem;
+    display: inline-block;
+    position: relative;
+  }
+
+  #featured-blogs .post-preview h3 {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  #featured-blogs .post-preview .header {
+    margin: 0 0 0.75em 0;
+    line-height: 1rem;
+  }
+
+  #featured-blogs .post-preview .header p {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+
+    margin: 1rem auto 0.2rem auto;
+    display: block;
+  }
+
+  #featured-blogs .post-preview p {
+    margin-bottom: 2rem;
+  }
+
+  #featured-blogs .post-summary h3 {
+    font-size: 1.25rem;
+
+    margin: 0 0 0.75rem 0;
+    line-height: 1rem;
+  }
+
+  #featured-blogs ul.divided {
+    flex-direction: column;
+    margin-bottom: 3rem;
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+  }
+
+  ul.divided > li:first-child {
+    border-top: 0;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  ul.divided > li {
+    border-top: solid 2px;
+    padding-top: 2.35rem;
+    margin-top: 2.35rem;
+    padding-left: 0;
+  }
+
+  #featured-blogs ul {
+    font-size: 0.85rem;
+
+    list-style: none;
+
+    margin: 0 0 0.5rem 0;
+    padding-left: 0;
+  }
+
+  #featured-blogs ul li:first-child {
+    margin-left: 0;
+  }
+
+  #featured-blogs ul li {
+    color: inherit;
+
+    list-style: none;
+
+    display: inline-block;
+    position: relative;
+    padding-left: 0;
+  }
+
+  #featured-blogs ul li:before {
+    margin-right: 0.5rem;
+
+    opacity: 0.5;
+
+    cursor: default;
+  }
+</style>

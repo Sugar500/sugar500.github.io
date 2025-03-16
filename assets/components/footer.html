@@ -1,0 +1,140 @@
+
+<!-- footer: links to various parts of site, copyright, messaging feature? -->
+<footer id="footer" class="style-footer">
+    <!-- arcana like -->
+    <!-- content -->
+    <div class="content">
+        <div class="container">
+        <div class="row">
+            <!-- links set 1 -->
+            <section class="col-3 col-6-narrower col-12-mobilep">
+                <h3>Links</h3>
+                <ul class="links">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">World-building</a></li>
+                    <li><a href="">Projects</a></li>
+                    <li><a href="">Resume</a></li>
+                    <li><a href="">Blog</a></li>
+                    <li><a href="">Directory</a></li>
+                </ul>
+            </section>
+
+            <!-- links set 2 -->
+            <section class="col-3 col-6-narrower col-12-mobilep">
+                <h3>About</h3>
+                <ul class="links">
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="">Terms of Use</a></li>
+                </ul>
+            </section>
+
+            <section class="col-6 col-12-narrower">
+                <h3>Get In Touch</h3>
+                <form class="row gtr-50">
+                    <div class="col-6 col-12-mobilep">
+                        <label for="name"></label>
+                        <input type="text" name="name" id="name" placeholder="Name">
+                    </div>
+                    <div class="col-6 col-12-mobilep">
+                        <label for="email"></label>
+                        <input type="email" name="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="col-12">
+                        <label for="message"></label>
+                        <textarea name="message" id="message" cols="30" rows="7" placeholder="Message"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><button disabled type="submit">Send Message</button></li>
+                            <li><button disabled type="reset">Reset</button></li>
+                        </ul>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+
+        <!-- icons -->
+        <ul class="icons">
+        <li>GitHub</li>
+        <li>LinkedIn</li>
+        <li>roadmap.sh</li>
+        <li>daily.dev</li>
+    </ul>
+
+        <!-- copy-right -->
+        <ul class="copy-right">
+        <li>Some Copyright Statement</li>
+        <li>Some Copyright Statement 2.0</li>
+    </ul>
+    </div>
+</footer>
+
+<style>
+    <!-- -->
+    #footer {
+        padding: 1rem 0 1rem 0;
+    }
+    #footer .content {
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    #footer h3 {
+        padding: 0.5rem 0 0.5rem 0;
+        margin-bottom: 0.5rem;
+        border-bottom: 1px solid;
+    }
+
+    #footer #message, #footer input {
+        width: 100%;
+        padding: 0.2rem;
+    }
+
+    #footer a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    #footer ul {
+        list-style: none;
+        margin: 0 0 2rem 0;
+    }
+
+    #footer ul.actions {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #footer ul.actions li {
+        padding: 0 1rem 0 0;
+        vertical-align: middle;
+    }
+
+    #footer ul.icons {
+        text-align: center;
+    }
+    #footer ul.icons li {
+        display: inline-block;
+        padding: 0 0.75rem 0 0;
+    }
+
+    #footer ul.copy-right {
+        text-align: center;
+    }
+
+    #footer ul.copy-right li {
+        display: inline-block;
+        padding: 0 0 0 1rem;
+        margin: 0 0 0 1rem;
+        border-left: solid 1px;
+    }
+
+    #footer ul.copy-right li:first-child {
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0;
+    }
+</style>

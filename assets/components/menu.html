@@ -1,0 +1,82 @@
+
+<!-- menu: the complex way of navigating the website -->
+<section class="style-menu">
+    <div class="overlay" title="I don't have tooltips on everything, I don't know what you're talking about."></div>
+
+    <div id="menu">
+        <nav class="inner">
+            <h2 title="why are you reading this?">Menu</h2>
+            <ul>
+                <li><a href="index.html" title="and now we land the spacecraft back home">Home</a></li>
+                <li><a href="" title="will be a drop down menu, eventually">World-building</a></li>
+                <li><a href="" title="all the projects">Projects</a></li>
+                <li><a href="" title="IT'S BACK!!">Resume</a></li>
+                <li><a href="" title="aaaallll the posts">Blog</a></li>
+                <li><a href="" title="aaaaaallll pages">Directory</a></li>
+            </ul>
+
+            <button class="close-button" title="you can also just click to the side, ya know">Close</button>
+        </nav>
+    </div>
+</section>
+
+<style>
+    #menu {
+        transition: opacity 0.35s ease, visibility 0.35s;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        user-select: none;
+        cursor: default;
+        position: fixed;
+        z-index: 2;
+
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    body.is-menu-visible #menu {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    #menu .inner {
+        transition: opacity 0.35s ease, transform 0.35s ease;
+        padding: 1.5rem 3.5rem 1.5rem 3.5rem;
+        border-radius: 5px;
+        display: block;
+        max-width: 100%;
+        position: relative;
+        text-align: center;
+    }
+
+    #menu h2 {
+        border-bottom: solid 2px;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    #menu .close {
+        display: block;
+        width: auto;
+        margin: 0 auto;
+    }
+
+    #menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1rem 0;
+    }
+
+    #menu li {
+        padding: 0;
+        margin: 0.5rem 0;
+    }
+
+    #menu a {
+        color: inherit;
+        text-decoration: none;
+    }
+</style>

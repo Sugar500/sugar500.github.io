@@ -1,7 +1,13 @@
 
-getData("assets/components/button.json", parseComponent)
+loadHTML("assets/components/menu.html", "menu");
+loadHTML("assets/components/header.html", "header");
+loadHTML("assets/components/banner.html", "banner");
+loadHTML("assets/components/project_landings.html", "project-landings");
+loadHTML("assets/components/other_projects.html", "code-projects");
+loadHTML("assets/components/featured_blogs.html", "featured-blogs");
+loadHTML("assets/components/footer.html", "footer");
 
-async function getData(url, func) {
+async function loadData(url, func) {
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -15,22 +21,17 @@ async function getData(url, func) {
         console.log(error);
     }
 }
-
-function parseComponent(json) {
-    const elements = document.querySelectorAll("." + json.tag);
-
-    let tag = "\n<" + json.tag;
-    for (const key in json.attributes) {
-        tag += " " + key + "=\"" + json.attributes[key] + "\"";
-    }
-    tag += ">";
-    tag += json.value;
-    tag += "</" + json.tag + ">";
-
-    elements.forEach(element => {
-        for (const key in json.style) {
-            element.style.setProperty(key, json.style[key]);
+async function loadHTML(url, targetID) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.log(`Response status: ${response.status}`);
+            return;
         }
-        element.innerHTML = tag;
-    })
+
+        document.getElementById(targetID).outerHTML = await response.text();
+        postMessage(targetID);
+    } catch (error) {
+        console.log(error);
+    }
 }

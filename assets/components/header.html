@@ -1,0 +1,99 @@
+
+<!-- solid state like -->
+<header id="header" class="is-banner-visible style-header">
+  <h1><!--suppress HtmlUnknownTarget -->
+    <a href="./index.html" title="even I have a preferred user-name">Sugar500</a></h1>
+  <nav>
+    <button id="menu-button" title="TODO">Menu</button>
+  </nav>
+</header>
+
+<style>
+  header {
+    vertical-align: baseline;
+    line-height: 3.5rem;
+    padding: 0 1.25rem;
+    position: fixed;
+    display: block;
+    height: 3.5rem;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    left: 0;
+    top: 0;
+
+    z-index: 1;
+  }
+
+  header nav {
+    visibility: visible;
+    opacity: 1;
+
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    vertical-align: baseline;
+    box-sizing: inherit;
+    position: absolute;
+    line-height: 3em;
+    display: block;
+    height: 3rem;
+    right: 4rem;
+    top: 0.3rem;
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+    unicode-bidi: isolate;
+  }
+
+  header.not-visible {
+    background: transparent;
+  }
+
+  header h1 {
+    transition: opacity 0.2s ease-in-out, visibility 0.2s;
+
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    margin: 0 0 1rem 0;
+    border-bottom: 0;
+    display: block;
+
+    unicode-bidi: isolate;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  header.not-visible h1 {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  header h1 a {
+    color: inherit;
+
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.1rem;
+    font: inherit;
+
+    vertical-align: baseline;
+    box-sizing: inherit;
+    padding: 0;
+    border: 0;
+    margin: 0;
+
+    visibility: visible;
+    cursor: pointer;
+  }
+
+  header nav button {
+    font-size: 0.95rem;
+  }
+</style>
