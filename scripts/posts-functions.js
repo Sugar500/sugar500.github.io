@@ -27,7 +27,6 @@ loadedPosts.addListener(function() {
     if (!loadedPosts.allLoaded) return;
 
     sortPosts();
-    console.log(loadedPosts.posts);
 })
 
 function sortPosts() {

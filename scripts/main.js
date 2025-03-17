@@ -4,13 +4,7 @@ init()
 function init() {
     const fileSource = document.getElementById("data-files");
 
-    loadSubSections(fileSource);
-    loadReplacements(fileSource);
-    loadPosts(fileSource);
-}
-
-function loadSubSections(fileSource) {
-    let sections = [
+    const sections = [
         "menu",
         "header",
         "banner",
@@ -20,16 +14,21 @@ function loadSubSections(fileSource) {
         "table-section",
         "footer"
     ]
+    loadSubSections(fileSource, sections);
+    loadSettings(fileSource);
+    loadPosts(fileSource);
+}
 
+function loadSubSections(fileSource, sections) {
     sections.forEach(section => {
         loadData(fileSource.dataset.sourcePages + section + ".html")
             .then((result) => {
-                replaceComponent(section, result);
+                importComponent(section, result);
             })
     })
 }
 
-function loadReplacements(fileSource) {
+function loadSettings(fileSource) {
     const url = new URL(document.URL);
     let page = "";
     url.pathname.split("/").forEach(element => {
@@ -38,12 +37,12 @@ function loadReplacements(fileSource) {
         }
     })
 
-    if (fileSource.dataset.hasOwnProperty("assets")) {
-        const replacements = fileSource.dataset.replacements.split(" ");
-        replacements.forEach(section => {
+    if (fileSource.dataset.hasOwnProperty("sourceAssets")) {
+        const settings = fileSource.dataset.settings.split(" ");
+        settings.forEach(section => {
             loadData(fileSource.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
                 .then((result) => {
-                    replaceComponentData(JSON.parse(result));
+                    useComponentSettings(JSON.parse(result));
                 })
         })
     }

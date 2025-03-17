@@ -13,7 +13,7 @@ async function loadData(url) {
     }
 }
 
-function replaceComponent(target, data) {
+function importComponent(target, data) {
     const elements = document.querySelectorAll("." + target);
     elements.forEach(element => {
         // TODO preserve classes
@@ -24,7 +24,7 @@ function replaceComponent(target, data) {
     })
 }
 
-function replaceComponentData(data) {
+function useComponentSettings(data) {
     // noinspection JSUnresolvedReference
     data.Replacements.forEach(element => {
         // noinspection JSUnresolvedReference
@@ -32,14 +32,24 @@ function replaceComponentData(data) {
         if (target === null) {
             // noinspection JSUnresolvedReference
             console.error(`There was an error finding ${element.Structure}`);
+            return;
         }
-        // noinspection JSUnresolvedReference
-        target.title = element.Title;
-        // noinspection JSUnresolvedReference
-        target.innerHTML = "";
-        element.Content.forEach((child) => {
-            target.innerHTML += child;
-        })
+
+        if (element.hasOwnProperty('Class')) {
+            target.classList.add(element.Class);
+        }
+
+        if (element.hasOwnProperty('Title')) { // noinspection JSUnresolvedReference
+            target.title = element.Title;
+        }
+
+        if (element.hasOwnProperty('Content')) {
+            target.innerHTML = "";
+            // noinspection JSUnresolvedReference
+            element.Content.forEach((child) => {
+                target.innerHTML += child;
+            });
+        }
     })
 
     if (data.hasOwnProperty("RemoveClass")) {
