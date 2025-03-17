@@ -512,7 +512,7 @@ table tbody tr:nth-child(2n + 1) {
 
 .style-featured-1 h2, .style-featured-1 h3,
 .style-featured-1 .major h2{
-    background-color: var(--main-color);
+    color: var(--main-header);
 }
 
 .style-featured-2 .major h2 {

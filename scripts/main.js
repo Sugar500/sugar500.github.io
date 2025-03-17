@@ -14,7 +14,7 @@ function loadSubSections(fileSource) {
         "menu",
         "header",
         "banner",
-        "project-landings",
+        "landing-links",
         "featured-projects",
         "featured-posts",
         "table-section",
@@ -39,9 +39,9 @@ function loadReplacements(fileSource) {
     })
 
     if (fileSource.dataset.hasOwnProperty("assets")) {
-        const replacements = file_source.dataset.replacements.split(" ");
+        const replacements = fileSource.dataset.replacements.split(" ");
         replacements.forEach(section => {
-            loadData(file_source.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
+            loadData(fileSource.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
                 .then((result) => {
                     replaceComponentData(JSON.parse(result));
                 })

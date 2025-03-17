@@ -20,6 +20,9 @@ const loadedPosts = {
     }
 }
 
+// TODO replace featured-posts with actual posts
+// TODO include ability to pin a post
+// TODO ability to filter posts by type to add pinned project feature
 loadedPosts.addListener(function() {
     if (!loadedPosts.allLoaded) return;
 
