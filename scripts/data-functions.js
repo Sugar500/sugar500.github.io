@@ -16,6 +16,7 @@ async function loadData(url) {
 function replaceComponent(target, data) {
     const elements = document.querySelectorAll("." + target);
     elements.forEach(element => {
+        // TODO preserve classes
         let classes = element.classList.toString().split(" ");
         element.outerHTML = data;
 

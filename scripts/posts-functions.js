@@ -20,7 +20,7 @@ const loadedPosts = {
     }
 }
 
-loadedPosts.addListener(function(post) {
+loadedPosts.addListener(function() {
     if (!loadedPosts.allLoaded) return;
 
     sortPosts();
