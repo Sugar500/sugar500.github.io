@@ -13,20 +13,22 @@ async function loadData(url) {
     }
 }
 
-function importComponent(target, data) {
-    const elements = document.querySelectorAll("." + target);
+document.addEventListener('import-component', function (event) {
+    const elements = document.querySelectorAll("." + event.detail.target);
     elements.forEach(element => {
-        // TODO preserve classes
-        let classes = element.classList.toString().split(" ");
-        element.outerHTML = data;
-
-        loadedSubpages.addPage('loaded-' + target);
+        element.outerHTML = event.detail.data;
+        document.dispatchEvent(new CustomEvent('loaded-component', {
+            bubbles: true,
+            detail: {
+                page: event.detail.target
+            }
+        }))
     })
-}
+})
 
-function useComponentSettings(data) {
+document.addEventListener('import-settings', function (event) {
     // noinspection JSUnresolvedReference
-    data.Replacements.forEach(element => {
+    event.detail.data.Replacements.forEach(element => {
         // noinspection JSUnresolvedReference
         const target = document.querySelector(element.Structure);
         if (target === null) {
@@ -51,18 +53,7 @@ function useComponentSettings(data) {
             });
         }
     })
-
-    if (data.hasOwnProperty("RemoveClass")) {
-        const parent = document.querySelector('.' + data.RemoveClass);
-        let classes = parent.getAttribute("class").split(" ");
-        for (let i = 0; i < classes.length; i++) {
-            if (classes[i] === data.RemoveClass) {
-                classes.splice(i, 1);
-            }
-        }
-        parent.setAttribute("class", classes.join(" "));
-    }
-}
+})
 
 // TODO fix to call actual blog post
 function dateData() {

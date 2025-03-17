@@ -4,6 +4,12 @@ init()
 function init() {
     const fileSource = document.getElementById("data-files");
 
+    loadSubSections(fileSource);
+    loadSettings(fileSource);
+    loadPosts(fileSource);
+}
+
+function loadSubSections(fileSource) {
     const sections = [
         "menu",
         "header",
@@ -14,17 +20,22 @@ function init() {
         "table-section",
         "footer"
     ]
-    loadSubSections(fileSource, sections);
-    loadSettings(fileSource);
-    loadPosts(fileSource);
-}
 
-function loadSubSections(fileSource, sections) {
     sections.forEach(section => {
         loadData(fileSource.dataset.sourcePages + section + ".html")
             .then((result) => {
-                importComponent(section, result);
+                document.dispatchEvent(new CustomEvent('import-component', {
+                    bubbles: true,
+                    detail: {
+                        target: section,
+                        data: result
+                    }
+                }));
             })
+
+        if (section === sections[sections.length - 1]) {
+            document.dispatchEvent(new CustomEvent('loaded-page'));
+        }
     })
 }
 
@@ -42,19 +53,30 @@ function loadSettings(fileSource) {
         settings.forEach(section => {
             loadData(fileSource.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
                 .then((result) => {
-                    useComponentSettings(JSON.parse(result));
+                    document.dispatchEvent(new CustomEvent('import-settings', {
+                        bubbles: true,
+                        detail: {
+                            page: page + "-" + section,
+                            data: JSON.parse(result)
+                        }
+                    }))
+
+                    if (section === settings[settings.length - 1]) {
+                        document.dispatchEvent(new CustomEvent('loaded-settings'))
+                    }
                 })
         })
     }
 }
 
 function loadPosts(fileSource) {
-    if (loadedPosts.allLoaded) {
-        console.log("Posts already loaded");
-        return;
-    }
+    const postFiles = [
+        "blogs/test-blog",
+        "blogs/test-blog-1"
+    ];
+    let posts = [];
 
-    loadedPosts.postFiles.forEach(post => {
+    postFiles.forEach(post => {
         const source = fileSource.dataset.sourceAssets + post + '.json';
 
         const request = new Request(source);
@@ -62,7 +84,15 @@ function loadPosts(fileSource) {
             const lastModified = new Date(response.headers.get('Last-Modified'));
             response.json().then(data => {
                 data.LastModified = lastModified.toString();
-                loadedPosts.addPost(data);
+                posts.push(data);
+
+                if (post === postFiles[postFiles.length - 1]) {
+                    document.dispatchEvent(new CustomEvent('loaded-posts', {
+                        detail: {
+                            posts: posts
+                        }
+                    }))
+                }
             })
         })
     })

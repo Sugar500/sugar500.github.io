@@ -1,22 +1,5 @@
 
-const loadedSubpages = {
-    pages: [],
-    listeners: [],
-    addPage: function (page) {
-        this.pages.push(page);
-        this.listeners.forEach(listener => {
-            listener(page);
-        })
-    },
-    addListener: function (listener) {
-        this.listeners.push(listener);
-    }
-}
-
-// menu
-loadedSubpages.addListener(function(page) {
-    if (page !== "loaded-menu") return;
-
+function initMenu(){
     let menu = document.getElementById("menu");
     const body = document.getElementsByTagName("body")[0];
 
@@ -31,12 +14,9 @@ loadedSubpages.addListener(function(page) {
         body.classList.toggle("is-menu-visible");
         event.stopPropagation();
     }
-})
+}
 
-// header
-loadedSubpages.addListener(function(page) {
-    if (page !== "loaded-header") return;
-
+function initHeader() {
     const menu_button = document.getElementById("menu-button");
     let body = document.getElementsByTagName("body")[0];
 
@@ -54,24 +34,27 @@ loadedSubpages.addListener(function(page) {
             event.stopImmediatePropagation();
         }
     }
-})
+}
 
-// banner
-loadedSubpages.addListener(function(page) {
-    if (page !== "loaded-banner") return;
-
+function initBanner() {
     const header = document.querySelector(".header");
     const banner = document.querySelector(".banner");
 
     setUpObserver(0, banner, () => {
         header.classList.toggle("not-visible");
     })
-})
+}
 
-// featured-posts
-loadedSubpages.addListener(function(page) {
-    if (page !== "loaded-featured-posts") return;
-
-    dateData();
-    setInterval(updateTimeSince, 1000);
+document.addEventListener('loaded-component', function(event) {
+    switch (event.detail.page) {
+        case "menu":
+            initMenu();
+            break;
+        case "header":
+            initHeader();
+            break;
+        case "banner":
+            initBanner();
+            break;
+    }
 })
