@@ -14,7 +14,7 @@ document.addEventListener('loaded-posts', function (event) {
     initPosts();
 })
 
-document.addEventListener('loaded-settings', function (event) {
+document.addEventListener('loaded-settings', function () {
     featuredPosts.loaded = true;
 
     if (featuredPosts.posts.length < 1) return;
