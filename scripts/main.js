@@ -15,8 +15,8 @@ function loadSubSections(fileSource) {
         "header",
         "banner",
         "landing-links",
-        "featured-projects",
-        "featured-posts",
+        "featured-posts-small",
+        "featured-posts-large",
         "table-section",
         "footer"
     ]

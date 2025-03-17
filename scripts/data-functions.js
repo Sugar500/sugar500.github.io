@@ -58,7 +58,7 @@ function replaceComponentData(data) {
 function dateData() {
     const timeSinceElements = document.querySelectorAll(".time-since");
     timeSinceElements.forEach(element => {
-        const url = "../pages/featured-posts.html"
+        const url = "../pages/featured-posts-large.html"
         fetch(url).then(r => {
             const lastMod = new Date(r.headers.get('Last-Modified'));
             element.innerHTML = calculateTimeSince(lastMod);
