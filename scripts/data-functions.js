@@ -16,8 +16,10 @@ async function loadData(url) {
 function replaceComponent(target, data) {
     const elements = document.querySelectorAll("." + target);
     elements.forEach(element => {
+        let classes = element.classList.toString().split(" ");
         element.outerHTML = data;
-        postMessage(target);
+
+        loadedSubpages.addPage('loaded-' + target);
     })
 }
 
@@ -33,7 +35,10 @@ function replaceComponentData(data) {
         // noinspection JSUnresolvedReference
         target.title = element.Title;
         // noinspection JSUnresolvedReference
-        target.innerHTML = element.Content;
+        target.innerHTML = "";
+        element.Content.forEach((child) => {
+            target.innerHTML += child;
+        })
     })
 
     if (data.hasOwnProperty("RemoveClass")) {

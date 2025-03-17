@@ -426,7 +426,7 @@ p {
 
     --accent-color: cadetblue;
     --accent-color-dark: #292b2c;
-    --accent-header: white;
+    --accent-header: whitesmoke;
     --accent-paragraph: #404248;
 }
 
@@ -475,10 +475,12 @@ table tbody tr {
     border: solid 1px var(--accent-color);
     border-left: 0;
     border-right: 0;
+    color: var(--main-paragraph);
 }
 
 table tbody tr:nth-child(2n + 1) {
-    background-color: var(--accent-color-dark);
+    background-color: var(--accent-color);
+    color: var(--accent-header);
 }
 
 .style-header {

@@ -2,8 +2,14 @@
 init()
 
 function init() {
-    const file_source = document.getElementById("data-files");
+    const fileSource = document.getElementById("data-files");
 
+    loadSubSections(fileSource);
+    loadReplacements(fileSource);
+    loadPosts(fileSource);
+}
+
+function loadSubSections(fileSource) {
     let sections = [
         "menu",
         "header",
@@ -16,22 +22,51 @@ function init() {
     ]
 
     sections.forEach(section => {
-        loadData(file_source.dataset.source + section + ".html")
+        loadData(fileSource.dataset.sourcePages + section + ".html")
             .then((result) => {
                 replaceComponent(section, result);
             })
     })
+}
 
-    if (file_source.dataset.hasOwnProperty("json")) {
-        const replacements = file_source.dataset.replacements.split(",");
+function loadReplacements(fileSource) {
+    const url = new URL(document.URL);
+    let page = "";
+    url.pathname.split("/").forEach(element => {
+        if (element.includes('.html')) {
+            page = element.replace(".html", "");
+        }
+    })
+
+    if (fileSource.dataset.hasOwnProperty("assets")) {
+        const replacements = file_source.dataset.replacements.split(" ");
         replacements.forEach(section => {
-            loadData(file_source.dataset.json + section + ".json")
+            loadData(file_source.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
                 .then((result) => {
                     replaceComponentData(JSON.parse(result));
                 })
         })
     }
+}
 
+function loadPosts(fileSource) {
+    if (loadedPosts.allLoaded) {
+        console.log("Posts already loaded");
+        return;
+    }
+
+    loadedPosts.postFiles.forEach(post => {
+        const source = fileSource.dataset.sourceAssets + post + '.json';
+
+        const request = new Request(source);
+        fetch(request).then(response => {
+            const lastModified = new Date(response.headers.get('Last-Modified'));
+            response.json().then(data => {
+                data.LastModified = lastModified.toString();
+                loadedPosts.addPost(data);
+            })
+        })
+    })
 }
 
 function setUpObserver(threshold, element, callback) {

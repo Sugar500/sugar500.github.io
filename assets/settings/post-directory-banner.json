@@ -4,12 +4,16 @@
     {
       "Structure": ".banner .inner h2",
       "Title": "How are you even here?",
-      "Content": "All the posts!"
+      "Content": [
+        "All the posts!"
+      ]
     },
     {
       "Structure": ".banner .inner p",
       "Title": "No really, all of them!",
-      "Content": "Projects, blog posts, etc."
+      "Content": [
+        "Projects, blog posts, etc."
+      ]
     }
   ]
 }
