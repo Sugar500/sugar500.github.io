@@ -47,6 +47,11 @@ function initBanner() {
 
 function initFooter() {
     function setUpIcon(element, fileType) {
+        if (element === null) {
+            console.error("Element was null");
+            return;
+        }
+
         const fileSource = document.getElementById("data-files");
         const classList = Array.from(element.classList);
         const iconClass = classList.find(className => className.startsWith('icon-'));
