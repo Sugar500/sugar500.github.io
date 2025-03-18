@@ -54,16 +54,3 @@ document.addEventListener('import-settings', function (event) {
         }
     })
 })
-
-// TODO fix to call actual blog post
-function dateData() {
-    const timeSinceElements = document.querySelectorAll(".time-since");
-    timeSinceElements.forEach(element => {
-        const url = "../pages/featured-posts-large.html"
-        fetch(url).then(r => {
-            const lastMod = new Date(r.headers.get('Last-Modified'));
-            element.innerHTML = calculateTimeSince(lastMod);
-            element.dataset.date = lastMod.toDateString() + " " + lastMod.toTimeString();
-        })
-    })
-}
