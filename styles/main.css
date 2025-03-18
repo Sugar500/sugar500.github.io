@@ -369,6 +369,7 @@ p {
     /* endregion */
 }
 
+/*noinspection SpellCheckingInspection*/
 @media screen and (max-width: 480px) {
 
     :root {
@@ -425,8 +426,12 @@ p {
 
     --accent-color: cadetblue;
     --accent-color-dark: #292b2c;
-    --accent-header: white;
-    --accent-paragraph: #404248;
+    --accent-header: #E2DFD2;
+    --accent-paragraph: #F9F6EE;
+}
+
+a {
+    color: var(--accent-color);
 }
 
 button {
@@ -461,6 +466,23 @@ button:disabled, button[disabled] {
     cursor: not-allowed;
 }
 
+table {
+    margin: 0 0 2em 0;
+    width: 100%;
+}
+
+table tbody tr {
+    border: solid 1px var(--accent-color);
+    border-left: 0;
+    border-right: 0;
+    color: var(--main-paragraph);
+}
+
+table tbody tr:nth-child(2n + 1) {
+    background-color: var(--accent-color);
+    color: var(--accent-header);
+}
+
 .style-header {
     color: var(--accent-header);
 }
@@ -470,8 +492,7 @@ button:disabled, button[disabled] {
 }
 
 .style-banner {
-    background: url(../assets/images/bg01.png), url(../assets/images/header.jpg);
-    background-position: top left, center center;
+    background: url(../assets/images/bg01.png), url(../assets/images/header.jpg) top left, center center;
     background-size: auto, cover;
     color: var(--accent-header);
 }
@@ -489,8 +510,13 @@ button:disabled, button[disabled] {
     color: var(--main-paragraph);
 }
 
-.style-featured-1 h2, .style-featured-1 h3 {
+.style-featured-1 h2, .style-featured-1 h3,
+.style-featured-1 .major h2{
     color: var(--main-header);
+}
+
+.style-featured-2 .major h2 {
+    background-color: var(--main-color);
 }
 
 .style-featured-2 {
@@ -563,7 +589,7 @@ body.is-menu-visible .overlay {
 }
 
 /* rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) */
-#footer {
+.style-footer {
     background-image: linear-gradient(var(--accent-color), var(--accent-color-dark)),
         url(../assets/images/bg03.png), url(../assets/images/bg02.png);
     background-repeat: repeat-x, no-repeat, repeat;
@@ -572,11 +598,11 @@ body.is-menu-visible .overlay {
     color: var(--accent-paragraph);
 }
 
-#footer input, #footer textarea {
+.style-footer input, .style-footer textarea {
     background: var(--accent-color);
 }
 
-#footer h1, #footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
+.style-footer h1, .style-footer h2, .style-footer h3, .style-footer h4, .style-footer h5, .style-footer h6 {
     color: var(--accent-header);
 }
 

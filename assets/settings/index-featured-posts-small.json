@@ -1,0 +1,16 @@
+{
+    "Replacements": [
+        {
+            "Structure": ".featured-posts-small",
+            "Class": [
+                "project-posts"
+            ]
+        },
+        {
+            "Structure": ".featured-posts-small .major h2",
+            "Content": [
+                "Featured Projects"
+            ]
+        }
+    ]
+}

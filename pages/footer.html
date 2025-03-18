@@ -1,6 +1,8 @@
 
 <!-- footer: links to various parts of site, copyright, messaging feature? -->
-<footer id="footer" class="style-footer">
+<!-- TODO get links working -->
+<!-- Messaging potential https://formspree.io/ -->
+<footer id="footer" class="footer style-footer">
     <!-- arcana like -->
     <!-- content -->
     <div class="content">
@@ -31,6 +33,7 @@
                 </ul>
             </section>
 
+            <!-- form -->
             <section class="col-6 col-12-narrower">
                 <h3>Get In Touch</h3>
                 <form class="row gtr-50">
@@ -59,17 +62,29 @@
 
         <!-- icons -->
         <ul class="icons">
-        <li>GitHub</li>
-        <li>LinkedIn</li>
-        <li>roadmap.sh</li>
-        <li>daily.dev</li>
+        <li><a href="https://github.com/Sugar500"><!--suppress HtmlUnknownTarget -->
+            <img src="assets/images/github-mark-white.svg" alt="GitHub"></a></li>
+        <li>
+            <a href="http://www.linkedin.com/in/jessica-gramer-731046232">
+                <!--suppress HtmlUnknownTarget -->
+                <img src="assets/images/linkedin-new-2020-seeklogo.svg" alt="LinkedIn">
+            </a>
+        </li>
+        <li>
+            <a href="https://roadmap.sh/u/sugar500"><img src="assets/images/roadmap.sh.png" alt="roadmap.sh"></a>
+        </li>
+        <li>
+            <a href="https://app.daily.dev/sugar500">
+                <img src="assets/images/daily-dev-icon-seeklogo.svg" alt="daily.dev">
+            </a>
+        </li>
     </ul>
 
         <!-- copy-right -->
         <ul class="copy-right">
-        <li>Some Copyright Statement</li>
-        <li>Some Copyright Statement 2.0</li>
-    </ul>
+            <li>&copy; 2025 Jessica Gramer. All rights reserved</li>
+            <li>Design: <a href="https://html5up.net/">HTML5 UP</a></li>
+        </ul>
     </div>
 </footer>
 
@@ -116,6 +131,11 @@
     #footer ul.icons {
         text-align: center;
     }
+
+    #footer .icons img {
+        height: 1.5rem;
+    }
+
     #footer ul.icons li {
         display: inline-block;
         padding: 0 0.75rem 0 0;

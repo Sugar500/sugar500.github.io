@@ -1,37 +1,109 @@
 
-loadHTML("assets/components/menu.html", "menu");
-loadHTML("assets/components/header.html", "header");
-loadHTML("assets/components/banner.html", "banner");
-loadHTML("assets/components/project_landings.html", "project-landings");
-loadHTML("assets/components/other_projects.html", "code-projects");
-loadHTML("assets/components/featured_blogs.html", "featured-blogs");
-loadHTML("assets/components/footer.html", "footer");
+init()
 
-async function loadData(url, func) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            console.log(`Response status: ${response.status}`);
-            return;
+function init() {
+    const fileSource = document.getElementById("data-files");
+
+    loadSubSections(fileSource);
+    loadSettings(fileSource);
+    loadPosts(fileSource);
+}
+
+function loadSubSections(fileSource) {
+    const sections = [
+        "menu",
+        "header",
+        "banner",
+        "landing-links",
+        "featured-posts-small",
+        "featured-posts-large",
+        "table-section",
+        "footer"
+    ]
+
+    sections.forEach(section => {
+        loadData(fileSource.dataset.sourcePages + section + ".html")
+            .then((result) => {
+                document.dispatchEvent(new CustomEvent('import-component', {
+                    bubbles: true,
+                    detail: {
+                        target: section,
+                        data: result
+                    }
+                }));
+            })
+
+        if (section === sections[sections.length - 1]) {
+            document.dispatchEvent(new CustomEvent('loaded-page'));
         }
+    })
+}
 
-        const json = await response.json();
-        func(json);
-    } catch (error) {
-        console.log(error);
+function loadSettings(fileSource) {
+    const url = new URL(document.URL);
+    let page = "";
+    url.pathname.split("/").forEach(element => {
+        if (element.includes('.html')) {
+            page = element.replace(".html", "");
+        }
+    })
+
+    if (fileSource.dataset.hasOwnProperty("sourceAssets")) {
+        const settings = fileSource.dataset.settings.split(" ");
+        settings.forEach(section => {
+            loadData(fileSource.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
+                .then((result) => {
+                    document.dispatchEvent(new CustomEvent('import-settings', {
+                        bubbles: true,
+                        detail: {
+                            page: page + "-" + section,
+                            data: JSON.parse(result)
+                        }
+                    }))
+
+                    if (section === settings[settings.length - 1]) {
+                        document.dispatchEvent(new CustomEvent('loaded-settings'))
+                    }
+                })
+        })
     }
 }
-async function loadHTML(url, targetID) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            console.log(`Response status: ${response.status}`);
-            return;
-        }
 
-        document.getElementById(targetID).outerHTML = await response.text();
-        postMessage(targetID);
-    } catch (error) {
-        console.log(error);
-    }
+function loadPosts(fileSource) {
+    const postFiles = [
+        "blogs/test-blog",
+        "blogs/test-blog-1"
+    ];
+    let posts = [];
+
+    postFiles.forEach(post => {
+        const source = fileSource.dataset.sourceAssets + post + '.json';
+
+        const request = new Request(source);
+        fetch(request).then(response => {
+            const lastModified = new Date(response.headers.get('Last-Modified'));
+            response.json().then(data => {
+                data.LastModified = lastModified.toString();
+                posts.push(data);
+
+                if (post === postFiles[postFiles.length - 1]) {
+                    document.dispatchEvent(new CustomEvent('loaded-posts', {
+                        detail: {
+                            posts: posts
+                        }
+                    }))
+                }
+            })
+        })
+    })
+}
+
+function setUpObserver(threshold, element, callback) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(() => {
+            callback();
+        }, { threshold: threshold });
+    })
+
+    observer.observe(element);
 }

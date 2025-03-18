@@ -1,24 +1,4 @@
 
-self.addEventListener("message", (event) => {
-    if (event.data === "featured-blogs") {
-        setDateData();
-        setInterval(updateTimeSince, 1000);
-    }
-})
-
-function setDateData() {
-    const timeSinceElements = document.querySelectorAll(".time-since");
-    timeSinceElements.forEach(element => {
-        const url = "../assets/components/featured_blogs.html"
-        fetch(url).then(r => {
-            const lastMod = new Date(r.headers.get('Last-Modified'));
-            element.innerHTML = calculateTimeSince(lastMod);
-            element.dataset.date = lastMod.toDateString() + " " + lastMod.toTimeString();
-        })
-    })
-}
-
-// TODO fix to call actual blog post rather than the html
 function updateTimeSince() {
     const timeSinceElements = document.querySelectorAll(".time-since");
     timeSinceElements.forEach(element => {
