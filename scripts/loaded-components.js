@@ -45,6 +45,26 @@ function initBanner() {
     })
 }
 
+function initFooter() {
+    function setUpIcon(element, fileType) {
+        const fileSource = document.getElementById("data-files");
+        const classList = Array.from(element.classList);
+        const iconClass = classList.find(className => className.startsWith('icon-'));
+
+        if (iconClass) {
+            const img = document.createElement('img');
+            img.src = fileSource.dataset.sourceAssets + `images/${iconClass}.${fileType}`;
+            img.alt = `${iconClass} icon`;
+            element.appendChild(img);
+        }
+    }
+
+    setUpIcon(document.querySelector(".icons a.icon-github"), 'svg');
+    setUpIcon(document.querySelector(".icons a.icon-linkedin"), 'svg');
+    setUpIcon(document.querySelector(".icons a.icon-daily-dev"), 'svg');
+    setUpIcon(document.querySelector(".icons a.icon-roadmap-sh"), 'png');
+}
+
 document.addEventListener('loaded-component', function(event) {
     switch (event.detail.page) {
         case "menu":
@@ -55,6 +75,9 @@ document.addEventListener('loaded-component', function(event) {
             break;
         case "banner":
             initBanner();
+            break;
+        case "footer":
+            initFooter();
             break;
     }
 })

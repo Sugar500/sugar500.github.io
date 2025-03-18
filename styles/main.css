@@ -483,6 +483,12 @@ table tbody tr:nth-child(2n + 1) {
     color: var(--accent-header);
 }
 
+.article-left:not(.selected),
+.article-right:not(.selected),
+.article-none:not(.selected) {
+    display: none;
+}
+
 .style-header {
     color: var(--accent-header);
 }
