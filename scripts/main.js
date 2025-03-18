@@ -48,7 +48,6 @@ function loadSettings(fileSource) {
         }
     })
     page = page.length < 1 ? "index" : page;
-    console.log(page);
 
     if (fileSource.dataset.hasOwnProperty("sourceAssets")) {
         const settings = fileSource.dataset.settings.split(" ");
