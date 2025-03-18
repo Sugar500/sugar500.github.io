@@ -40,13 +40,15 @@ function loadSubSections(fileSource) {
 }
 
 function loadSettings(fileSource) {
-    const url = new URL(document.URL);
+    const url = new URL(document.URL).pathname;
     let page = "";
-    url.pathname.split("/").forEach(element => {
+    url.split("/").forEach(element => {
         if (element.includes('.html')) {
             page = element.replace(".html", "");
         }
     })
+    page = page.length < 1 ? "index" : page;
+    console.log(page);
 
     if (fileSource.dataset.hasOwnProperty("sourceAssets")) {
         const settings = fileSource.dataset.settings.split(" ");
