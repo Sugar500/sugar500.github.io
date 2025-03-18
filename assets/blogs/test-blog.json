@@ -1,9 +1,8 @@
 
 {
-  "Title": "Sample Content",
+  "Title": "No Sidebar 2 Split",
   "Tags": [
-    "project",
-    "pinned"
+    "project"
   ],
   "Short Summary": "Praesent a dapibus velit. Curabitur accumsan.",
   "Long Summary": [
@@ -43,6 +42,21 @@
         "lorem in integer ornare praesent commodo adipiscing arcu in massa ",
         "commodo lorem accumsan at odio massa ac ac. Semper adipiscing varius ",
         "montes viverra nibh in adipiscing blandit tempus accumsan."
+      ]
+    },
+    {
+      "Header": "Magna odio tempus commodo",
+      "Tags": [
+        "col-6 col-12-narrow"
+      ],
+      "Content": [
+        "In arcu accumsan arcu adipiscing accumsan orci ac. ",
+        "Felis id enim aliquet. Accumsan ac integer lobortis ",
+        "commodo ornare aliquet accumsan erat tempus amet porttitor. ",
+        "Ante commodo blandit adipiscing integer semper orci eget. ",
+        "Faucibus commodo adipiscing mi eu nullam accumsan morbi ",
+        "arcu ornare odio mi adipiscing nascetur lacus ac interdum ",
+        "morbi accumsan vis mi accumsan."
       ]
     }
   ]

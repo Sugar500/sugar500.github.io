@@ -24,11 +24,11 @@ document.addEventListener('loaded-settings', function () {
 function initPosts() {
     sortPosts("date", false);
 
-    initElement(document.querySelector(".featured-posts-small"));
-    initElement(document.querySelector(".featured-posts-large"));
+    initFeaturedPosts(document.querySelector(".featured-posts-small"));
+    initFeaturedPosts(document.querySelector(".featured-posts-large"));
 }
 
-function initElement(element) {
+function initFeaturedPosts(element) {
     if (element === null) return;
 
     const type = element.classList.contains("project-posts") ? "project" :
@@ -50,7 +50,11 @@ function initElement(element) {
             return;
         }
 
-        header.innerHTML = posts[index].Title;
+        header.innerHTML = posts[index]["Title"];
+        header.onclick = () => {
+            document.location.href = "./article-page.html" + "#"
+                + posts[index]["Title"].replace(/ /g, '-').toLowerCase();
+        }
         paragraph.innerHTML = posts[index]["Short Summary"];
     })
 
@@ -63,6 +67,7 @@ function initElement(element) {
         const subtitle = post_preview.querySelector('.header p');
         const time_since = post_preview.querySelector('.time-since');
         const paragraph = post_preview.querySelector('p');
+        const button = post_preview.querySelector('button');
 
         if (0 >= posts.length)
         {
@@ -73,9 +78,18 @@ function initElement(element) {
         }
         else {
             header.innerHTML = posts[0]["Title"];
+            header.onclick = () => {
+                document.location.href = './article-page.html' + "#"
+                    + posts[0]["Title"].replace(/ /g, '-').toLowerCase();
+
+            }
             paragraph.innerHTML = posts[0]["Long Summary"];
             subtitle.innerHTML = posts[0]["Short Summary"];
             time_since.innerHTML = calculateTimeSince(new Date(posts[0].LastModified));
+            button.onclick = () => {
+                document.location.href = './article-page.html' + "#"
+                    + posts[0]["Title"].replace(/ /g, '-').toLowerCase();
+            }
         }
     }
     post_summary.forEach(function (summary, index) {
@@ -90,6 +104,10 @@ function initElement(element) {
         }
 
         header.innerHTML = posts[index + 1]["Title"];
+        header.onclick = () => {
+            document.location.href = "./article-page.html" + "#"
+                + posts[index + 1]["Title"].replace(/ /g, '-').toLowerCase();
+        }
         time_since.innerHTML = calculateTimeSince(new Date(posts[index + 1].LastModified));
     })
 }
