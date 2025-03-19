@@ -54,28 +54,17 @@ function loadSettings(fileSource) {
     })
     page = page.length < 1 ? "index" : page;
 
-    if (fileSource.dataset.hasOwnProperty("settings")) {
-        const settings = fileSource.dataset.settings.split(" ");
-        settings.forEach(section => {
-            loadData(fileSource.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
-                .then((result) => {
-                    document.dispatchEvent(new CustomEvent('import-settings', {
-                        bubbles: true,
-                        detail: {
-                            page: page + "-" + section,
-                            data: JSON.parse(result)
-                        }
-                    }))
-
-                    if (section === settings[settings.length - 1]) {
-                        document.dispatchEvent(new CustomEvent('loaded-settings'))
-                    }
-                })
-        })
-    }
-    else {
-        document.dispatchEvent(new CustomEvent('loaded-settings'))
-    }
+    loadData(fileSource.dataset.sourceAssets + "settings/" + page + ".json")
+        .then((result) => {
+            document.dispatchEvent(new CustomEvent('import-settings', {
+                bubbles: true,
+                detail: {
+                    page: page + "-settings",
+                    data: JSON.parse(result)
+                }
+            }));
+            document.dispatchEvent(new CustomEvent('loaded-settings'));
+        });
 }
 
 function loadPosts(fileSource) {

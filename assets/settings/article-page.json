@@ -13,6 +13,15 @@
       "Content": [
         "Sit down, relax and read something."
       ]
+    },
+    {
+      "Structure": ".featured-posts-small",
+      "Replace-Classes": [
+        {
+          "Current-Class": "style-featured-2",
+          "New-Class": "style-featured-3"
+        }
+      ]
     }
   ]
 }
