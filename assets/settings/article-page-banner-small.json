@@ -1,0 +1,18 @@
+{
+  "Replacements": [
+    {
+      "Structure": ".banner-small h2",
+      "Title": "I have no idea what you are reading currently",
+      "Content": [
+        "This Article"
+      ]
+    },
+    {
+      "Structure": ".banner-small p",
+      "Title": "",
+      "Content": [
+        "Sit down, relax and read something."
+      ]
+    }
+  ]
+}

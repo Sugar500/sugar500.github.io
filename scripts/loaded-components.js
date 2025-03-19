@@ -65,8 +65,6 @@ function initFooter() {
         }
     }
 
-    setUpIcon(document.querySelector(".icons a.icon-github"), 'svg');
-    setUpIcon(document.querySelector(".icons a.icon-linkedin"), 'svg');
     setUpIcon(document.querySelector(".icons a.icon-daily-dev"), 'svg');
     setUpIcon(document.querySelector(".icons a.icon-roadmap-sh"), 'png');
 }

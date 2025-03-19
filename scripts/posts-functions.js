@@ -33,10 +33,30 @@ function initFeaturedPosts(element) {
     if (element === null) return;
 
     const type = element.classList.contains("project-posts") ? "project" :
-        element.classList.contains("world-building-posts") ? "world-building" :
+        element.classList.contains("creative-posts") ? "creative" :
         element.classList.contains("blog-posts") ? "blog" : "posts";
 
     const posts = type !== 'posts' ? filterPosts(type) : featuredPosts.posts;
+    const icon = element.querySelectorAll('i');
+    icon.forEach(function (icon) {
+        if (type === 'project') {
+            icon.classList.add("fa-solid");
+            icon.classList.add("fa-folder-tree");
+        }
+        if (type === 'creative') {
+            icon.classList.add("fa-solid");
+            icon.classList.add("fa-hammer");
+        }
+        if (type === 'blog') {
+            icon.classList.add("fa-solid");
+            icon.classList.add("fa-pen-fancy");
+        }
+        if (type === 'posts') {
+            // <i class="fa-regular fa-pen-to-square"></i>
+            icon.classList.add("fa-regular");
+            icon.classList.add("fa-pen-to-square");
+        }
+    })
 
     // small set up
     const articles = element.querySelectorAll('article.article');
@@ -129,6 +149,10 @@ function initArticle() {
     const post = featuredPosts.posts.filter((post) => {
         return post["Title"].toLowerCase() === postTitle.replaceAll("-", " ");
     })[0];
+    document.title = post["Title"];
+    document.querySelector('.banner-small h2').innerHTML = post["Title"];
+    document.querySelector('.banner-small p').innerHTML = post["Short Summary"];
+
     if (!post.hasOwnProperty("Article-Type")) return;
     document.querySelectorAll('[class*=article-]').forEach((element) => {
         const classes = element.classList;
