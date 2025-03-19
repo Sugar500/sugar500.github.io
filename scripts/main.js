@@ -74,7 +74,6 @@ function loadSettings(fileSource) {
     }
 }
 
-<!-- TODO replace posts on article pages -->
 function loadPosts(fileSource) {
     const postFiles = [
         "blogs/test-blog",
