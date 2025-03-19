@@ -60,6 +60,7 @@ function initFooter() {
             const img = document.createElement('img');
             img.src = fileSource.dataset.sourceAssets + `images/${iconClass}.${fileType}`;
             img.alt = `${iconClass} icon`;
+            img.style.cursor = "pointer";
             element.appendChild(img);
         }
     }

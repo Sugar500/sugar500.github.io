@@ -24,6 +24,7 @@ document.addEventListener('loaded-settings', function () {
 function initPosts() {
     sortPosts("date", false);
 
+    initArticle();
     initFeaturedPosts(document.querySelector(".featured-posts-small"));
     initFeaturedPosts(document.querySelector(".featured-posts-large"));
 }
@@ -51,6 +52,7 @@ function initFeaturedPosts(element) {
         }
 
         header.innerHTML = posts[index]["Title"];
+        header.cursor = "pointer";
         header.onclick = () => {
             document.location.href = "./article-page.html" + "#"
                 + posts[index]["Title"].replace(/ /g, '-').toLowerCase();
@@ -78,6 +80,7 @@ function initFeaturedPosts(element) {
         }
         else {
             header.innerHTML = posts[0]["Title"];
+            header.cursor = "pointer";
             header.onclick = () => {
                 document.location.href = './article-page.html' + "#"
                     + posts[0]["Title"].replace(/ /g, '-').toLowerCase();
@@ -104,11 +107,95 @@ function initFeaturedPosts(element) {
         }
 
         header.innerHTML = posts[index + 1]["Title"];
+        header.cursor = "pointer";
         header.onclick = () => {
             document.location.href = "./article-page.html" + "#"
                 + posts[index + 1]["Title"].replace(/ /g, '-').toLowerCase();
         }
         time_since.innerHTML = calculateTimeSince(new Date(posts[index + 1].LastModified));
+    })
+}
+
+window.addEventListener('hashchange', () => {
+    initArticle();
+    initFeaturedPosts(document.querySelector(".featured-posts-small"));
+    initFeaturedPosts(document.querySelector(".featured-posts-large"));
+})
+
+function initArticle() {
+    const postTitle = new URL(document.URL).hash.toString().replace('#', "");
+    if (postTitle === "") return;
+
+    const post = featuredPosts.posts.filter((post) => {
+        return post["Title"].toLowerCase() === postTitle.replaceAll("-", " ");
+    })[0];
+    if (!post.hasOwnProperty("Article-Type")) return;
+    document.querySelectorAll('[class*=article-]').forEach((element) => {
+        const classes = element.classList;
+        classes.forEach((c) => {
+            if (c.endsWith(post["Article-Type"])) element.classList.add("selected");
+        })
+    })
+
+    const sidebars = document.querySelectorAll('[class*=article-] div.sidebar');
+    const articles = document.querySelectorAll('[class*=article-] article');
+
+    if (!sidebars || !articles) return;
+
+    if (post.hasOwnProperty("Tags"))
+    {
+        const featured = document.querySelector('[class*="featured-posts-"]');
+        featured.classList.add(post["Tags"]);
+        post["Tags"].forEach((t) => {
+            featured.classList.add(t + "-posts");
+        })
+    }
+
+    if (!post["Sections"]) return;
+    articles.forEach((article) => {
+        article.querySelector('.header h2').innerHTML = post["Title"];
+        article.querySelector('.header p').innerHTML = post["Short Summary"];
+        article.querySelector('.header .time-since').innerHTML = calculateTimeSince(new Date(post.LastModified));
+        const section = article.querySelector('.content');
+        section.innerHTML = "";
+        post["Sections"].forEach((element) => {
+            let tags = "";
+            if (element.hasOwnProperty("Tags")){
+                let p = "";
+                element["Tags"].forEach((t) => {
+                    p += " " + t;
+                })
+
+                tags = " class=\"" + p + "\"";
+            }
+
+            let header = "";
+            if (element.hasOwnProperty("Header")) {
+                header += "<h3>" + element["Header"] + "</h3>\n";
+            }
+
+            let content = "";
+            element["Content"].forEach((p) => {
+                content += p;
+            });
+
+            section.innerHTML += "<section" + tags + ">\n" + header + content + "\n</section>";
+        })
+    })
+
+    sidebars.forEach((sidebar) => {
+        sidebar.innerHTML = "";
+    })
+    if (!post["Sidebar"]) return;
+    sidebars.forEach((sidebar) => {
+        post["Sidebar"].forEach((element) => {
+            sidebar.innerHTML += "<h3>" + element["Header"] + "</h3>\n";
+            let txt = "";
+            element["Content"].forEach((p) => {
+                txt += p;
+            });
+            sidebar.innerHTML += "<section>" + txt + "</section>\n";
+        })
     })
 }
 

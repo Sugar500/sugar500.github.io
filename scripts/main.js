@@ -20,6 +20,8 @@ function loadSubSections(fileSource) {
         "featured-posts-large",
         "table-section",
         "article-left",
+        "article-right",
+        "article-none",
         "footer"
     ]
 

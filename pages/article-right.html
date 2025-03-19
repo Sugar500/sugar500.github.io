@@ -1,17 +1,8 @@
 
 <!-- this will have an article setup where the sidebar is on the left -->
-<section class="article-left style-featured-2">
+<section class="article-right style-featured-2">
   <!--  -->
   <div class="wrapper row gtr-200">
-    <div class="col-4 col-12-narrower">
-      <div class="sidebar">
-        <div><h3>Sidebar</h3></div>
-        <section>Sidebar section</section>
-        <section>Sidebar section</section>
-        <section>Sidebar section</section>
-        <section>Sidebar section</section>
-      </div>
-    </div>
     <div class="col-8 col-12-narrower">
       <article>
         <div class="header">
@@ -29,21 +20,30 @@
         </div>
       </article>
     </div>
+    <div class="col-4 col-12-narrower">
+      <div class="sidebar">
+        <div><h3>Sidebar</h3></div>
+        <section>Sidebar section</section>
+        <section>Sidebar section</section>
+        <section>Sidebar section</section>
+        <section>Sidebar section</section>
+      </div>
+    </div>
   </div>
 </section>
 
 <style>
-  .article-left .wrapper {
+  .article-right .wrapper {
     width: 80%;
     margin: 0 auto;
   }
 
-  .article-left .header {
+  .article-right .header {
     margin: 0 0 0.75em 0;
     line-height: 1rem;
   }
 
-  .article-left .header p {
+  .article-right .header p {
     text-transform: uppercase;
     font-size: 1.25rem;
     font-weight: 700;
@@ -52,7 +52,7 @@
     display: block;
   }
 
-  .article-left ul.meta {
+  .article-right ul.meta {
     font-size: 0.85rem;
 
     list-style: none;
@@ -61,11 +61,11 @@
     padding-left: 0;
   }
 
-  .article-left ul.meta li:first-child {
+  .article-right ul.meta li:first-child {
     margin-left: 0;
   }
 
-  .article-left ul.meta li {
+  .article-right ul.meta li {
     color: inherit;
 
     list-style: none;
@@ -75,7 +75,7 @@
     padding-left: 0;
   }
 
-  .article-left ul.meta li:before {
+  .article-right ul.meta li:before {
     margin-right: 0.5rem;
 
     opacity: 0.5;
@@ -83,18 +83,18 @@
     cursor: default;
   }
 
-  .article-left .content section{
+  .article-right .content section{
     margin-bottom: 2rem;
   }
 
-  .article-left .sidebar h3 {
+  .article-right .sidebar h3 {
     font-size: 1.25rem;
 
     margin: 0.80rem 0 0 0;
     line-height: 1rem;
   }
 
-  .article-left .sidebar section {
+  .article-right .sidebar section {
     padding: 0.5rem 0;
     border-bottom: 1px solid;
   }
