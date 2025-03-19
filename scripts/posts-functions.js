@@ -25,12 +25,15 @@ function initPosts() {
     sortPosts("date", false);
 
     initArticle();
+    console.log(document);
+    initFeaturedPosts(document.querySelector(".featured-posts-sidebar"));
     initFeaturedPosts(document.querySelector(".featured-posts-small"));
     initFeaturedPosts(document.querySelector(".featured-posts-large"));
 }
 
 function initFeaturedPosts(element) {
     if (element === null) return;
+    console.log(element);
 
     const type = element.classList.contains("project-posts") ? "project" :
         element.classList.contains("creative-posts") ? "creative" :
@@ -149,6 +152,8 @@ function initArticle() {
     const post = featuredPosts.posts.filter((post) => {
         return post["Title"].toLowerCase() === postTitle.replaceAll("-", " ");
     })[0];
+    if (!post) return;
+
     document.title = post["Title"];
     document.querySelector('.banner-small h2').innerHTML = post["Title"];
     document.querySelector('.banner-small p').innerHTML = post["Short Summary"];

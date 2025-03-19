@@ -14,11 +14,12 @@ function loadSubSections(fileSource) {
         "menu",
         "header",
         "banner",
+        "table",
         "banner-small",
         "landing-links",
+        "featured-posts-sidebar",
         "featured-posts-small",
         "featured-posts-large",
-        "table-section",
         "article-left",
         "article-right",
         "article-none",
@@ -71,6 +72,9 @@ function loadSettings(fileSource) {
                     }
                 })
         })
+    }
+    else {
+        document.dispatchEvent(new CustomEvent('loaded-settings'))
     }
 }
 
