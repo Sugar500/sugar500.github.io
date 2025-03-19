@@ -14,10 +14,14 @@ function loadSubSections(fileSource) {
         "menu",
         "header",
         "banner",
+        "banner-small",
         "landing-links",
         "featured-posts-small",
         "featured-posts-large",
         "table-section",
+        "article-left",
+        "article-right",
+        "article-none",
         "footer"
     ]
 
@@ -48,9 +52,8 @@ function loadSettings(fileSource) {
         }
     })
     page = page.length < 1 ? "index" : page;
-    console.log(page);
 
-    if (fileSource.dataset.hasOwnProperty("sourceAssets")) {
+    if (fileSource.dataset.hasOwnProperty("settings")) {
         const settings = fileSource.dataset.settings.split(" ");
         settings.forEach(section => {
             loadData(fileSource.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
@@ -71,6 +74,7 @@ function loadSettings(fileSource) {
     }
 }
 
+<!-- TODO replace posts on article pages -->
 function loadPosts(fileSource) {
     const postFiles = [
         "blogs/test-blog",

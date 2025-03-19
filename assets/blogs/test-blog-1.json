@@ -1,9 +1,10 @@
 
 {
-  "Title": "Sample Content 2",
+  "Title": "Sidebar 2 Split",
   "Tags": [
     "blog"
   ],
+  "Article-Type": "left",
   "Short Summary": "Praesent a dapibus velit. Curabitur accumsan.",
   "Long Summary": [
     "Phasellus quam turpis, feugiat sit amet ornare in, a ",
@@ -12,6 +13,37 @@
     "dapibus velit. Curabitur sed nisi nunc, accumsan vestibulum lectus. ",
     "Lorem ipsum dolor sit non aliquet sed, tempor et dolor. ",
     "Praesent a dapibus velit. Curabitur accumsan."
+  ],
+  "Sidebar": [
+    {
+      "Header": "Interdum sapien gravida",
+      "Content": [
+        "Nunc lacinia ante nunc ac lobortis. Interdum adipiscing ",
+        "gravida odio porttitor sem non mi integer non faucibus ",
+        "ornare mi ut ante amet placerat aliquet. Volutpat eu sed ",
+        "ante lacinia sapien lorem accumsan varius montes viverra ",
+        "nibh in adipiscing blandit."
+      ]
+    },{
+      "Header": "Faucibus consequat lorem",
+      "Content": [
+        "Nunc lacinia ante nunc ac lobortis. Interdum adipiscing ",
+        "gravida odio porttitor sem non mi integer non faucibus ",
+        "ornare mi ut ante amet placerat aliquet. Volutpat eu sed ",
+        "ante lacinia sapien lorem accumsan varius montes viverra ",
+        "nibh in adipiscing blandit."
+      ]
+    },
+    {
+      "Header": "Accumsan montes viverra",
+      "Content": [
+        "Nunc lacinia ante nunc ac lobortis. Interdum adipiscing ",
+        "gravida odio porttitor sem non mi integer non faucibus ",
+        "ornare mi ut ante amet placerat aliquet. Volutpat eu sed ",
+        "ante lacinia sapien lorem accumsan varius montes viverra ",
+        "nibh in adipiscing blandit."
+      ]
+    }
   ],
   "Sections": [
     {
@@ -42,6 +74,21 @@
         "lorem in integer ornare praesent commodo adipiscing arcu in massa ",
         "commodo lorem accumsan at odio massa ac ac. Semper adipiscing varius ",
         "montes viverra nibh in adipiscing blandit tempus accumsan."
+      ]
+    },
+    {
+      "Header": "Magna odio tempus commodo",
+      "Tags": [
+        "col-6 col-12-narrow"
+      ],
+      "Content": [
+        "In arcu accumsan arcu adipiscing accumsan orci ac. ",
+        "Felis id enim aliquet. Accumsan ac integer lobortis ",
+        "commodo ornare aliquet accumsan erat tempus amet porttitor. ",
+        "Ante commodo blandit adipiscing integer semper orci eget. ",
+        "Faucibus commodo adipiscing mi eu nullam accumsan morbi ",
+        "arcu ornare odio mi adipiscing nascetur lacus ac interdum ",
+        "morbi accumsan vis mi accumsan."
       ]
     }
   ]

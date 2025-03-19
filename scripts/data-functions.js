@@ -52,5 +52,11 @@ document.addEventListener('import-settings', function (event) {
                 target.innerHTML += child;
             });
         }
+
+        if (element.hasOwnProperty('Replace-Classes')) {
+            element['Replace-Classes'].forEach(replaceClass => {
+                target.classList.replace(replaceClass["Current-Class"], replaceClass["New-Class"]);
+            })
+        }
     })
 })
