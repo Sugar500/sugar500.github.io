@@ -46,9 +46,7 @@ function initPosts() {
 function initArticle(postTitle) {
     if (postTitle === "") return;
 
-    const post = allPosts.posts.filter((post) => {
-        return post["Title"].toLowerCase() === postTitle.replaceAll("-", " ");
-    })[0];
+    const post = filterNames(postTitle.replaceAll("-", " "))[0];
     if (!post) return;
 
     document.title = post["Title"];
@@ -202,6 +200,22 @@ function initProjectPage(landingType) {
     }
 
     // TODO grab posts of landing type and fill out table with title, tags and short summary
+    const postTag = landingType.includes("projects") ? "project" :
+        landingType.includes("creative-projects") ? "creative" : landingType.includes("blog") ? "blog"
+            : "posts";
+    const posts = filterTags(postTag, "secret");
+    const table = Array.from(document.getElementsByTagName('table'))[0];
+    table.createTHead();
+    table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
+    table.tBodies[0].innerHTML = "";
+    posts.forEach((post, index) => {
+        if (table.tBodies.length === index) table.insertRow();
+        table.tBodies[index].innerHTML += "<tr><td><a href='./article-page.html#" +
+            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"]
+            + "</a></td><td>" + post["Tags"] + "</td><td>"
+            + post["Short Summary"] + "</td></tr>";
+    })
+    console.log(table);
 }
 
 function initFeaturedPosts(element) {
@@ -211,7 +225,7 @@ function initFeaturedPosts(element) {
         element.classList.contains("creative-posts") ? "creative" :
             element.classList.contains("blog-posts") ? "blog" : "posts";
 
-    const posts = type !== 'posts' ? filterPosts(type) : allPosts.posts;
+    const posts = type !== 'posts' ? filterTags(type) : allPosts.posts;
     const icon = element.querySelectorAll('i');
     icon.forEach(function (icon) {
         if (type === 'project') {
@@ -339,9 +353,14 @@ function sortPosts(type, ascending) {
     }
 }
 
-function filterPosts(includeTag, removeTag) {
+function filterTags(includeTag, removeTag) {
     return allPosts.posts.filter(post => {
-        // noinspection JSUnresolvedReference
-        return post.Tags.includes(includeTag) && !post.Tags.includes(removeTag);
+        return post["Tags"].includes(includeTag) && !post["Tags"].includes(removeTag);
+    })
+}
+
+function filterNames(name) {
+    return allPosts.posts.filter((post) => {
+        return post["Title"].toLowerCase() === name.toLowerCase();
     })
 }

@@ -477,14 +477,17 @@ table {
     width: 100%;
 }
 
-table tbody tr {
+table tbody tr,
+table tbody tr a{
     border: solid 1px var(--accent-color);
+    text-decoration: none;
     border-left: 0;
     border-right: 0;
     color: var(--main-paragraph);
 }
 
-table tbody tr:nth-child(2n + 1) {
+table tbody tr:nth-child(2n + 1),
+table tbody tr:nth-child(2n + 1) a {
     background-color: var(--accent-color);
     color: var(--accent-header);
 }
