@@ -1,35 +1,33 @@
 
 <!-- footer: links to various parts of site, copyright, messaging feature? -->
-<!-- TODO get links working -->
+<!-- TODO rework links -->
 <!-- Messaging potential https://formspree.io/ -->
 <footer id="footer" class="footer style-footer">
     <!-- arcana like -->
     <!-- content -->
-    <div class="content">
+    <div class="inner">
         <div class="container">
         <div class="row">
             <!-- links set 1 -->
             <section class="col-3 col-6-narrower col-12-mobilep">
-                <h3>Links</h3>
+                <h3>Project Landings</h3>
                 <ul class="links">
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="">World-building</a></li>
-                    <li><a href="">Projects</a></li>
-                    <li><a href="">Resume</a></li>
-                    <li><a href="">Blog</a></li>
-                    <li><a href="">Directory</a></li>
+                    <li><a href="./project-landing.html#blog">Blog Archive</a></li>
+                    <li><a href="./project-landing.html#creative-projects">Creative Archive</a></li>
+                    <li><a href="./project-landing.html#projects">Project Archive</a></li>
+                    <li><a href="./project-landing.html#world-building">World-building Archive</a></li>
+                    <li><a href="./project-landing.html#writing-projects">Writing Archive</a></li>
                 </ul>
             </section>
 
             <!-- links set 2 -->
             <section class="col-3 col-6-narrower col-12-mobilep">
-                <h3>About</h3>
+                <h3>Site Navigation</h3>
                 <ul class="links">
-                    <li><a href="">Contact</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">FAQ</a></li>
-                    <li><a href="">Privacy Policy</a></li>
-                    <li><a href="">Terms of Use</a></li>
+                    <li><!--suppress HtmlUnknownTarget -->
+                        <a href="./index.html">Home</a></li>
+                    <li><a href="">Resume</a></li>
+                    <li><a href="">Directory</a></li>
                 </ul>
             </section>
 
@@ -62,9 +60,9 @@
 
         <!-- icons -->
         <ul class="icons">
-        <li><a href="https://github.com/Sugar500" class="icon-github"></a></li>
+        <li><a href="https://github.com/Sugar500" class="fa-brands fa-github"></a></li>
         <li>
-            <a href="http://www.linkedin.com/in/jessica-gramer-731046232" class="icon-linkedin"></a>
+            <a href="http://www.linkedin.com/in/jessica-gramer-731046232" class="fa-brands fa-linkedin"></a>
         </li>
         <li>
             <a href="https://roadmap.sh/u/sugar500" class="icon-roadmap-sh"></a>
@@ -86,10 +84,6 @@
     <!-- -->
     #footer {
         padding: 1rem 0 1rem 0;
-    }
-    #footer .content {
-        margin: 0 auto;
-        width: 80%;
     }
 
     #footer h3 {
@@ -127,7 +121,7 @@
     }
 
     #footer .icons img {
-        height: 1.5rem;
+        height: 1rem;
     }
 
     #footer ul.icons li {

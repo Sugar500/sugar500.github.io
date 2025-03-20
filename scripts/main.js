@@ -14,11 +14,12 @@ function loadSubSections(fileSource) {
         "menu",
         "header",
         "banner",
+        "table",
         "banner-small",
         "landing-links",
+        "featured-posts-sidebar",
         "featured-posts-small",
         "featured-posts-large",
-        "table-section",
         "article-left",
         "article-right",
         "article-none",
@@ -36,10 +37,6 @@ function loadSubSections(fileSource) {
                     }
                 }));
             })
-
-        if (section === sections[sections.length - 1]) {
-            document.dispatchEvent(new CustomEvent('loaded-page'));
-        }
     })
 }
 
@@ -53,32 +50,22 @@ function loadSettings(fileSource) {
     })
     page = page.length < 1 ? "index" : page;
 
-    if (fileSource.dataset.hasOwnProperty("settings")) {
-        const settings = fileSource.dataset.settings.split(" ");
-        settings.forEach(section => {
-            loadData(fileSource.dataset.sourceAssets + "settings/" + page + "-" + section + ".json")
-                .then((result) => {
-                    document.dispatchEvent(new CustomEvent('import-settings', {
-                        bubbles: true,
-                        detail: {
-                            page: page + "-" + section,
-                            data: JSON.parse(result)
-                        }
-                    }))
-
-                    if (section === settings[settings.length - 1]) {
-                        document.dispatchEvent(new CustomEvent('loaded-settings'))
-                    }
-                })
-        })
-    }
+    loadData(fileSource.dataset.sourceAssets + "settings/" + page + ".json")
+        .then((result) => {
+            document.dispatchEvent(new CustomEvent('import-settings', {
+                bubbles: true,
+                detail: {
+                    page: page + "-settings",
+                    data: JSON.parse(result)
+                }
+            }));
+            document.dispatchEvent(new CustomEvent('loaded-settings'));
+        });
 }
 
-<!-- TODO replace posts on article pages -->
 function loadPosts(fileSource) {
     const postFiles = [
-        "blogs/test-blog",
-        "blogs/test-blog-1"
+        "projects/personal-website",
     ];
     let posts = [];
 

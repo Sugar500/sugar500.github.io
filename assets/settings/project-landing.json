@@ -1,10 +1,10 @@
 {
   "Replacements": [
     {
-      "Structure": ".featured-posts-small",
+      "Structure": "#landing-links",
       "Replace-Classes": [
         {
-          "Current-Class": "style-featured-2",
+          "Current-Class": "style-featured-1",
           "New-Class": "style-featured-3"
         }
       ]
