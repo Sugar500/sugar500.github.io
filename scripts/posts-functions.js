@@ -33,7 +33,7 @@ function initPosts() {
     if (url.pathname.includes("article-page.html")) {
         initArticle(url.hash.replace("#", ""));
     }
-    else {
+    else if (url.pathname.includes("project-page.html")) {
         initProjectPage(url.hash.replace("#", ""));
     }
 
