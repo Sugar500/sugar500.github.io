@@ -11,29 +11,30 @@ document.addEventListener('loaded-posts', function (event) {
     allPosts.posts = event.detail.posts;
 
     if (!allPosts.loaded) return;
-    initPosts();
+    initPosts(new URL(document.location));
 })
 
 document.addEventListener('loaded-settings', function () {
     allPosts.loaded = true;
 
     if (allPosts.posts.length < 1) return;
-    initPosts();
+    initPosts(new URL(document.location));
 })
 
-window.addEventListener('hashchange', () => {
-    initPosts();
+window.addEventListener('hashchange', (event) => {
+    console.log(event);
+    initPosts(new URL(event.newURL));
 })
 
 
-function initPosts() {
+function initPosts(url) {
     sortPosts("date", false);
-    const url = new URL(document.URL);
 
-    if (url.pathname.includes("article-page.html")) {
+    const pathname = url.pathname;
+    if (pathname.includes("article-page.html")) {
         initArticle(url.hash.replace("#", ""));
     }
-    else if (url.pathname.includes("project-landing.html")) {
+    else if (pathname.includes("project-landing.html")) {
         initProjectPage(url.hash.replace("#", ""));
     }
 
@@ -46,13 +47,16 @@ function initPosts() {
 function initArticle(postTitle) {
     if (postTitle === "") return;
 
+    // find the main post
     const post = filterNames(postTitle.replaceAll("-", " "))[0];
     if (!post) return;
 
+    // set the banner up
     document.title = post["Title"];
     document.querySelector('.banner-small h2').innerHTML = post["Title"];
     document.querySelector('.banner-small p').innerHTML = post["Short Summary"];
 
+    // determine which article type to use
     if (!post.hasOwnProperty("Article-Type")) return;
     document.querySelectorAll('[class*=article-]').forEach((element) => {
         const classes = element.classList;
@@ -61,11 +65,12 @@ function initArticle(postTitle) {
         })
     })
 
+    // grab the main components of the article
     const sidebars = document.querySelectorAll('[class*=article-] div.sidebar');
     const articles = document.querySelectorAll('[class*=article-] article');
-
     if (!sidebars || !articles) return;
 
+    // change the featured tag type
     if (post.hasOwnProperty("Tags"))
     {
         const featured = document.querySelector('[class*="featured-posts-"]');
@@ -75,6 +80,7 @@ function initArticle(postTitle) {
         })
     }
 
+    // fill out the main article
     if (!post["Sections"]) return;
     articles.forEach((article) => {
         article.querySelector('.header h2').innerHTML = post["Title"];
@@ -107,6 +113,7 @@ function initArticle(postTitle) {
         })
     })
 
+    // fill out the sidebar
     sidebars.forEach((sidebar) => {
         sidebar.innerHTML = "";
     })
@@ -132,42 +139,43 @@ function initProjectPage(landingType) {
     // creative-projects (creative-posts, writing | world-building | creative)
     // current other landings: writing-projects (writing), world-building (world-building)
 
+    // update the banner to match the projects
     const bannerTitle = document.querySelector('.banner-small h2');
     const bannerSubtitle = document.querySelector('.banner-small p');
-
     switch (landingType) {
         case "blog":
             bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the Blog!";
+            bannerTitle.innerHTML = "Welcome to the Blog Archive!";
             bannerSubtitle.title = "the non-secret ones";
             bannerSubtitle.innerHTML = "A place to find all of the blog posts.";
             break;
         case "projects":
             bannerTitle.title = "Are there any completed ones?";
-            bannerTitle.innerHTML = "Welcome to the Project Homepage!";
+            bannerTitle.innerHTML = "Welcome to the Project Archive!";
             bannerSubtitle.title = "";
             bannerSubtitle.innerHTML = "A place to find all the past and current projects.";
             break;
         case "creative-projects":
             bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the creative projects homepage!";
-            bannerSubtitle.title = "Most of the should direct to more homepages! Homepage \'ception.";
+            bannerTitle.innerHTML = "Welcome to the creative project archive!";
+            bannerSubtitle.title = "Most of the should direct to more archives! Homepage \'ception.";
             bannerSubtitle.innerHTML = "A place to find the creative projects.";
             break;
         case "writing-projects":
             bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the Writing Projects homepage!";
+            bannerTitle.innerHTML = "Welcome to the Writing Project archive!";
             bannerSubtitle.title = "the non-secret ones";
             bannerSubtitle.innerHTML = "A place to find creative writing projects.";
             break;
         case "world-building":
             bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the World-building homepage!";
+            bannerTitle.innerHTML = "Welcome to the World-building archive!";
             bannerSubtitle.title = "Secrets! Where?";
             bannerSubtitle.innerHTML = "A place to find world-building projects!";
             break;
     }
 
+    // show or hide the creative landings
     const creativeDashboard = document.querySelector('.creative');
     if (creativeDashboard) {
         switch (landingType) {
@@ -182,11 +190,17 @@ function initProjectPage(landingType) {
         }
     }
 
-    const sidebar = document.querySelector('.featured-posts-sidebar');
-    const sidebarHeading = document.querySelector('.featured-posts-sidebar h2');
+    // update the featured articles
+    const sidebar = document.querySelector('[class*="featured-posts-"]');
+    const sidebarHeading = document.querySelector('[class*="featured-posts-"] h2');
+    sidebar.classList.remove('blog-posts');
+    sidebar.classList.remove('project-posts');
+    sidebar.classList.remove('creative-posts');
     switch (landingType) {
         case "blog":
             sidebar.classList.add('blog-posts');
+            sidebar.classList.remove('project-posts');
+            sidebar.classList.remove('creative-posts');
             sidebarHeading.innerHTML = "Featured Blog Posts";
             break;
         case "projects":
@@ -197,13 +211,18 @@ function initProjectPage(landingType) {
             sidebar.classList.add('creative-posts');
             sidebarHeading.innerHTML = "Featured Project Posts!";
             break;
+        default:
+            sidebarHeading.innerHTML = "Featured Posts";
+            break;
     }
 
+    // grab all posts matching tags
     const postTag = landingType === "projects" ? "project" : landingType === "creative-projects" ? "creative"
         : landingType === "blog" ? "blog" : "posts";
     const posts = filterTags(postTag, "secret");
-    const table = Array.from(document.getElementsByTagName('table'))[0];
 
+    // update the table
+    const table = Array.from(document.getElementsByTagName('table'))[0];
     if (table === undefined) return;
     table.createTHead();
     table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
@@ -220,33 +239,35 @@ function initProjectPage(landingType) {
 function initFeaturedPosts(element) {
     if (element === null) return;
 
-    const type = element.classList.contains("project-posts") ? "project" :
+    const postsType = element.classList.contains("project-posts") ? "project" :
         element.classList.contains("creative-posts") ? "creative" :
             element.classList.contains("blog-posts") ? "blog" : "posts";
 
-    const posts = type !== 'posts' ? filterTags(type) : allPosts.posts;
+    const posts = postsType !== 'posts' ? filterTags(postsType, "secret") : allPosts.posts;
+
+    // replace the icons
     const icon = element.querySelectorAll('i');
     icon.forEach(function (icon) {
-        if (type === 'project') {
+        if (postsType === 'project') {
             icon.classList.add("fa-solid");
             icon.classList.add("fa-folder-tree");
         }
-        if (type === 'creative') {
+        if (postsType === 'creative') {
             icon.classList.add("fa-solid");
             icon.classList.add("fa-hammer");
         }
-        if (type === 'blog') {
+        if (postsType === 'blog') {
             icon.classList.add("fa-solid");
             icon.classList.add("fa-pen-fancy");
         }
-        if (type === 'posts') {
+        if (postsType === 'posts') {
             // <i class="fa-regular fa-pen-to-square"></i>
             icon.classList.add("fa-regular");
             icon.classList.add("fa-pen-to-square");
         }
     })
 
-    // small set up
+    // set up the small and sidebar featured posts
     const articles = element.querySelectorAll('article.article');
     articles.forEach( function(article, index) {
         const header = article.querySelector('h3');
@@ -254,12 +275,13 @@ function initFeaturedPosts(element) {
 
         if (index >= posts.length)
         {
-            header.style.visibility = "hidden";
+            header.style.display = "none";
             paragraph.innerHTML = "No more to show.";
             return;
         }
 
         header.innerHTML = posts[index]["Title"];
+        header.style.display = "block";
         header.cursor = "pointer";
         header.onclick = () => {
             document.location.href = "./article-page.html" + "#"
@@ -268,7 +290,7 @@ function initFeaturedPosts(element) {
         paragraph.innerHTML = posts[index]["Short Summary"];
     })
 
-    // large set up
+    // set up the large featured posts
     const post_preview = element.querySelector('.post-preview');
     const post_summary = element.querySelectorAll('.post-summary');
 
@@ -281,12 +303,16 @@ function initFeaturedPosts(element) {
 
         if (0 >= posts.length)
         {
-            header.style.visibility = "hidden";
-            subtitle.style.visibility = "hidden";
-            time_since.style.visibility = "hidden";
+            header.style.display = "none";
+            subtitle.style.display = "none";
+            time_since.style.display = "none";
             paragraph.innerHTML = "No more to show.";
         }
         else {
+            header.style.display = "block";
+            subtitle.style.display = "block";
+            time_since.style.display = "block";
+
             header.innerHTML = posts[0]["Title"];
             header.cursor = "pointer";
             header.onclick = () => {

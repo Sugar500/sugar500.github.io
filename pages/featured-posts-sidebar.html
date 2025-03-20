@@ -4,46 +4,48 @@
   <!-- txt features like with multiverse pop-ups -->
   <div class="inner">
     <h2>Featured Posts</h2>
+    <ul class="article-list">
       <!-- Article 1 -->
-      <article class="article">
+      <li><article class="article">
         <i class=""></i>
         <h3>Article Title</h3>
         <p>Phasellus quam turpis, feugiat sit amet ornare in, a
           hendrerit in lectus. Praesent semper mod quis eget mi.
           Etiam sed ante risus aliquam erat et volutpat. Praesent a
           dapibus velit.</p>
-      </article>
+      </article></li>
 
       <!-- Article 2 -->
-      <article class="article">
+      <li><article class="article">
         <i class=""></i>
         <h3>Article Title</h3>
         <p>Phasellus quam turpis, feugiat sit amet ornare in, a
           hendrerit in lectus. Praesent semper mod quis eget mi.
           Etiam sed ante risus aliquam erat et volutpat. Praesent a
           dapibus velit.</p>
-      </article>
+      </article></li>
 
       <!-- Article 3 -->
-      <article class="article">
+      <li><article class="article">
         <i class=""></i>
         <h3>Article Title</h3>
         <p>Phasellus quam turpis, feugiat sit amet ornare in, a
           hendrerit in lectus. Praesent semper mod quis eget mi.
           Etiam sed ante risus aliquam erat et volutpat. Praesent a
           dapibus velit.</p>
-      </article>
+      </article></li>
 
       <!-- Article 4 -->
-      <article class="article">
+      <li><article class="article">
         <i class=""></i>
         <h3>Article Title</h3>
         <p>Phasellus quam turpis, feugiat sit amet ornare in, a
           hendrerit in lectus. Praesent semper mod quis eget mi.
           Etiam sed ante risus aliquam erat et volutpat. Praesent a
           dapibus velit.</p>
-      </article>
-    </div>
+      </article></li>
+    </ul>
+  </div>
 </section>
 
 <style>
@@ -58,6 +60,22 @@
 
   .featured-posts-sidebar .inner {
     padding-top: 1rem;
+  }
+
+  .featured-posts-sidebar .article {
+    margin: 2rem 0;
+  }
+
+  .featured-posts-sidebar .article-list {
+    list-style: none;
+  }
+
+  .featured-posts-sidebar .article-list li {
+    border-bottom: solid 2px;
+  }
+
+  .featured-posts-sidebar .article-list li:last-child {
+    border-bottom: none;
   }
 
   .featured-posts-sidebar h3 {
