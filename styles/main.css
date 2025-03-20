@@ -525,6 +525,10 @@ table td {
     display: none;
 }
 
+.box-highlight {
+    text-align: center;
+}
+
 .style-header {
     color: var(--accent-header);
 }

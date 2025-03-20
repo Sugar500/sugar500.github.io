@@ -69,6 +69,17 @@ function initFooter() {
     setUpIcon(document.querySelector(".icons a.icon-roadmap-sh"), 'png');
 }
 
+function setUpLinks() {
+    document.querySelectorAll("a").forEach(element => {
+        const url = new URL(document.URL);
+        if (url.origin === element.origin) {
+            element.onclick = (event) => {
+                window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+        }
+    })
+}
+
 document.addEventListener('loaded-component', function(event) {
     switch (event.detail.page) {
         case "menu":
@@ -82,6 +93,7 @@ document.addEventListener('loaded-component', function(event) {
             break;
         case "footer":
             initFooter();
+            setUpLinks();
             break;
     }
 })

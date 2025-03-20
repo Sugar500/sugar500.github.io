@@ -37,10 +37,6 @@ function loadSubSections(fileSource) {
                     }
                 }));
             })
-
-        if (section === sections[sections.length - 1]) {
-            document.dispatchEvent(new CustomEvent('loaded-page'));
-        }
     })
 }
 

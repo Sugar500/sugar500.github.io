@@ -22,8 +22,7 @@ document.addEventListener('loaded-settings', function () {
 })
 
 window.addEventListener('hashchange', () => {
-    console.log("Hash change");
-    initArticle();
+    initPosts();
 })
 
 
@@ -171,14 +170,18 @@ function initProjectPage(landingType) {
             break;
     }
 
-    switch (landingType) {
-        case "creative-projects":
-        case "world-building":
-        case "writing-projects":
-            document.querySelector('.creative').classList.add('selected');
-            break;
-        default:
-            break;
+    const creativeDashboard = document.querySelector('.creative');
+    if (creativeDashboard) {
+        switch (landingType) {
+            case "creative-projects":
+            case "world-building":
+            case "writing-projects":
+                creativeDashboard.classList.add('selected');
+                break;
+            default:
+                creativeDashboard.classList.remove('selected');
+                break;
+        }
     }
 
     const sidebar = document.querySelector('.featured-posts-sidebar');
@@ -262,9 +265,6 @@ function initFeaturedPosts(element) {
         const time_since = post_preview.querySelector('.time-since');
         const paragraph = post_preview.querySelector('p.body');
         const button = post_preview.querySelector('button');
-
-        console.log(paragraph);
-        console.log(subtitle);
 
         if (0 >= posts.length)
         {
