@@ -33,7 +33,7 @@ function initPosts() {
     if (url.pathname.includes("article-page.html")) {
         initArticle(url.hash.replace("#", ""));
     }
-    else if (url.pathname.includes("project-page.html")) {
+    else if (url.pathname.includes("project-landing.html")) {
         initProjectPage(url.hash.replace("#", ""));
     }
 
@@ -199,9 +199,8 @@ function initProjectPage(landingType) {
             break;
     }
 
-    const postTag = landingType.includes("projects") ? "project" :
-        landingType.includes("creative-projects") ? "creative" : landingType.includes("blog") ? "blog"
-            : "posts";
+    const postTag = landingType === "projects" ? "project" : landingType === "creative-projects" ? "creative"
+        : landingType === "blog" ? "blog" : "posts";
     const posts = filterTags(postTag, "secret");
     const table = Array.from(document.getElementsByTagName('table'))[0];
 
@@ -216,7 +215,6 @@ function initProjectPage(landingType) {
             + "</a></td><td>" + post["Tags"] + "</td><td>"
             + post["Short Summary"] + "</td></tr>";
     })
-    console.log(table);
 }
 
 function initFeaturedPosts(element) {
