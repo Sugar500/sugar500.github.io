@@ -199,7 +199,6 @@ function initProjectPage(landingType) {
             break;
     }
 
-    // TODO grab posts of landing type and fill out table with title, tags and short summary
     const postTag = landingType.includes("projects") ? "project" :
         landingType.includes("creative-projects") ? "creative" : landingType.includes("blog") ? "blog"
             : "posts";
