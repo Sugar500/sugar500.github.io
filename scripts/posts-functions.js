@@ -1,5 +1,5 @@
 
-const featuredPosts = {
+const allPosts = {
     posts: [],
     loaded: false,
 }
@@ -8,38 +8,203 @@ const featuredPosts = {
 // blog-posts can also have other classes: world-building, project, notes
 // TODO include ability to pin a post
 document.addEventListener('loaded-posts', function (event) {
-    featuredPosts.posts = event.detail.posts;
+    allPosts.posts = event.detail.posts;
 
-    if (!featuredPosts.loaded) return;
+    if (!allPosts.loaded) return;
     initPosts();
 })
 
 document.addEventListener('loaded-settings', function () {
-    featuredPosts.loaded = true;
+    allPosts.loaded = true;
 
-    if (featuredPosts.posts.length < 1) return;
+    if (allPosts.posts.length < 1) return;
     initPosts();
 })
 
+window.addEventListener('hashchange', () => {
+    console.log("Hash change");
+    initArticle();
+})
+
+
 function initPosts() {
     sortPosts("date", false);
+    const url = new URL(document.URL);
 
-    initArticle();
-    console.log(document);
-    initFeaturedPosts(document.querySelector(".featured-posts-sidebar"));
-    initFeaturedPosts(document.querySelector(".featured-posts-small"));
-    initFeaturedPosts(document.querySelector(".featured-posts-large"));
+    if (url.pathname.includes("article-page.html")) {
+        initArticle(url.hash.replace("#", ""));
+    }
+    else {
+        initProjectPage(url.hash.replace("#", ""));
+    }
+
+    document.querySelectorAll("[class*='featured-posts-']").forEach(element => {
+        initFeaturedPosts(element);
+    })
+
+}
+
+function initArticle(postTitle) {
+    if (postTitle === "") return;
+
+    const post = allPosts.posts.filter((post) => {
+        return post["Title"].toLowerCase() === postTitle.replaceAll("-", " ");
+    })[0];
+    if (!post) return;
+
+    document.title = post["Title"];
+    document.querySelector('.banner-small h2').innerHTML = post["Title"];
+    document.querySelector('.banner-small p').innerHTML = post["Short Summary"];
+
+    if (!post.hasOwnProperty("Article-Type")) return;
+    document.querySelectorAll('[class*=article-]').forEach((element) => {
+        const classes = element.classList;
+        classes.forEach((c) => {
+            if (c.endsWith(post["Article-Type"])) element.classList.add("selected");
+        })
+    })
+
+    const sidebars = document.querySelectorAll('[class*=article-] div.sidebar');
+    const articles = document.querySelectorAll('[class*=article-] article');
+
+    if (!sidebars || !articles) return;
+
+    if (post.hasOwnProperty("Tags"))
+    {
+        const featured = document.querySelector('[class*="featured-posts-"]');
+        featured.classList.add(post["Tags"]);
+        post["Tags"].forEach((t) => {
+            featured.classList.add(t + "-posts");
+        })
+    }
+
+    if (!post["Sections"]) return;
+    articles.forEach((article) => {
+        article.querySelector('.header h2').innerHTML = post["Title"];
+        article.querySelector('.header p').innerHTML = post["Short Summary"];
+        article.querySelector('.header .time-since').innerHTML = calculateTimeSince(new Date(post.LastModified));
+        const section = article.querySelector('.content');
+        section.innerHTML = "";
+        post["Sections"].forEach((element) => {
+            let tags = "";
+            if (element.hasOwnProperty("Tags")){
+                let p = "";
+                element["Tags"].forEach((t) => {
+                    p += " " + t;
+                })
+
+                tags = " class=\"" + p + "\"";
+            }
+
+            let header = "";
+            if (element.hasOwnProperty("Header")) {
+                header += "<h3>" + element["Header"] + "</h3>\n";
+            }
+
+            let content = "";
+            element["Content"].forEach((p) => {
+                content += p;
+            });
+
+            section.innerHTML += "<section" + tags + ">\n" + header + content + "\n</section>";
+        })
+    })
+
+    sidebars.forEach((sidebar) => {
+        sidebar.innerHTML = "";
+    })
+    if (!post["Sidebar"]) return;
+    sidebars.forEach((sidebar) => {
+        post["Sidebar"].forEach((element) => {
+            sidebar.innerHTML += "<h3>" + element["Header"] + "</h3>\n";
+            let txt = "";
+            element["Content"].forEach((p) => {
+                txt += p;
+            });
+            sidebar.innerHTML += "<section>" + txt + "</section>\n";
+        })
+    })
+}
+
+function initProjectPage(landingType) {
+    // blog (blog-posts, blog), projects (project-posts, project),
+    // creative-projects (creative-posts, writing | world-building | creative)
+    // current other landings: writing-projects (writing), world-building (world-building)
+
+    const bannerTitle = document.querySelector('.banner-small h2');
+    const bannerSubtitle = document.querySelector('.banner-small p');
+
+    switch (landingType) {
+        case "blog":
+            bannerTitle.title = "";
+            bannerTitle.innerHTML = "Welcome to the Blog!";
+            bannerSubtitle.title = "the non-secret ones";
+            bannerSubtitle.innerHTML = "A place to find all of the blog posts.";
+            break;
+        case "projects":
+            bannerTitle.title = "Are there any completed ones?";
+            bannerTitle.innerHTML = "Welcome to the Project Homepage!";
+            bannerSubtitle.title = "";
+            bannerSubtitle.innerHTML = "A place to find all the past and current projects.";
+            break;
+        case "creative-projects":
+            bannerTitle.title = "";
+            bannerTitle.innerHTML = "Welcome to the creative projects homepage!";
+            bannerSubtitle.title = "Most of the should direct to more homepages! Homepage \'ception.";
+            bannerSubtitle.innerHTML = "A place to find the creative projects.";
+            break;
+        case "writing-projects":
+            bannerTitle.title = "";
+            bannerTitle.innerHTML = "Welcome to the Writing Projects homepage!";
+            bannerSubtitle.title = "the non-secret ones";
+            bannerSubtitle.innerHTML = "A place to find creative writing projects.";
+            break;
+        case "world-building":
+            bannerTitle.title = "";
+            bannerTitle.innerHTML = "Welcome to the World-building homepage!";
+            bannerSubtitle.title = "Secrets! Where?";
+            bannerSubtitle.innerHTML = "A place to find world-building projects!";
+            break;
+    }
+
+    switch (landingType) {
+        case "creative-projects":
+        case "world-building":
+        case "writing-projects":
+            document.querySelector('.creative').classList.add('selected');
+            break;
+        default:
+            break;
+    }
+
+    const sidebar = document.querySelector('.featured-posts-sidebar');
+    const sidebarHeading = document.querySelector('.featured-posts-sidebar h2');
+    switch (landingType) {
+        case "blog":
+            sidebar.classList.add('blog-posts');
+            sidebarHeading.innerHTML = "Featured Blog Posts";
+            break;
+        case "projects":
+            sidebar.classList.add('project-posts');
+            sidebarHeading.innerHTML = "Featured Projects";
+            break;
+        case "creative-projects":
+            sidebar.classList.add('creative-posts');
+            sidebarHeading.innerHTML = "Featured Project Posts!";
+            break;
+    }
+
+    // TODO grab posts of landing type and fill out table with title, tags and short summary
 }
 
 function initFeaturedPosts(element) {
     if (element === null) return;
-    console.log(element);
 
     const type = element.classList.contains("project-posts") ? "project" :
         element.classList.contains("creative-posts") ? "creative" :
-        element.classList.contains("blog-posts") ? "blog" : "posts";
+            element.classList.contains("blog-posts") ? "blog" : "posts";
 
-    const posts = type !== 'posts' ? filterPosts(type) : featuredPosts.posts;
+    const posts = type !== 'posts' ? filterPosts(type) : allPosts.posts;
     const icon = element.querySelectorAll('i');
     icon.forEach(function (icon) {
         if (type === 'project') {
@@ -139,115 +304,26 @@ function initFeaturedPosts(element) {
     })
 }
 
-window.addEventListener('hashchange', () => {
-    initArticle();
-    initFeaturedPosts(document.querySelector(".featured-posts-small"));
-    initFeaturedPosts(document.querySelector(".featured-posts-large"));
-})
-
-function initArticle() {
-    const postTitle = new URL(document.URL).hash.toString().replace('#', "");
-    if (postTitle === "") return;
-
-    const post = featuredPosts.posts.filter((post) => {
-        return post["Title"].toLowerCase() === postTitle.replaceAll("-", " ");
-    })[0];
-    if (!post) return;
-
-    document.title = post["Title"];
-    document.querySelector('.banner-small h2').innerHTML = post["Title"];
-    document.querySelector('.banner-small p').innerHTML = post["Short Summary"];
-
-    if (!post.hasOwnProperty("Article-Type")) return;
-    document.querySelectorAll('[class*=article-]').forEach((element) => {
-        const classes = element.classList;
-        classes.forEach((c) => {
-            if (c.endsWith(post["Article-Type"])) element.classList.add("selected");
-        })
-    })
-
-    const sidebars = document.querySelectorAll('[class*=article-] div.sidebar');
-    const articles = document.querySelectorAll('[class*=article-] article');
-
-    if (!sidebars || !articles) return;
-
-    if (post.hasOwnProperty("Tags"))
-    {
-        const featured = document.querySelector('[class*="featured-posts-"]');
-        featured.classList.add(post["Tags"]);
-        post["Tags"].forEach((t) => {
-            featured.classList.add(t + "-posts");
-        })
-    }
-
-    if (!post["Sections"]) return;
-    articles.forEach((article) => {
-        article.querySelector('.header h2').innerHTML = post["Title"];
-        article.querySelector('.header p').innerHTML = post["Short Summary"];
-        article.querySelector('.header .time-since').innerHTML = calculateTimeSince(new Date(post.LastModified));
-        const section = article.querySelector('.content');
-        section.innerHTML = "";
-        post["Sections"].forEach((element) => {
-            let tags = "";
-            if (element.hasOwnProperty("Tags")){
-                let p = "";
-                element["Tags"].forEach((t) => {
-                    p += " " + t;
-                })
-
-                tags = " class=\"" + p + "\"";
-            }
-
-            let header = "";
-            if (element.hasOwnProperty("Header")) {
-                header += "<h3>" + element["Header"] + "</h3>\n";
-            }
-
-            let content = "";
-            element["Content"].forEach((p) => {
-                content += p;
-            });
-
-            section.innerHTML += "<section" + tags + ">\n" + header + content + "\n</section>";
-        })
-    })
-
-    sidebars.forEach((sidebar) => {
-        sidebar.innerHTML = "";
-    })
-    if (!post["Sidebar"]) return;
-    sidebars.forEach((sidebar) => {
-        post["Sidebar"].forEach((element) => {
-            sidebar.innerHTML += "<h3>" + element["Header"] + "</h3>\n";
-            let txt = "";
-            element["Content"].forEach((p) => {
-                txt += p;
-            });
-            sidebar.innerHTML += "<section>" + txt + "</section>\n";
-        })
-    })
-}
-
 function sortPosts(type, ascending) {
     if (type === "title" && ascending) {
-        featuredPosts.posts.sort((a, b) => {
-            const titleA = a.Title.toLowerCase(), titleB = b.Title.toLowerCase();
+        allPosts.posts.sort((a, b) => {
+            const titleA = a["Title"].toLowerCase(), titleB = b["Title"].toLowerCase();
             return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
         })
     }
     else if (type === "date" && ascending) {
-        featuredPosts.posts.sort((a, b) => {
+        allPosts.posts.sort((a, b) => {
             return new Date(a.LastModified) - new Date(b.LastModified);
         })
     }
     else if (type === "name" && !ascending) {
-        featuredPosts.posts.sort((a, b) => {
-            const titleA = a.Title.toLowerCase(), titleB = b.Title.toLowerCase();
+        allPosts.posts.sort((a, b) => {
+            const titleA = a["Title"].toLowerCase(), titleB = b["Title"].toLowerCase();
             return titleA < titleB ? 1 : titleA > titleB ? -1 : 0;
         })
     }
     else if (type === "date" && !ascending) {
-        featuredPosts.posts.sort((a, b) => {
+        allPosts.posts.sort((a, b) => {
             return new Date(b.LastModified) - new Date(a.LastModified);
         })
     }
@@ -256,9 +332,9 @@ function sortPosts(type, ascending) {
     }
 }
 
-function filterPosts(type) {
-    return featuredPosts.posts.filter(post => {
+function filterPosts(includeTag, removeTag) {
+    return allPosts.posts.filter(post => {
         // noinspection JSUnresolvedReference
-        return post.Tags.includes(type);
+        return post.Tags.includes(includeTag) && !post.Tags.includes(removeTag);
     })
 }

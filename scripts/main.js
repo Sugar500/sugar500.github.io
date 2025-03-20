@@ -69,8 +69,8 @@ function loadSettings(fileSource) {
 
 function loadPosts(fileSource) {
     const postFiles = [
-        "blogs/test-blog",
-        "blogs/test-blog-1"
+        "blogs/no-sidebar-2-split",
+        "blogs/sidebar-2-split",
     ];
     let posts = [];
 
