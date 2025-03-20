@@ -70,14 +70,17 @@ function initFooter() {
 }
 
 function setUpLinks() {
-    document.querySelectorAll("a").forEach(element => {
+   /* document.querySelectorAll("a").forEach(element => {
         const url = new URL(document.URL);
         if (url.origin === element.origin) {
             element.onclick = (event) => {
-                window.dispatchEvent(new HashChangeEvent('hashchange'));
+                window.dispatchEvent(new HashChangeEvent('hashchange', {
+                    oldURL: url,
+                    newURL: new URL(element.href)
+                }));
             }
         }
-    })
+    })*/
 }
 
 document.addEventListener('loaded-component', function(event) {
