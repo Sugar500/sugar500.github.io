@@ -204,6 +204,8 @@ function initProjectPage(landingType) {
             : "posts";
     const posts = filterTags(postTag, "secret");
     const table = Array.from(document.getElementsByTagName('table'))[0];
+
+    if (table === undefined) return;
     table.createTHead();
     table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
     table.tBodies[0].innerHTML = "";
