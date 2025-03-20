@@ -116,12 +116,16 @@ function initArticle(postTitle) {
     if (!post["Sidebar"]) return;
     sidebars.forEach((sidebar) => {
         post["Sidebar"].forEach((element) => {
-            sidebar.innerHTML += "<h3>" + element["Header"] + "</h3>\n";
+            let header = "";
+            if (element.hasOwnProperty("Header")) {
+                header += "<h3>" + element["Header"] + "</h3>\n";
+            }
+
             let txt = "";
             element["Content"].forEach((p) => {
                 txt += p;
             });
-            sidebar.innerHTML += "<section>" + txt + "</section>\n";
+            sidebar.innerHTML += header + "<section>" + txt + "</section>\n";
         })
     })
 }
@@ -256,8 +260,11 @@ function initFeaturedPosts(element) {
         const header = post_preview.querySelector('h3');
         const subtitle = post_preview.querySelector('.header p');
         const time_since = post_preview.querySelector('.time-since');
-        const paragraph = post_preview.querySelector('p');
+        const paragraph = post_preview.querySelector('p.body');
         const button = post_preview.querySelector('button');
+
+        console.log(paragraph);
+        console.log(subtitle);
 
         if (0 >= posts.length)
         {
@@ -274,8 +281,8 @@ function initFeaturedPosts(element) {
                     + posts[0]["Title"].replace(/ /g, '-').toLowerCase();
 
             }
-            paragraph.innerHTML = posts[0]["Long Summary"];
             subtitle.innerHTML = posts[0]["Short Summary"];
+            paragraph.innerHTML = posts[0]["Long Summary"];
             time_since.innerHTML = calculateTimeSince(new Date(posts[0].LastModified));
             button.onclick = () => {
                 document.location.href = './article-page.html' + "#"
