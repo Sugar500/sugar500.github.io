@@ -1,0 +1,74 @@
+name: Bug Report
+description: File a bug report.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: expected
+    attributes:
+      label: "Expected Behaviour"
+      description: Please write a short and explicit description of what behavior is expected.
+      placeholder: "Short, but explicit description of expected behavior."
+    validation:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: "Actual Behavior"
+      description: Please write a short and explicit description of the behavior.
+      placeholder: "Short, but explicit description of actual behavior."
+    validation:
+      required: true
+  - type: textarea
+    id: reprod
+    attributes:
+      label: "Reproduction Steps"
+      description: Please enter a list of steps to reproduce.
+      value: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Refresh page
+        4. See error
+        5. Crash
+      render: bash
+    validation:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: "Logs"
+      description: Please copy and paste logs here! This will auto format into code.
+      render: bash
+    validation:
+      required: false
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: "Browsers"
+      description: What browsers is this problem on?
+      multiple: true
+      options:
+        - Firefox
+        - Chrome
+        - Safari
+        - Microsoft Edge
+        - Opera
+        - Other
+    validation:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: "OS"
+      description: Which OS was this problem found on?
+      multiple: true
+      options:
+        - Windows
+        - Mac
+        - Linux
+    validation:
+      required: true
+  - type: textarea
+    id: other
+    attributes:
+      label: "Anything else?"
