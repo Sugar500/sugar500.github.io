@@ -1,0 +1,36 @@
+name: Feature Request
+description: Ask for a new feature.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: "Summary"
+      description: Please describe your new feature.
+      placeholder: "Short description of your feature idea."
+    validation:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: "Example"
+      description: Please give a brief description of expected ability.
+      placeholder: "Link to video or brief example of feature."
+    validation:
+      required: true
+  - type: textarea
+    id: problems
+    attributes:
+      label: "Drawbacks"
+      description: Please describe the drawbacks of having this feature.
+      placeholder: "Be neutral, identify why this feature may not be a good idea."
+    validation:
+      required: true
+  - type: textarea
+    id: other
+    attributes:
+      label: "Anything Else?"
+      description: Anything else to add about your new feature?
+    validation:
+      required: false

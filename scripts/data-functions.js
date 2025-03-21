@@ -27,8 +27,12 @@ document.addEventListener('import-component', function (event) {
 })
 
 document.addEventListener('import-settings', function (event) {
-    // noinspection JSUnresolvedReference
-    event.detail.data.Replacements.forEach(element => {
+    if (!event.detail.data.hasOwnProperty("Replacements")) {
+        console.warn("Replacements was not found in settings");
+        return;
+    }
+
+    event.detail.data["Replacements"].forEach(element => {
         // noinspection JSUnresolvedReference
         const target = document.querySelector(element.Structure);
         if (target === null) {

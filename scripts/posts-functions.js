@@ -22,7 +22,6 @@ document.addEventListener('loaded-settings', function () {
 })
 
 window.addEventListener('hashchange', (event) => {
-    console.log(event);
     initPosts(new URL(event.newURL));
 })
 
@@ -36,6 +35,9 @@ function initPosts(url) {
     }
     else if (pathname.includes("project-landing.html")) {
         initProjectPage(url.hash.replace("#", ""));
+    }
+    else if (pathname.includes("table-of-contents.html")) {
+        initDirectory();
     }
 
     document.querySelectorAll("[class*='featured-posts-']").forEach(element => {
@@ -66,7 +68,7 @@ function initArticle(postTitle) {
     })
 
     // grab the main components of the article
-    const sidebars = document.querySelectorAll('[class*=article-] div.sidebar');
+    const sidebars = document.querySelectorAll('[class*=article-] ul.sidebar');
     const articles = document.querySelectorAll('[class*=article-] article');
     if (!sidebars || !articles) return;
 
@@ -74,6 +76,7 @@ function initArticle(postTitle) {
     if (post.hasOwnProperty("Tags"))
     {
         const featured = document.querySelector('[class*="featured-posts-"]');
+
         featured.classList.add(post["Tags"]);
         post["Tags"].forEach((t) => {
             featured.classList.add(t + "-posts");
@@ -129,7 +132,7 @@ function initArticle(postTitle) {
             element["Content"].forEach((p) => {
                 txt += p;
             });
-            sidebar.innerHTML += header + "<section>" + txt + "</section>\n";
+            sidebar.innerHTML += "<li>\n" + header + "<section>" + txt + "</section>\n</li>\n";
         })
     })
 }
@@ -191,28 +194,26 @@ function initProjectPage(landingType) {
     }
 
     // update the featured articles
-    const sidebar = document.querySelector('[class*="featured-posts-"]');
-    const sidebarHeading = document.querySelector('[class*="featured-posts-"] h2');
-    sidebar.classList.remove('blog-posts');
-    sidebar.classList.remove('project-posts');
-    sidebar.classList.remove('creative-posts');
+    const featuredPosts = document.querySelector('[class*="featured-posts-"]');
+    const featuredPostsHeading = document.querySelector('[class*="featured-posts-"] h2');
+    featuredPosts.classList.remove('blog-posts');
+    featuredPosts.classList.remove('project-posts');
+    featuredPosts.classList.remove('creative-posts');
     switch (landingType) {
         case "blog":
-            sidebar.classList.add('blog-posts');
-            sidebar.classList.remove('project-posts');
-            sidebar.classList.remove('creative-posts');
-            sidebarHeading.innerHTML = "Featured Blog Posts";
+            featuredPosts.classList.add('blog-posts');
+            featuredPostsHeading.innerHTML = "Featured Blog Posts";
             break;
         case "projects":
-            sidebar.classList.add('project-posts');
-            sidebarHeading.innerHTML = "Featured Projects";
+            featuredPosts.classList.add('project-posts');
+            featuredPostsHeading.innerHTML = "Featured Projects";
             break;
         case "creative-projects":
-            sidebar.classList.add('creative-posts');
-            sidebarHeading.innerHTML = "Featured Project Posts!";
+            featuredPosts.classList.add('creative-posts');
+            featuredPostsHeading.innerHTML = "Featured Project Posts!";
             break;
         default:
-            sidebarHeading.innerHTML = "Featured Posts";
+            featuredPostsHeading.innerHTML = "Featured Posts";
             break;
     }
 
@@ -222,18 +223,7 @@ function initProjectPage(landingType) {
     const posts = filterTags(postTag, "secret");
 
     // update the table
-    const table = Array.from(document.getElementsByTagName('table'))[0];
-    if (table === undefined) return;
-    table.createTHead();
-    table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
-    table.tBodies[0].innerHTML = "";
-    posts.forEach((post, index) => {
-        if (table.tBodies.length === index) table.insertRow();
-        table.tBodies[index].innerHTML += "<tr><td><a href='./article-page.html#" +
-            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"]
-            + "</a></td><td>" + post["Tags"] + "</td><td>"
-            + post["Short Summary"] + "</td></tr>";
-    })
+    initPostTable(posts);
 }
 
 function initFeaturedPosts(element) {
@@ -350,6 +340,54 @@ function initFeaturedPosts(element) {
     })
 }
 
+function initDirectory() {
+    sortPosts("name", false);
+    const posts = allPosts.posts;
+
+    const extraRows = [
+        "<td><!--suppress HtmlUnknownTarget --><a href='./index.html'>Index</a></td><td></td><td>Landing Page</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./table-of-contents.html'>Directory</a></td><td></td><td>" +
+        "This page</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href=''>Resume</a></td><td></td><td>One-stop shop for employers</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#blog'>Blog Archive</a></td><td>blog" +
+        "</td><td>A landing place for blog posts</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#creative-projects'>Creative Archive" +
+        "</a></td><td>creative</td><td>A place landing place for creative posts</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#projects'>Project Archive</a></td><td>" +
+        "project</td><td>A landing place for projects</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#world-building'>World-building Archive" +
+        "</a></td><td>creative, world-building</td><td>A landing place for world-building projects</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#writing-projects'>Writing Archive</a>" +
+        "</td><td>creative, writing</td><td>A landing place for writing projects.</td>",
+    ]
+
+    initPostTable(posts, extraRows);
+}
+
+function initPostTable(posts, extraRows) {
+    const table = Array.from(document.getElementsByTagName('table'))[0];
+    if (table === undefined) return;
+
+    table.createTHead();
+    table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
+
+    const tableBody = document.querySelector('table tbody');
+    tableBody.innerHTML = "";
+
+    if (extraRows) extraRows.forEach((extra) => {
+        const row = document.createElement('tr');
+        row.innerHTML = extra;
+        tableBody.appendChild(row);
+    })
+    posts.forEach((post) => {
+        const row = document.createElement('tr');
+        row.innerHTML = "<td><a href='./article-page.html#" +
+            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"] +
+            "</a></td><td>" + post["Tags"].join(", ") + "</td><td>" + post["Short Summary"] + "</td>";
+        tableBody.appendChild(row);
+    })
+}
+
 function sortPosts(type, ascending) {
     if (type === "title" && ascending) {
         allPosts.posts.sort((a, b) => {
@@ -386,6 +424,7 @@ function filterTags(includeTag, removeTag) {
 
 function filterNames(name) {
     return allPosts.posts.filter((post) => {
-        return post["Title"].toLowerCase() === name.toLowerCase();
+        return post["Title"].toLowerCase() ===
+            name.toLowerCase();
     })
 }

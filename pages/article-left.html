@@ -5,13 +5,13 @@
   <div class="inner">
     <div class="row gtr-200">
       <div class="col-4 col-12-narrower">
-        <div class="sidebar">
-          <div><h3>Sidebar</h3></div>
-          <section>Sidebar section</section>
-          <section>Sidebar section</section>
-          <section>Sidebar section</section>
-          <section>Sidebar section</section>
-        </div>
+        <h3>Sidebar</h3>
+        <ul class="sidebar">
+          <li>Sidebar section</li>
+          <li>Sidebar section</li>
+          <li>Sidebar section</li>
+          <li>Sidebar section</li>
+        </ul>
       </div>
       <div class="col-8 col-12-narrower">
         <article>
@@ -95,8 +95,16 @@
     line-height: 1rem;
   }
 
-  .article-left .sidebar section {
-    padding: 0.5rem 0;
+  .article-left ul.sidebar {
+    list-style: none;
+  }
+
+  .article-left ul.sidebar li {
     border-bottom: 1px solid;
+    padding: 0.5rem 0;
+  }
+
+  .article-left .sidebar li:last-child {
+    border-bottom: none;
   }
 </style>
