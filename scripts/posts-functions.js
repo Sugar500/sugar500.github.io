@@ -230,7 +230,9 @@ function initProjectPage(landingType) {
 
     posts.forEach((post) => {
         const row = document.createElement('tr');
-        row.innerHTML = "<td>" + post["Title"] + "</td><td>" + post["Tags"].join(", ") + "</td><td>" + post["Short Summary"] + "</td>";
+        row.innerHTML = "<td><a href='./article-page.html#" +
+            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"] +
+            "</a></td><td>" + post["Tags"].join(", ") + "</td><td>" + post["Short Summary"] + "</td>";
         tableBody.appendChild(row);
     })
 }
