@@ -36,6 +36,9 @@ function initPosts(url) {
     else if (pathname.includes("project-landing.html")) {
         initProjectPage(url.hash.replace("#", ""));
     }
+    else if (pathname.includes("table-of-contents.html")) {
+        initDirectory();
+    }
 
     document.querySelectorAll("[class*='featured-posts-']").forEach(element => {
         initFeaturedPosts(element);
@@ -220,21 +223,7 @@ function initProjectPage(landingType) {
     const posts = filterTags(postTag, "secret");
 
     // update the table
-    const table = Array.from(document.getElementsByTagName('table'))[0];
-    if (table === undefined) return;
-    table.createTHead();
-    table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
-
-    const tableBody = document.querySelector('table tbody');
-    tableBody.innerHTML = "";
-
-    posts.forEach((post) => {
-        const row = document.createElement('tr');
-        row.innerHTML = "<td><a href='./article-page.html#" +
-            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"] +
-            "</a></td><td>" + post["Tags"].join(", ") + "</td><td>" + post["Short Summary"] + "</td>";
-        tableBody.appendChild(row);
-    })
+    initPostTable(posts);
 }
 
 function initFeaturedPosts(element) {
@@ -348,6 +337,54 @@ function initFeaturedPosts(element) {
                 + posts[index + 1]["Title"].replace(/ /g, '-').toLowerCase();
         }
         time_since.innerHTML = calculateTimeSince(new Date(posts[index + 1].LastModified));
+    })
+}
+
+function initDirectory() {
+    sortPosts("name", false);
+    const posts = allPosts.posts;
+
+    const extraRows = [
+        "<td><!--suppress HtmlUnknownTarget --><a href='./index.html'>Index</a></td><td></td><td>Landing Page</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./table-of-contents.html'>Directory</a></td><td></td><td>" +
+        "This page</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href=''>Resume</a></td><td></td><td>One-stop shop for employers</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#blog'>Blog Archive</a></td><td>blog" +
+        "</td><td>A landing place for blog posts</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#creative-projects'>Creative Archive" +
+        "</a></td><td>creative</td><td>A place landing place for creative posts</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#projects'>Project Archive</a></td><td>" +
+        "project</td><td>A landing place for projects</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#world-building'>World-building Archive" +
+        "</a></td><td>creative, world-building</td><td>A landing place for world-building projects</td>",
+        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#writing-projects'>Writing Archive</a>" +
+        "</td><td>creative, writing</td><td>A landing place for writing projects.</td>",
+    ]
+
+    initPostTable(posts, extraRows);
+}
+
+function initPostTable(posts, extraRows) {
+    const table = Array.from(document.getElementsByTagName('table'))[0];
+    if (table === undefined) return;
+
+    table.createTHead();
+    table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
+
+    const tableBody = document.querySelector('table tbody');
+    tableBody.innerHTML = "";
+
+    if (extraRows) extraRows.forEach((extra) => {
+        const row = document.createElement('tr');
+        row.innerHTML = extra;
+        tableBody.appendChild(row);
+    })
+    posts.forEach((post) => {
+        const row = document.createElement('tr');
+        row.innerHTML = "<td><a href='./article-page.html#" +
+            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"] +
+            "</a></td><td>" + post["Tags"].join(", ") + "</td><td>" + post["Short Summary"] + "</td>";
+        tableBody.appendChild(row);
     })
 }
 
