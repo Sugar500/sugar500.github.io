@@ -1,0 +1,77 @@
+{
+  "Title": "Mar. 26, 2025",
+  "Tags": [
+    "blog"
+  ],
+  "Article-Type": "right",
+  "Short Summary": "Blog post for Mar. 26<sup>th</sup> 2025.",
+  "Long Summary": [
+    "TODO"
+  ],
+  "Sidebar": [
+    {
+      "Header": "Note links",
+      "Content": [
+        "TODO"
+      ]
+    }
+  ],
+  "Sections": [
+    {
+      "Header": "Project Updates and Insights",
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "<p>Share insights into your current projects, challenges you're facing, and how you're solving them. Document ",
+        "your workflow, from initial concept to final product. Share smaller parts of larger case studies, focusing ",
+        "on specific aspects. Share useful code snippets or technical tips related to your projects. Explain rationale ",
+        "behind your design choices.</p>"
+      ]
+    },
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "<i class=\"fa-brands fa-google\"></i> <a href=\"https://analytics.google.com/\">Google Analytics</a>: I did ",
+        "want to know my sites metrics, I'm enough of a game designer to know metrics are a powerful tool. I ended up ",
+        "using <a href=\"https://analytics.google.com/\">Google Analytics</a> through ",
+        "<a href=\"https://tagmanager.google.com/\">Google Tags</a> because I ",
+        "thought that I had set up analytics incorrectly, it wasn't, just ",
+        "<a href=\"https://pages.github.com/\">Git Pages</a> being down."
+      ]
+    },
+    {
+      "Header": "Skills and Learning",
+      "Tags": [
+        "col-12",
+        "hidden"
+      ],
+      "Content": [
+        "Share what new skills you're learning and how you're applying them."
+      ]
+    },
+    {
+      "Header": "New Resources",
+      "Tags": [
+        "col-6 col-12-narrower"
+      ],
+      "Content": [
+        "<p><a href=\"https://analytics.google.com/\">Google Analytics</a></p>",
+        "<p><a href=\"https://www.githubstatus.com/\">GitHub Status</a></p>"
+      ]
+    },
+    {
+      "Header": "Skills and Learning",
+      "Tags": [
+        "col-6 col-12-narrower",
+        "hidden"
+      ],
+      "Content": [
+        "Share personal challenges you are facing in your field, and how you are working ",
+        "to overcome them."
+      ]
+    }
+  ]
+}
