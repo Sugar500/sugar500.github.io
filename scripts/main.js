@@ -65,9 +65,7 @@ function loadSettings(fileSource) {
 
 function loadPosts(fileSource) {
     const postFiles = [
-        "projects/personal-website",
-        "projects/witchs-brew",
-        "blogs/Mar-26-2025"
+        "projects/personal-website"
     ];
     let posts = [];
 
