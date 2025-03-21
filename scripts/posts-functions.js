@@ -22,7 +22,6 @@ document.addEventListener('loaded-settings', function () {
 })
 
 window.addEventListener('hashchange', (event) => {
-    console.log(event);
     initPosts(new URL(event.newURL));
 })
 
@@ -225,13 +224,14 @@ function initProjectPage(landingType) {
     if (table === undefined) return;
     table.createTHead();
     table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
-    table.tBodies[0].innerHTML = "";
-    posts.forEach((post, index) => {
-        if (table.tBodies.length === index) table.insertRow();
-        table.tBodies[index].innerHTML += "<tr><td><a href='./article-page.html#" +
-            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"]
-            + "</a></td><td>" + post["Tags"] + "</td><td>"
-            + post["Short Summary"] + "</td></tr>";
+
+    const tableBody = document.querySelector('table tbody');
+    tableBody.innerHTML = "";
+
+    posts.forEach((post) => {
+        const row = document.createElement('tr');
+        row.innerHTML = "<td>" + post["Title"] + "</td><td>" + post["Tags"].join(", ") + "</td><td>" + post["Short Summary"] + "</td>";
+        tableBody.appendChild(row);
     })
 }
 
