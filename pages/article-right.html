@@ -4,15 +4,6 @@
   <!--  -->
   <div class="inner">
     <div class="row gtr-200">
-      <div class="col-4 col-12-narrower">
-        <div class="sidebar">
-          <div><h3>Sidebar</h3></div>
-          <section>Sidebar section</section>
-          <section>Sidebar section</section>
-          <section>Sidebar section</section>
-          <section>Sidebar section</section>
-        </div>
-      </div>
       <div class="col-8 col-12-narrower">
         <article>
           <div class="header">
@@ -29,6 +20,15 @@
             <section>This is a section.</section>
           </div>
         </article>
+      </div>
+      <div class="col-4 col-12-narrower">
+        <h3>Sidebar</h3>
+        <ul class="sidebar">
+          <li>Sidebar section</li>
+          <li>Sidebar section</li>
+          <li>Sidebar section</li>
+          <li>Sidebar section</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -95,8 +95,16 @@
     line-height: 1rem;
   }
 
-  .article-right .sidebar section {
-    padding: 0.5rem 0;
+  .article-right ul.sidebar {
+    list-style: none;
+  }
+
+  .article-right ul.sidebar li {
     border-bottom: 1px solid;
+    padding: 0.5rem 0;
+  }
+
+  .article-right .sidebar li:last-child {
+    border-bottom: none;
   }
 </style>

@@ -66,7 +66,7 @@ function initArticle(postTitle) {
     })
 
     // grab the main components of the article
-    const sidebars = document.querySelectorAll('[class*=article-] div.sidebar');
+    const sidebars = document.querySelectorAll('[class*=article-] ul.sidebar');
     const articles = document.querySelectorAll('[class*=article-] article');
     if (!sidebars || !articles) return;
 
@@ -74,6 +74,7 @@ function initArticle(postTitle) {
     if (post.hasOwnProperty("Tags"))
     {
         const featured = document.querySelector('[class*="featured-posts-"]');
+
         featured.classList.add(post["Tags"]);
         post["Tags"].forEach((t) => {
             featured.classList.add(t + "-posts");
@@ -129,7 +130,7 @@ function initArticle(postTitle) {
             element["Content"].forEach((p) => {
                 txt += p;
             });
-            sidebar.innerHTML += header + "<section>" + txt + "</section>\n";
+            sidebar.innerHTML += "<li>\n" + header + "<section>" + txt + "</section>\n</li>\n";
         })
     })
 }
@@ -191,28 +192,26 @@ function initProjectPage(landingType) {
     }
 
     // update the featured articles
-    const sidebar = document.querySelector('[class*="featured-posts-"]');
-    const sidebarHeading = document.querySelector('[class*="featured-posts-"] h2');
-    sidebar.classList.remove('blog-posts');
-    sidebar.classList.remove('project-posts');
-    sidebar.classList.remove('creative-posts');
+    const featuredPosts = document.querySelector('[class*="featured-posts-"]');
+    const featuredPostsHeading = document.querySelector('[class*="featured-posts-"] h2');
+    featuredPosts.classList.remove('blog-posts');
+    featuredPosts.classList.remove('project-posts');
+    featuredPosts.classList.remove('creative-posts');
     switch (landingType) {
         case "blog":
-            sidebar.classList.add('blog-posts');
-            sidebar.classList.remove('project-posts');
-            sidebar.classList.remove('creative-posts');
-            sidebarHeading.innerHTML = "Featured Blog Posts";
+            featuredPosts.classList.add('blog-posts');
+            featuredPostsHeading.innerHTML = "Featured Blog Posts";
             break;
         case "projects":
-            sidebar.classList.add('project-posts');
-            sidebarHeading.innerHTML = "Featured Projects";
+            featuredPosts.classList.add('project-posts');
+            featuredPostsHeading.innerHTML = "Featured Projects";
             break;
         case "creative-projects":
-            sidebar.classList.add('creative-posts');
-            sidebarHeading.innerHTML = "Featured Project Posts!";
+            featuredPosts.classList.add('creative-posts');
+            featuredPostsHeading.innerHTML = "Featured Project Posts!";
             break;
         default:
-            sidebarHeading.innerHTML = "Featured Posts";
+            featuredPostsHeading.innerHTML = "Featured Posts";
             break;
     }
 
@@ -386,6 +385,7 @@ function filterTags(includeTag, removeTag) {
 
 function filterNames(name) {
     return allPosts.posts.filter((post) => {
-        return post["Title"].toLowerCase() === name.toLowerCase();
+        return post["Title"].toLowerCase() ===
+            name.toLowerCase();
     })
 }
