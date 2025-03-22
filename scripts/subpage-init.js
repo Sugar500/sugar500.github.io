@@ -68,35 +68,3 @@ function initFooter() {
     setUpIcon(document.querySelector(".icons a.icon-daily-dev"), 'svg');
     setUpIcon(document.querySelector(".icons a.icon-roadmap-sh"), 'png');
 }
-
-function setUpLinks() {
-   /* document.querySelectorAll("a").forEach(element => {
-        const url = new URL(document.URL);
-        if (url.origin === element.origin) {
-            element.onclick = (event) => {
-                window.dispatchEvent(new HashChangeEvent('hashchange', {
-                    oldURL: url,
-                    newURL: new URL(element.href)
-                }));
-            }
-        }
-    })*/
-}
-
-document.addEventListener('loaded-component', function(event) {
-    switch (event.detail.page) {
-        case "menu":
-            initMenu();
-            break;
-        case "header":
-            initHeader();
-            break;
-        case "banner":
-            initBanner();
-            break;
-        case "footer":
-            initFooter();
-            setUpLinks();
-            break;
-    }
-})

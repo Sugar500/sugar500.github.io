@@ -4,12 +4,12 @@ init()
 function init() {
     const fileSource = document.getElementById("data-files");
 
-    loadSubSections(fileSource);
+    loadSubpages(fileSource);
     loadSettings(fileSource);
     loadPosts(fileSource);
 }
 
-function loadSubSections(fileSource) {
+function loadSubpages(fileSource) {
     const sections = [
         "menu",
         "header",
