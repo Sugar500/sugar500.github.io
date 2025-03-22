@@ -1,11 +1,4 @@
 
-function updateTimeSince() {
-    const timeSinceElements = document.querySelectorAll(".time-since");
-    timeSinceElements.forEach(element => {
-        element.innerHTML = calculateTimeSince(new Date(element.dataset.date));
-    })
-}
-
 function calculateTimeSince(date) {
     const eventDate = new Date(date);
     const now = new Date();

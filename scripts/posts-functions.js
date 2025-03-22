@@ -1,33 +1,39 @@
 
-const allPosts = {
+export const Posts = {
     posts: [],
     loaded: false,
+    add: function(post) {
+        this.posts.push(post);
+    },
+    sortTitle: function () {
+        return this.posts.sort((a, b) => {
+            const titleA = a["Title"].toLowerCase(), titleB = b["Title"].toLowerCase();
+            return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
+        })
+    },
+    sortDate: function () {
+        return this.posts.sort((a, b) => {
+            return new Date(a.LastModified) - new Date(b.LastModified);
+        })
+    },
+    filterTag: function (tag) {
+        return this.posts.filter(post => {
+            return post["Tags"].includes(tag) && !post["Tags"].includes("secret");
+        })
+    },
+    find: function (title) {
+        return this.posts.filter((post) => {
+            return post["Title"].toLowerCase() === title.toLowerCase();
+        })[0];
+    }
 }
 
 // featured-post classes are: project-posts, blog-posts, world-building-posts
 // blog-posts can also have other classes: world-building, project, notes
 // TODO include ability to pin a post
-document.addEventListener('loaded-posts', function (event) {
-    allPosts.posts = event.detail.posts;
 
-    if (!allPosts.loaded) return;
-    initPosts(new URL(document.location));
-})
-
-document.addEventListener('loaded-settings', function () {
-    allPosts.loaded = true;
-
-    if (allPosts.posts.length < 1) return;
-    initPosts(new URL(document.location));
-})
-
-window.addEventListener('hashchange', (event) => {
-    initPosts(new URL(event.newURL));
-})
-
-
-function initPosts(url) {
-    sortPosts("date", false);
+export function initPosts(url) {
+    Posts.sortDate();
 
     const pathname = url.pathname;
     if (pathname.includes("article-page.html")) {
@@ -50,7 +56,7 @@ function initArticle(postTitle) {
     if (postTitle === "") return;
 
     // find the main post
-    const post = filterNames(postTitle.replaceAll("-", " "))[0];
+    const post = Posts.find(postTitle.replaceAll("-", " "));
     if (!post) return;
 
     // set the banner up
@@ -62,6 +68,7 @@ function initArticle(postTitle) {
     if (!post.hasOwnProperty("Article-Type")) return;
     document.querySelectorAll('[class*=article-]').forEach((element) => {
         const classes = element.classList;
+        element.classList.remove("selected");
         classes.forEach((c) => {
             if (c.endsWith(post["Article-Type"])) element.classList.add("selected");
         })
@@ -77,7 +84,6 @@ function initArticle(postTitle) {
     {
         const featured = document.querySelector('[class*="featured-posts-"]');
 
-        featured.classList.add(post["Tags"]);
         post["Tags"].forEach((t) => {
             featured.classList.add(t + "-posts");
         })
@@ -220,7 +226,7 @@ function initProjectPage(landingType) {
     // grab all posts matching tags
     const postTag = landingType === "projects" ? "project" : landingType === "creative-projects" ? "creative"
         : landingType === "blog" ? "blog" : "posts";
-    const posts = filterTags(postTag, "secret");
+    const posts = Posts.filterTag(postTag);
 
     // update the table
     initPostTable(posts);
@@ -233,7 +239,7 @@ function initFeaturedPosts(element) {
         element.classList.contains("creative-posts") ? "creative" :
             element.classList.contains("blog-posts") ? "blog" : "posts";
 
-    const posts = postsType !== 'posts' ? filterTags(postsType, "secret") : allPosts.posts;
+    const posts = postsType !== 'posts' ? Posts.filterTag(postsType) : Posts.posts;
 
     // replace the icons
     const icon = element.querySelectorAll('i');
@@ -341,8 +347,7 @@ function initFeaturedPosts(element) {
 }
 
 function initDirectory() {
-    sortPosts("name", false);
-    const posts = allPosts.posts;
+    Posts.sortTitle();
 
     const extraRows = [
         "<td><!--suppress HtmlUnknownTarget --><a href='./index.html'>Index</a></td><td></td><td>Landing Page</td>",
@@ -361,70 +366,33 @@ function initDirectory() {
         "</td><td>creative, writing</td><td>A landing place for writing projects.</td>",
     ]
 
-    initPostTable(posts, extraRows);
+    initPostTable(Posts.posts, extraRows);
 }
 
 function initPostTable(posts, extraRows) {
     const table = Array.from(document.getElementsByTagName('table'))[0];
     if (table === undefined) return;
 
-    table.createTHead();
-    table.tHead.innerHTML = "<tr><th>Title</th><th>Tags</th><th>Description</th></tr>";
+    const thead = table.createTHead().insertRow();
+    thead.insertCell().textContent = "Title";
+    thead.insertCell().textContent = "Tags";
+    thead.insertCell().textContent = "Description";
 
-    const tableBody = document.querySelector('table tbody');
+    console.log(thead.cells.length)
+
+    const tableBody = document.querySelector('tbody');
     tableBody.innerHTML = "";
 
     if (extraRows) extraRows.forEach((extra) => {
-        const row = document.createElement('tr');
-        row.innerHTML = extra;
-        tableBody.appendChild(row);
+        //const row = document.createElement('tr');
+        //row.innerHTML = extra;
+        //tableBody.appendChild(row);
     })
     posts.forEach((post) => {
-        const row = document.createElement('tr');
-        row.innerHTML = "<td><a href='./article-page.html#" +
-            post["Title"].toLowerCase().replaceAll(' ', '-') + "'>" + post["Title"] +
-            "</a></td><td>" + post["Tags"].join(", ") + "</td><td>" + post["Short Summary"] + "</td>";
-        tableBody.appendChild(row);
-    })
-}
-
-function sortPosts(type, ascending) {
-    if (type === "title" && ascending) {
-        allPosts.posts.sort((a, b) => {
-            const titleA = a["Title"].toLowerCase(), titleB = b["Title"].toLowerCase();
-            return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
-        })
-    }
-    else if (type === "date" && ascending) {
-        allPosts.posts.sort((a, b) => {
-            return new Date(a.LastModified) - new Date(b.LastModified);
-        })
-    }
-    else if (type === "name" && !ascending) {
-        allPosts.posts.sort((a, b) => {
-            const titleA = a["Title"].toLowerCase(), titleB = b["Title"].toLowerCase();
-            return titleA < titleB ? 1 : titleA > titleB ? -1 : 0;
-        })
-    }
-    else if (type === "date" && !ascending) {
-        allPosts.posts.sort((a, b) => {
-            return new Date(b.LastModified) - new Date(a.LastModified);
-        })
-    }
-    else {
-        console.error("Invalid sort type");
-    }
-}
-
-function filterTags(includeTag, removeTag) {
-    return allPosts.posts.filter(post => {
-        return post["Tags"].includes(includeTag) && !post["Tags"].includes(removeTag);
-    })
-}
-
-function filterNames(name) {
-    return allPosts.posts.filter((post) => {
-        return post["Title"].toLowerCase() ===
-            name.toLowerCase();
+        const row = table.tBodies[0].insertRow();
+        row.insertCell().innerHTML = "<a href='./article-page.html#" + post["Title"].toLowerCase().
+            replaceAll(' ', '-') + "'>" + post["Title"] + "</a>";
+        row.insertCell().innerHTML = post["Tags"].join(", ");
+        row.insertCell().innerHTML = post["Short Summary"];
     })
 }
