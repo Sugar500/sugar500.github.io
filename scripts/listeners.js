@@ -88,3 +88,15 @@ document.addEventListener('import-settings', function (event) {
         }
     })
 })
+
+document.addEventListener('initialized-posts', function (event) {
+    switch (event.detail.page) {
+        case "directory":
+            initDirectory(event.detail.data[0], event.detail.data[1]);
+            break;
+        case "article":
+            break;
+        case "project":
+            break;
+    }
+})

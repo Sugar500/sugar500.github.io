@@ -1,3 +1,4 @@
+import { Table } from "./subpage-manipulation.js";
 
 export const Posts = {
     posts: [],
@@ -43,7 +44,13 @@ export function initPosts(url) {
         initProjectPage(url.hash.replace("#", ""));
     }
     else if (pathname.includes("table-of-contents.html")) {
-        initDirectory();
+        document.dispatchEvent(new CustomEvent('initialized-posts', {
+            bubbles: true,
+            detail: {
+                page: 'directory',
+                data: [Table, Posts]
+            }
+        }));
     }
 
     document.querySelectorAll("[class*='featured-posts-']").forEach(element => {
@@ -170,33 +177,6 @@ function initProjectPage(landingType) {
             bannerSubtitle.title = "Most of the should direct to more archives! Homepage \'ception.";
             bannerSubtitle.innerHTML = "A place to find the creative projects.";
             break;
-        case "writing-projects":
-            bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the Writing Project archive!";
-            bannerSubtitle.title = "the non-secret ones";
-            bannerSubtitle.innerHTML = "A place to find creative writing projects.";
-            break;
-        case "world-building":
-            bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the World-building archive!";
-            bannerSubtitle.title = "Secrets! Where?";
-            bannerSubtitle.innerHTML = "A place to find world-building projects!";
-            break;
-    }
-
-    // show or hide the creative landings
-    const creativeDashboard = document.querySelector('.creative');
-    if (creativeDashboard) {
-        switch (landingType) {
-            case "creative-projects":
-            case "world-building":
-            case "writing-projects":
-                creativeDashboard.classList.add('selected');
-                break;
-            default:
-                creativeDashboard.classList.remove('selected');
-                break;
-        }
     }
 
     // update the featured articles
@@ -228,8 +208,18 @@ function initProjectPage(landingType) {
         : landingType === "blog" ? "blog" : "posts";
     const posts = Posts.filterTag(postTag);
 
-    // update the table
-    initPostTable(posts);
+    // TODO update the table
+    const table = Array.from(document.getElementsByTagName('table'))[0];
+    Table.clearBody('table');
+    Table.clearHeader('table');
+    Table.addHeader(table, ["Title", "Description"]);
+    posts.forEach(function (post, index) {
+        Table.addRow(table, [
+            "<a href='./article-page.html#" + post["Title"].toLowerCase().
+            replaceAll(' ', '-') + "'>" + post["Title"] + "</a>",
+            post["Short Summary"]
+        ])
+    })
 }
 
 function initFeaturedPosts(element) {
@@ -328,11 +318,19 @@ function initFeaturedPosts(element) {
     post_summary.forEach(function (summary, index) {
         const header = summary.querySelector('h3');
         const time_since = summary.querySelector('.time-since');
+        const paragraph = summary.querySelector('.time-since');
 
-        if (index + 1 >= posts.length)
+        if (index + 1 >= posts.length && !paragraph)
         {
             header.style.visibility = "hidden";
             time_since.innerHTML = "No more to show.";
+            return;
+        }
+        else if (index + 1 >= posts.length)
+        {
+            header.style.visibility = "hidden";
+            time_since.style.display = "none";
+            paragraph.innerHTML = "No more to show.";
             return;
         }
 
@@ -343,56 +341,5 @@ function initFeaturedPosts(element) {
                 + posts[index + 1]["Title"].replace(/ /g, '-').toLowerCase();
         }
         time_since.innerHTML = calculateTimeSince(new Date(posts[index + 1].LastModified));
-    })
-}
-
-function initDirectory() {
-    Posts.sortTitle();
-
-    const extraRows = [
-        "<td><!--suppress HtmlUnknownTarget --><a href='./index.html'>Index</a></td><td></td><td>Landing Page</td>",
-        "<td><!--suppress HtmlUnknownTarget --><a href='./table-of-contents.html'>Directory</a></td><td></td><td>" +
-        "This page</td>",
-        "<td><!--suppress HtmlUnknownTarget --><a href=''>Resume</a></td><td></td><td>One-stop shop for employers</td>",
-        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#blog'>Blog Archive</a></td><td>blog" +
-        "</td><td>A landing place for blog posts</td>",
-        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#creative-projects'>Creative Archive" +
-        "</a></td><td>creative</td><td>A place landing place for creative posts</td>",
-        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#projects'>Project Archive</a></td><td>" +
-        "project</td><td>A landing place for projects</td>",
-        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#world-building'>World-building Archive" +
-        "</a></td><td>creative, world-building</td><td>A landing place for world-building projects</td>",
-        "<td><!--suppress HtmlUnknownTarget --><a href='./project-landing.html#writing-projects'>Writing Archive</a>" +
-        "</td><td>creative, writing</td><td>A landing place for writing projects.</td>",
-    ]
-
-    initPostTable(Posts.posts, extraRows);
-}
-
-function initPostTable(posts, extraRows) {
-    const table = Array.from(document.getElementsByTagName('table'))[0];
-    if (table === undefined) return;
-
-    const thead = table.createTHead().insertRow();
-    thead.insertCell().textContent = "Title";
-    thead.insertCell().textContent = "Tags";
-    thead.insertCell().textContent = "Description";
-
-    console.log(thead.cells.length)
-
-    const tableBody = document.querySelector('tbody');
-    tableBody.innerHTML = "";
-
-    if (extraRows) extraRows.forEach((extra) => {
-        //const row = document.createElement('tr');
-        //row.innerHTML = extra;
-        //tableBody.appendChild(row);
-    })
-    posts.forEach((post) => {
-        const row = table.tBodies[0].insertRow();
-        row.insertCell().innerHTML = "<a href='./article-page.html#" + post["Title"].toLowerCase().
-            replaceAll(' ', '-') + "'>" + post["Title"] + "</a>";
-        row.insertCell().innerHTML = post["Tags"].join(", ");
-        row.insertCell().innerHTML = post["Short Summary"];
     })
 }
