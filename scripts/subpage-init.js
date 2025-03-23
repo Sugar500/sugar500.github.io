@@ -68,3 +68,40 @@ function initFooter() {
     setUpIcon(document.querySelector(".icons a.icon-daily-dev"), 'svg');
     setUpIcon(document.querySelector(".icons a.icon-roadmap-sh"), 'png');
 }
+
+function initDirectory(tables, posts) {
+    posts.sortTitle();
+
+    const table = Array.from(document.getElementsByTagName('table'))[0];
+    tables.clearBody('table');
+
+    tables.addHeader(table, ["Title", "Tags", "Description"]);
+    tables.addRow(table, [
+        "<!--suppress HtmlUnknownTarget --><a href='./index.html'>Index</a>", "", "Landing Page"
+    ]);
+    tables.addRow(table, ["Directory", "", "This page"]);
+    tables.addRow(table, [
+        "<!--suppress HtmlUnknownTarget --><a href=''>Resume</a>", "", "One-stop shop for employers"
+    ]);
+    tables.addRow(table, [
+        "<!--suppress HtmlUnknownTarget --><a href='./project-landing.html#blog'>Blog Archive</a>", "blog",
+        "A landing place for blog posts"
+    ]);
+    tables.addRow(table, [
+        "<!--suppress HtmlUnknownTarget --><a href='./project-landing.html#creative-projects'>Creative Archive</a>",
+        "creative", "A landing place for creative posts"
+    ]);
+    tables.addRow(table, [
+        "<!--suppress HtmlUnknownTarget --><a href='./project-landing.html#projects'>Project Archive</a>",
+        "creative", "A landing place for projects"
+    ]);
+
+    posts.posts.forEach(function (post, index) {
+        tables.addRow(table, [
+            "<a href='./article-page.html#" + post["Title"].toLowerCase().
+            replaceAll(' ', '-') + "'>" + post["Title"] + "</a>",
+            post["Tags"].join(", "),
+            post["Short Summary"]
+        ])
+    })
+}
