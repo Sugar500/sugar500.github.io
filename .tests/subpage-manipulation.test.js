@@ -23,13 +23,53 @@ describe('table manipulation', function() {
         expect(document.querySelector('table tbody').innerHTML).toBe('');
         expect(document.querySelector('table tfoot').innerHTML).toBe('');
     });
+    test('table clear header, no header', function () {
+        document.body.innerHTML = `<table id="testTable">'
+        + '<tbody>'
+        + '<tr><td>John</td><td>25</td><td>Male</td></tr>'
+        + '</tbody>'
+        + '<tfoot>'
+        + '<tr><td colspan="2">Total</td><td>Male</td></tr>'
+        + '</tfoot>'
+        + '</table>`
+        Table.clearHeader('#testTable');
+        expect(document.querySelector('table thead')).toBe(null);
+    });
     test('table clear header', function () {
         Table.clearHeader('#testTable');
         expect(document.querySelector('table thead').innerHTML).toBe('');
     });
+    test('table clear body, no body', function () {
+        document.body.innerHTML = `<table id="testTable">'
+        + '<thead>'
+        + '<tr><th>Name</th>'
+        + '<th>Age</th>'
+        + '<th>Gender</th></tr>'
+        + '</thead>'
+        + '<tfoot>'
+        + '<tr><td colspan="2">Total</td><td>Male</td></tr>'
+        + '</tfoot>'
+        + '</table>`
+        Table.clearBody('#testTable');
+        expect(document.querySelector('table tbody')).toBe(null);
+    });
     test('table clear body', function () {
         Table.clearBody('#testTable');
         expect(document.querySelector('table tbody').innerHTML).toBe('');
+    });
+    test('table clear footer, no footer', function () {
+        document.body.innerHTML = `<table id="testTable">'
+        + '<thead>'
+        + '<tr><th>Name</th>'
+        + '<th>Age</th>'
+        + '<th>Gender</th></tr>'
+        + '</thead>'
+        + '<tbody>'
+        + '<tr><td>John</td><td>25</td><td>Male</td></tr>'
+        + '</tbody>'
+        + '</table>`
+        Table.clearFooter('#testTable');
+        expect(document.querySelector('table tfoot')).toBe(null);
     });
     test('table clear footer', function () {
         Table.clearFooter('#testTable');
@@ -90,10 +130,16 @@ describe('table manipulation', function() {
         expect(() => Table.addRow(table, ["Mary", "32"]))
             .toThrow('table row the wrong number of columns');
     });
-    test('table add row assert empty row', function() {
+    test('table add row assert two few columns, no header', function() {
+        Table.clearHeader('#testTable');
         const table = document.querySelector('#testTable');
         expect(() => Table.addRow(table, ["Mary", "32"]))
             .toThrow('table row the wrong number of columns');
+    });
+    test('table add row assert empty row', function() {
+        const table = document.querySelector('#testTable');
+        expect(() => Table.addRow(table, []))
+            .toThrow('tried to insert empty row');
     });
     test('table add footer assert is table', function () {
         const table = document.querySelector('thead');
@@ -105,7 +151,7 @@ describe('table manipulation', function() {
         expect(() => Table.addFooter(table, "<td>Name</td><td>Age</td><td>Sex</td>"))
             .toThrow('footer must be an Array');
     })
-    test('table add footer', function () {
+    test('table add footer, col span', function () {
         const table = document.querySelector('#testTable');
         Table.clearFooter('#testTable');
         Table.addFooter(table, ["Name", "COLSPAN", "Female"])
@@ -113,7 +159,7 @@ describe('table manipulation', function() {
         expect(document.querySelector('tfoot').rows.item(0).innerHTML)
             .toBe("<td colspan=\"2\">Name</td><td>Female</td>");
     });
-    test('table add footer col', function () {
+    test('table add footer', function () {
         const table = document.querySelector('#testTable');
         Table.clearFooter('#testTable');
         Table.addFooter(table, ["Name", "Gender", "Female"])
@@ -124,6 +170,13 @@ describe('table manipulation', function() {
     test('table add footer assert too small footer', function () {
         const table = document.querySelector('#testTable');
         Table.clearFooter('#testTable');
+        expect(() => Table.addFooter(table, ["Name", "Female"]))
+            .toThrow('table footer the wrong number of columns');
+    });
+    test('table add footer assert too small footer, no header', function () {
+        Table.clearHeader('#testTable');
+        Table.clearFooter('#testTable');
+        const table = document.querySelector('#testTable');
         expect(() => Table.addFooter(table, ["Name", "Female"]))
             .toThrow('table footer the wrong number of columns');
     });

@@ -48,7 +48,7 @@ export const Table = {
 
         if (row.length <= 0) throw new Error('tried to insert empty row');
 
-        if (table.tHead && table.tHead.rows.item(0).cells.length !== row.length)
+        if (table.tHead && table.tHead.rows.length > 0 && table.tHead.rows.item(0).cells.length !== row.length)
             throw new Error('table row the wrong number of columns');
         else if (table.rows.length > 0 && table.rows.item(0).cells.length !== row.length)
             throw new Error('table row the wrong number of columns');
@@ -68,7 +68,7 @@ export const Table = {
 
         if (table.querySelector('tfoot').innerHTML !== '') throw new Error('tried to add another footer');
 
-        if (table.tHead && table.tHead.rows.item(0).cells.length !== footer.length)
+        if (table.tHead && table.tHead.rows > 0 && table.tHead.rows.item(0).cells.length !== footer.length)
             throw new Error('table footer the wrong number of columns');
         else if (table.rows.item(0).cells.length !== footer.length)
             throw new Error('table footer the wrong number of columns');
