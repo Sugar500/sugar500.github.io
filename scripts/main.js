@@ -1,5 +1,9 @@
 
-init()
+document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener('initialize-clear', function () {
+        init();
+    })
+});
 
 function init() {
     const fileSource = document.getElementById("data-files");

@@ -177,6 +177,11 @@ function initProjectPage(landingType) {
             bannerSubtitle.title = "Most of the should direct to more archives! Homepage \'ception.";
             bannerSubtitle.innerHTML = "A place to find the creative projects.";
             break;
+        default:
+            bannerTitle.title = "Ya probably shouldn't be here.";
+            bannerTitle.innerHTML = "Welcome to the Archive!";
+            bannerSubtitle.title = "";
+            bannerSubtitle.innerHTML = "A place to find all of the posts.";
     }
 
     // update the featured articles
@@ -210,10 +215,10 @@ function initProjectPage(landingType) {
 
     // TODO update the table
     const table = Array.from(document.getElementsByTagName('table'))[0];
-    Table.clearBody('table');
     Table.clearHeader('table');
     Table.addHeader(table, ["Title", "Description"]);
-    posts.forEach(function (post, index) {
+    Table.clearBody('table');
+    posts.forEach(function (post) {
         Table.addRow(table, [
             "<a href='./article-page.html#" + post["Title"].toLowerCase().
             replaceAll(' ', '-') + "'>" + post["Title"] + "</a>",

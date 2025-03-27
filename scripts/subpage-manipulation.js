@@ -8,16 +8,19 @@ export const Table = {
 
     clearHeader: function (query) {
         const table = document.querySelector(query);
+        if (!table.querySelector('thead')) return;
         table.querySelector('thead').innerHTML = '';
     },
 
     clearBody: function (query) {
         const table = document.querySelector(query);
+        if (!table.querySelector('tbody')) return;
         table.querySelector('tbody').innerHTML = '';
     },
 
     clearFooter: function (query) {
         const table = document.querySelector(query);
+        if (!table.querySelector('tfoot')) return;
         table.querySelector('tfoot').innerHTML = '';
     },
 
