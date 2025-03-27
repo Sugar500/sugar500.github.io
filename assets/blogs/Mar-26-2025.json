@@ -6,27 +6,70 @@
   "Article-Type": "right",
   "Short Summary": "Blog post for Mar. 26<sup>th</sup> 2025.",
   "Long Summary": [
-    "TODO"
+    "Implementing unit test struggles for a language I am learning."
   ],
   "Sidebar": [
     {
+      "Header": "New Resources",
+      "Content": [
+        "<p><a href=\"https://analytics.google.com/\">Google Analytics</a></p>",
+        "<p><a href=\"https://www.githubstatus.com/\">GitHub Status</a></p>"
+      ]
+    },
+    {
       "Header": "Note links",
       "Content": [
-        "TODO"
+        "No notes today."
       ]
     }
   ],
   "Sections": [
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "It’s springtime here and you can definitely tell, in my area. The skies are gray, beautiful gray or constant ",
+        "day nonstop pouring down rain or all four seasons in one day, but more importantly Cherry blossoms are out. ",
+        "The there are some flowers blooming in the middle of my yard very surprised to see that. Also the season of ",
+        "animals shedding and allergies… there is cat fur everywhere in my house. No creative projects this week, was ",
+        "caught up reading."
+      ]
+    },
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "Currently at 102 words memorized on <a href=\"https://fluent-forever.com/index.html\">Fluent ",
+        "Forever</a>. Section 2 Unit 6 on <a href=\"https://www.duolingo.com/learn\">Duolingo</a>. No newly created ",
+        "cards in Anki, with 50 of the 717 cards at a mature state and 37 of them in a young state."
+      ]
+    },
     {
       "Header": "Project Updates and Insights",
       "Tags": [
         "col-12"
       ],
       "Content": [
-        "<p>Share insights into your current projects, challenges you're facing, and how you're solving them. Document ",
-        "your workflow, from initial concept to final product. Share smaller parts of larger case studies, focusing ",
-        "on specific aspects. Share useful code snippets or technical tips related to your projects. Explain rationale ",
-        "behind your design choices.</p>"
+        "I had an interesting problem with trying to deploy on the 20<sup>th</sup>, it seems to be a semi-common ",
+        "problem with Git Pages. Found the <a href=\"https://www.githubstatus.com/\"> GitHub status website</a> where ",
+        "you can subscribe to updates on when things go down or come back up, thank you ",
+        "<i class=\"fa-brands fa-reddit\"></i> <a href=\"https://www.reddit.com/\">Reddit</a>. Originally ",
+        "thought it had been due to starting a <a href=\"https://analytics.google.com/\">Google Analytics</a> set ",
+        "up."
+      ]
+    },
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "Ah, first time implementing a new unit testing library. Soo many struggles, jest is relativity simple to set ",
+        "up simple tests, but you have to make sure you are using modules rather then just text when importing in ",
+        "html files, note that webstorm likes to use node js assert rather than jest. Setting up the environment to ",
+        "run tests that process html element changes was a pain, like staying up till 3am kind of pain when you will ",
+        "have to get up at 9am."
       ]
     },
     {
@@ -45,32 +88,12 @@
     {
       "Header": "Skills and Learning",
       "Tags": [
-        "col-12",
-        "hidden"
+        "col-12"
       ],
       "Content": [
-        "Share what new skills you're learning and how you're applying them."
-      ]
-    },
-    {
-      "Header": "New Resources",
-      "Tags": [
-        "col-6 col-12-narrower"
-      ],
-      "Content": [
-        "<p><a href=\"https://analytics.google.com/\">Google Analytics</a></p>",
-        "<p><a href=\"https://www.githubstatus.com/\">GitHub Status</a></p>"
-      ]
-    },
-    {
-      "Header": "Skills and Learning",
-      "Tags": [
-        "col-6 col-12-narrower",
-        "hidden"
-      ],
-      "Content": [
-        "Share personal challenges you are facing in your field, and how you are working ",
-        "to overcome them."
+        "The website project is in Javascipt, CSS, HTML and JSON, so I've been practicing them. Jest, jsdom setting ",
+        "up and implementing. Also got the frustration of AI being an idiot, nooo I am not editing my package-lock ",
+        "thank you very much. Despite being brand new at, in this case, node.js I can tell that would be a bad idea."
       ]
     }
   ]
