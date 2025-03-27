@@ -41,7 +41,14 @@ export function initPosts(url) {
         initArticle(url.hash.replace("#", ""));
     }
     else if (pathname.includes("project-landing.html")) {
-        initProjectPage(url.hash.replace("#", ""));
+        document.dispatchEvent(new CustomEvent('initialized-posts', {
+            bubbles: true,
+            detail: {
+                page: 'project',
+                hash: url.hash.replace("#", ""),
+                data: [Table, Posts]
+            }
+        }));
     }
     else if (pathname.includes("table-of-contents.html")) {
         document.dispatchEvent(new CustomEvent('initialized-posts', {
@@ -147,83 +154,6 @@ function initArticle(postTitle) {
             });
             sidebar.innerHTML += "<li>\n" + header + "<section>" + txt + "</section>\n</li>\n";
         })
-    })
-}
-
-function initProjectPage(landingType) {
-    // blog (blog-posts, blog), projects (project-posts, project),
-    // creative-projects (creative-posts, writing | world-building | creative)
-    // current other landings: writing-projects (writing), world-building (world-building)
-
-    // update the banner to match the projects
-    const bannerTitle = document.querySelector('.banner-small h2');
-    const bannerSubtitle = document.querySelector('.banner-small p');
-    switch (landingType) {
-        case "blog":
-            bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the Blog Archive!";
-            bannerSubtitle.title = "the non-secret ones";
-            bannerSubtitle.innerHTML = "A place to find all of the blog posts.";
-            break;
-        case "projects":
-            bannerTitle.title = "Are there any completed ones?";
-            bannerTitle.innerHTML = "Welcome to the Project Archive!";
-            bannerSubtitle.title = "";
-            bannerSubtitle.innerHTML = "A place to find all the past and current projects.";
-            break;
-        case "creative-projects":
-            bannerTitle.title = "";
-            bannerTitle.innerHTML = "Welcome to the creative project archive!";
-            bannerSubtitle.title = "Most of the should direct to more archives! Homepage \'ception.";
-            bannerSubtitle.innerHTML = "A place to find the creative projects.";
-            break;
-        default:
-            bannerTitle.title = "Ya probably shouldn't be here.";
-            bannerTitle.innerHTML = "Welcome to the Archive!";
-            bannerSubtitle.title = "";
-            bannerSubtitle.innerHTML = "A place to find all of the posts.";
-    }
-
-    // update the featured articles
-    const featuredPosts = document.querySelector('[class*="featured-posts-"]');
-    const featuredPostsHeading = document.querySelector('[class*="featured-posts-"] h2');
-    featuredPosts.classList.remove('blog-posts');
-    featuredPosts.classList.remove('project-posts');
-    featuredPosts.classList.remove('creative-posts');
-    switch (landingType) {
-        case "blog":
-            featuredPosts.classList.add('blog-posts');
-            featuredPostsHeading.innerHTML = "Featured Blog Posts";
-            break;
-        case "projects":
-            featuredPosts.classList.add('project-posts');
-            featuredPostsHeading.innerHTML = "Featured Projects";
-            break;
-        case "creative-projects":
-            featuredPosts.classList.add('creative-posts');
-            featuredPostsHeading.innerHTML = "Featured Project Posts!";
-            break;
-        default:
-            featuredPostsHeading.innerHTML = "Featured Posts";
-            break;
-    }
-
-    // grab all posts matching tags
-    const postTag = landingType === "projects" ? "project" : landingType === "creative-projects" ? "creative"
-        : landingType === "blog" ? "blog" : "posts";
-    const posts = Posts.filterTag(postTag);
-
-    // TODO update the table
-    const table = Array.from(document.getElementsByTagName('table'))[0];
-    Table.clearHeader('table');
-    Table.addHeader(table, ["Title", "Description"]);
-    Table.clearBody('table');
-    posts.forEach(function (post) {
-        Table.addRow(table, [
-            "<a href='./article-page.html#" + post["Title"].toLowerCase().
-            replaceAll(' ', '-') + "'>" + post["Title"] + "</a>",
-            post["Short Summary"]
-        ])
     })
 }
 

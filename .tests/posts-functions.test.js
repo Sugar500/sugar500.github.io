@@ -1,7 +1,4 @@
 
-// TODO test filter and sort functions
-// TODO test url hash functions
-// TODO split the modifying of the elements to other file
 // noinspection JSUnresolvedReference
 
 import {Posts} from "../scripts/posts-functions"

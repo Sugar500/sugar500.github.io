@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
             case "article":
                 break;
             case "project":
+                initProjectPage(event.detail.hash, event.detail.data[0], event.detail.data[1]);
                 break;
         }
     })
