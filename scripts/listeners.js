@@ -97,9 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 initDirectory(event.detail.data[0], event.detail.data[1]);
                 break;
             case "article":
+                initArticle(event.detail.hash, event.detail.data);
                 break;
             case "project":
                 initProjectPage(event.detail.hash, event.detail.data[0], event.detail.data[1]);
+                break;
+            case "featured-posts":
+                initFeaturedPosts(event.detail.data[0], event.detail.data[1]);
                 break;
         }
     })

@@ -1,7 +1,7 @@
 
 // noinspection JSUnresolvedReference
 
-import {Posts} from "../scripts/posts-functions"
+import {initPosts, Posts} from "../scripts/posts-functions.js"
 const posts = [
     {
         Title: "Secret Post",
@@ -111,4 +111,57 @@ describe('Filter Posts Tests', () => {
         const current = Posts.find('Testing Post 1');
         expect(current).toEqual(post);
     })
+})
+
+describe('Init Posts Tests', () => {
+    test('init posts article-page.html', () => {
+        initPosts(new URL('http://localhost/article-page.html'));
+        const day = [
+            posts[2],
+            posts[4],
+            posts[0],
+            posts[3],
+            posts[1],
+        ];
+
+        expect(Posts.posts).toEqual(day);
+    });
+    test('init posts project-landing.html', () => {
+        initPosts(new URL('http://localhost/project-landing.html'));
+        const day = [
+            posts[2],
+            posts[4],
+            posts[0],
+            posts[3],
+            posts[1],
+        ];
+
+        expect(Posts.posts).toEqual(day);
+    });
+    test('init posts table-of-contents.html', () => {
+        console.log(document.URL);
+        initPosts(new URL('http://localhost/table-of-contents.html'));
+        const day = [
+            posts[2],
+            posts[4],
+            posts[0],
+            posts[3],
+            posts[1],
+        ];
+
+        expect(Posts.posts).toEqual(day);
+    });
+    test('init posts featured posts', () => {
+        document.body.innerHTML = `<div class="featured-posts-sidebar">`
+        initPosts(new URL('http://localhost/table-of-contents.html'));
+        const day = [
+            posts[2],
+            posts[4],
+            posts[0],
+            posts[3],
+            posts[1],
+        ];
+
+        expect(Posts.posts).toEqual(day);
+    });
 })
