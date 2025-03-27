@@ -1,6 +1,6 @@
 import {initPosts, Posts} from "./posts-functions.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+window.onload =() => {
     document.addEventListener('loaded-component', function(event) {
         switch (event.detail.page) {
             case "menu":
@@ -109,5 +109,5 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     document.dispatchEvent(new CustomEvent('initialize-clear'));
-});
+};
 

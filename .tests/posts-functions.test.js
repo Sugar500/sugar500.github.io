@@ -139,7 +139,6 @@ describe('Init Posts Tests', () => {
         expect(Posts.posts).toEqual(day);
     });
     test('init posts table-of-contents.html', () => {
-        console.log(document.URL);
         initPosts(new URL('http://localhost/table-of-contents.html'));
         const day = [
             posts[2],
