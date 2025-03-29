@@ -1,5 +1,8 @@
 import {initPosts, Posts} from "./posts-functions.js";
 
+let LoadedPosts = false;
+let LoadedSettings = false;
+
 window.onload =() => {
     document.addEventListener('loaded-component', function(event) {
         switch (event.detail.page) {
@@ -23,14 +26,14 @@ window.onload =() => {
             Posts.add(post);
         })
 
-        if (!Posts.loaded) return;
+        LoadedPosts = true;
+        if (!LoadedSettings) return;
         initPosts(new URL(document.location));
     })
 
     document.addEventListener('loaded-settings', function () {
-        Posts.loaded = true;
-
-        if (Posts.posts.length < 1) return;
+        LoadedSettings = true;
+        if (!LoadedPosts) return;
         initPosts(new URL(document.location));
     })
 
@@ -94,16 +97,16 @@ window.onload =() => {
     document.addEventListener('initialized-posts', function (event) {
         switch (event.detail.page) {
             case "directory":
-                initDirectory(event.detail.data[0], event.detail.data[1]);
+                initDirectory(event.detail.table, event.detail.posts);
                 break;
             case "article":
-                initArticle(event.detail.hash, event.detail.data);
+                initArticle(event.detail.hash, event.detail.posts);
                 break;
             case "project":
-                initProjectPage(event.detail.hash, event.detail.data[0], event.detail.data[1]);
+                initProjectPage(event.detail.hash, event.detail.table, event.detail.posts);
                 break;
             case "featured-posts":
-                initFeaturedPosts(event.detail.data[0], event.detail.data[1]);
+                initFeaturedPosts(event.detail.element, event.detail.posts);
                 break;
         }
     })

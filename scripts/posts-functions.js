@@ -2,7 +2,6 @@ import { Table } from "./subpage-manipulation.js";
 
 export const Posts = {
     posts: [],
-    loaded: false,
     add: function(post) {
         this.posts.push(post);
     },
@@ -43,7 +42,7 @@ export function initPosts(url) {
             detail: {
                 page: 'article',
                 hash: url.hash.replace("#", ""),
-                data: Posts
+                posts: Posts
             }
         }));
     }
@@ -53,7 +52,8 @@ export function initPosts(url) {
             detail: {
                 page: 'project',
                 hash: url.hash.replace("#", ""),
-                data: [Table, Posts]
+                table: Table,
+                posts: Posts
             }
         }));
     }
@@ -62,7 +62,8 @@ export function initPosts(url) {
             bubbles: true,
             detail: {
                 page: 'directory',
-                data: [Table, Posts]
+                table: Table,
+                posts: Posts
             }
         }));
     }
@@ -72,7 +73,8 @@ export function initPosts(url) {
             bubbles: true,
             detail: {
                 page: 'featured-posts',
-                data: [element, Posts]
+                element: element,
+                posts: Posts
             }
         }));
     })
