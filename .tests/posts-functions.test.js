@@ -85,32 +85,40 @@ describe('Filter Posts Tests', () => {
             posts[2],
         ]
 
-        const current = Posts.filterTag("project");
+        const current = Posts.filterTag(["project"], ["secret"]);
         expect(current).toEqual(tag);
-    })
+    });
     test('filter posts by blog tag', () => {
         const tag = [
             posts[2],
             posts[4],
         ]
 
-        const current = Posts.filterTag('blog');
+        const current = Posts.filterTag('blog', 'secret');
         expect(current).toEqual(tag);
-    })
+    });
     test('filter posts by creative tag', () => {
         const tag = [
             posts[3],
         ]
 
-        const current = Posts.filterTag('creative');
+        const current = Posts.filterTag('creative', 'secret');
         expect(current).toEqual(tag);
-    })
+    });
+    test('filter posts by project and secret tags', () => {
+        const tag = [
+            posts[0],
+        ]
+
+        const current = Posts.filterTag(['project', 'secret'], []);
+        expect(current).toEqual(tag);
+    });
     test('get post by title', () => {
         const post = posts[1];
 
         const current = Posts.find('Testing Post 1');
         expect(current).toEqual(post);
-    })
+    });
 })
 
 describe('Init Posts Tests', () => {
