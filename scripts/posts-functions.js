@@ -16,9 +16,23 @@ export const Posts = {
             return new Date(a.LastModified) - new Date(b.LastModified);
         })
     },
-    filterTag: function (tag) {
+    filterTag: function (includes, excludes) {
+        if (typeof includes === 'string') {
+            includes = [includes];
+        }
+        if (typeof excludes === 'string') {
+            excludes = [excludes];
+        }
+
         return this.posts.filter(post => {
-            return post["Tags"].includes(tag) && !post["Tags"].includes("secret");
+            // Check includes (if provided)
+            let includesCheck = includes.length === 0 || true;
+            includes.forEach(include => includesCheck &= post["Tags"].includes(include))
+            // Check excludes (if provided)
+            let excludesCheck = excludes.length === 0 || true;
+            excludes.forEach(exclude => excludesCheck &= !post["Tags"].includes(exclude));
+            // Both conditions must be true for the item to pass
+            return includesCheck && excludesCheck;
         })
     },
     find: function (title) {
