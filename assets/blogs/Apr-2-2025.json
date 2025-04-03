@@ -1,0 +1,89 @@
+{
+  "Title": "Apr. 2, 2025",
+  "Tags": [
+    "blog"
+  ],
+  "Article-Type": "right",
+  "Short Summary": "Blog post for Apr. 2<sup>nd</sup> 2025.",
+  "Long Summary": [
+    "Continued to implement unit testing and refactored some code."
+  ],
+  "Sidebar": [
+    {
+      "Header": "Links",
+      "Content": [
+        "<p><a href=\"#personal-website\">Website Project</a></p>"
+      ]
+    }
+  ],
+  "Sections": [
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "Current Japanese stats: Currently at 105 words memorized on <a ",
+        "href=\"https://fluent-forever.com/index.html\">Fluent Forever</a> a +2 from last week. Section 2 Unit 7 on ",
+        "<a href=\"https://www.duolingo.com/learn\">Duolingo</a> +2 lessons. No newly created cards in Anki, with 79 ",
+        "(+29) of the 717 cards at a mature state, 10 (-27) of them in a young state and 1 (+1) of them in the ",
+        "relearning state."
+      ]
+    },
+    {
+      "Header": "Project Updates and Insights",
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "<strong>Website Project:</strong> When using document.addEventListener it is better to have an onload or DOMLoad event that ",
+        "is where you insigate the event listener. Otherwise they may not registar sometimes."
+      ]
+    },
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "I learned that using jest you just need to open coverage/Icov-report/index.html to be able to see your ",
+        "coverage report, though it only lists files that have a .test.js. Maybe imported files too, haven't tested ",
+        "that. Learned that from a quick skim on<a ",
+        "href=\"https://aakanksha-02.medium.com/understanding-the-jest-coverage-report-a-complete-guide-57d950130fdc\">",
+        " a blog post about understanding jest coverage</a>. Had a lovely time trying to test window.onload and even ",
+        "more of one with trying to test initMenu, part of that was debugging with Gemini."
+      ]
+    },
+    {
+      "Header": "Skills and Learning",
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "I learned that using jsdom you can enforce a loaded script using a read file sync and directly injecting it ",
+        "into the document. I also learned how to test events and event listeners. You have to be very explicit that ",
+        "you are using a previous part of your conversation with Gemini or you may have information restated. "
+      ]
+    },
+    {
+      "Header": "New Resources",
+      "Tags": [
+        "col-6 col-12-narrower",
+        "hidden"
+      ],
+      "Content": [
+        "Review books, courses, or tutorials that have helped you improve your skils. Share ",
+        "valuable resources you've discovered, such as websites, blogs or tools."
+      ]
+    },
+    {
+      "Header": "Skills and Learning",
+      "Tags": [
+        "col-6 col-12-narrower",
+        "hidden"
+      ],
+      "Content": [
+        "Share personal challenges you are facing in your field, and how you are working ",
+        "to overcome them."
+      ]
+    }
+  ]
+}

@@ -17,9 +17,9 @@
       ]
     },
     {
-      "Header": "Note links",
+      "Header": "Links",
       "Content": [
-        "No notes today."
+        "<p><a href=\"#personal-website\">Website Project</a></p>"
       ]
     }
   ],
