@@ -161,9 +161,10 @@ function initProjectPage(hash, tables, posts) {
     }
 
     // grab all posts matching tags
+    posts.sortDate();
     const postTag = hash === "projects" ? "project" : hash === "creative-projects" ? "creative"
         : hash === "blog" ? "blog" : "posts";
-    const filtered = posts.filterTag(postTag);
+    const filtered = posts.filterTag(postTag, 'secret');
 
     // update the table
     const table = Array.from(document.getElementsByTagName('table'))[0];
@@ -277,7 +278,8 @@ function initFeaturedPosts(element, allPosts) {
         element.classList.contains("creative-posts") ? "creative" :
             element.classList.contains("blog-posts") ? "blog" : "posts";
 
-    const posts = postsType !== 'posts' ? allPosts.filterTag(postsType) : allPosts.posts;
+    allPosts.sortDate();
+    const posts = postsType !== 'posts' ? allPosts.filterTag(postsType, 'secret') : allPosts.posts;
 
     // replace the icons
     const icon = element.querySelectorAll('i');
@@ -304,6 +306,7 @@ function initFeaturedPosts(element, allPosts) {
     // set up featured posts
     const post_preview = element.querySelector('.post-preview');
     const post_summary = element.querySelectorAll('.post-summary');
+    let mod = 0;
 
     if (post_preview !== null) {
         const header = post_preview.querySelector('h3');
@@ -311,6 +314,7 @@ function initFeaturedPosts(element, allPosts) {
         const time_since = post_preview.querySelector('.time-since');
         const paragraph = post_preview.querySelector('p.body');
         const button = post_preview.querySelector('button');
+        mod = 1;
 
         if (0 >= posts.length)
         {
@@ -340,18 +344,19 @@ function initFeaturedPosts(element, allPosts) {
             }
         }
     }
+
     post_summary.forEach(function (summary, index) {
         const header = summary.querySelector('h3');
         const time_since = summary.querySelector('.time-since');
         const paragraph = summary.querySelector('p');
 
-        if (index + 1 >= posts.length && !paragraph)
+        if (index + mod >= posts.length && !paragraph)
         {
             header.style.visibility = "hidden";
-            if (time_since) time_since.innerHTML = "No more to show.";
+            time_since.innerHTML = "No more to show.";
             return;
         }
-        else if (index + 1 >= posts.length)
+        else if (index + mod >= posts.length)
         {
             header.style.visibility = "hidden";
             if (time_since) time_since.style.display = "none";
@@ -359,13 +364,15 @@ function initFeaturedPosts(element, allPosts) {
             return;
         }
 
-        header.innerHTML = posts[index + 1]["Title"];
+        header.innerHTML = posts[index + mod]["Title"];
+        header.style.visibility = "visible";
+        if (time_since) time_since.style.visibility = "visible";
         header.cursor = "pointer";
         header.onclick = () => {
             document.location.href = "./article-page.html" + "#"
-                + posts[index + 1]["Title"].replace(/ /g, '-').toLowerCase();
+                + posts[index + mod]["Title"].replace(/ /g, '-').toLowerCase();
         }
-        if (paragraph) paragraph.innerHTML = posts[index + 1]["Short Summary"];
-        if (time_since) time_since.innerHTML = calculateTimeSince(new Date(posts[index + 1].LastModified));
+        if (paragraph) paragraph.innerHTML = posts[index + mod]["Short Summary"];
+        if (time_since) time_since.innerHTML = calculateTimeSince(new Date(posts[index + mod].LastModified));
     })
 }
