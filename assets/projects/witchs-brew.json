@@ -7,9 +7,8 @@
   "Article-Type": "none",
   "Short Summary": "A 2D potion crafting game",
   "Long Summary": [
-    "To get started clone this template then modify the title, tags, and summaries ",
-    "to match the project. Actual html code should work fine when used in here, the ",
-    "code replaces the innerHTML of the article."
+    "A C Possessing project created in GAM100 with a small team of three people. Where the player can create potions ",
+    "to sell them. Then use the money to buy ingredients or recipes to make more potions."
   ],
   "Sections": [
     {

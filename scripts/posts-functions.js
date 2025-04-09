@@ -13,7 +13,7 @@ export const Posts = {
     },
     sortDate: function () {
         return this.posts.sort((a, b) => {
-            return new Date(a.LastModified) - new Date(b.LastModified);
+            return new Date(b.LastModified) - new Date(a.LastModified);
         })
     },
     filterTag: function (includes, excludes) {

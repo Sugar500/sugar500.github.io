@@ -69,6 +69,9 @@ function loadSettings(fileSource) {
 
 function loadPosts(fileSource) {
     const postFiles = [
+        "blogs/Apr-9-2025",
+        "projects/brewl",
+        "notes/User-Stories-in-Game-Development",
         "blogs/Apr-2-2025",
         "projects/witchs-brew",
         "blogs/Mar-26-2025",

@@ -65,11 +65,11 @@ describe('Sort Posts Tests', () => {
     })
     test('sort posts by date', () => {
         const day = [
-            posts[2],
-            posts[4],
-            posts[0],
-            posts[3],
             posts[1],
+            posts[3],
+            posts[0],
+            posts[4],
+            posts[2],
         ];
 
         const current = Posts.sortDate();
@@ -125,11 +125,11 @@ describe('Init Posts Tests', () => {
     test('init posts article-page.html', () => {
         initPosts(new URL('http://localhost/article-page.html'));
         const day = [
-            posts[2],
-            posts[4],
-            posts[0],
-            posts[3],
             posts[1],
+            posts[3],
+            posts[0],
+            posts[4],
+            posts[2],
         ];
 
         expect(Posts.posts).toEqual(day);
@@ -137,11 +137,11 @@ describe('Init Posts Tests', () => {
     test('init posts project-landing.html', () => {
         initPosts(new URL('http://localhost/project-landing.html'));
         const day = [
-            posts[2],
-            posts[4],
-            posts[0],
-            posts[3],
             posts[1],
+            posts[3],
+            posts[0],
+            posts[4],
+            posts[2],
         ];
 
         expect(Posts.posts).toEqual(day);
@@ -149,11 +149,11 @@ describe('Init Posts Tests', () => {
     test('init posts table-of-contents.html', () => {
         initPosts(new URL('http://localhost/table-of-contents.html'));
         const day = [
-            posts[2],
-            posts[4],
-            posts[0],
-            posts[3],
             posts[1],
+            posts[3],
+            posts[0],
+            posts[4],
+            posts[2],
         ];
 
         expect(Posts.posts).toEqual(day);
@@ -162,11 +162,11 @@ describe('Init Posts Tests', () => {
         document.body.innerHTML = `<div class="featured-posts-sidebar">`
         initPosts(new URL('http://localhost/table-of-contents.html'));
         const day = [
-            posts[2],
-            posts[4],
-            posts[0],
-            posts[3],
             posts[1],
+            posts[3],
+            posts[0],
+            posts[4],
+            posts[2],
         ];
 
         expect(Posts.posts).toEqual(day);

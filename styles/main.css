@@ -430,6 +430,10 @@ p {
     --accent-paragraph: #F9F6EE;
 }
 
+.txt-center {
+    text-align: center;
+}
+
 .inner {
     width: 80%;
     margin: 0 auto;
