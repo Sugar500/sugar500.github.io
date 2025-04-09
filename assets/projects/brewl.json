@@ -1,0 +1,100 @@
+
+{
+  "Title": "Brewl",
+  "Tags": [
+    "project"
+  ],
+  "Article-Type": "none",
+  "Short Summary": "A potion brewing 2D turn based combat game.",
+  "Long Summary": [
+    "A potion brewing 2D turn based combat game. Made in a custom engine at DigiPen Institute of Technology on a team ",
+    "of five."
+  ],
+  "Sections": [
+    {
+      "Header": "GameTrailer",
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "<video controls width=\"820\">",
+        "<source src=\"assets/videos/brewl_trailer.mp4\" type=\"video/mp4\">",
+        "Something went wrong...",
+        "</video>"
+      ]
+    },
+    {
+      "Header": "Project Goals",
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "This was a game build for a project course at DigiPen. The desired outcome was a playable game that could get ",
+        "us a good grade."
+      ]
+    },
+    {
+      "Header": "Technical Overview",
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "Created at DigiPen Institute of Technology, on a team of five (three programmers, and two designers). We had ",
+        "two semesters to work on it, where the first semester was for the programmers to create an engine while the ",
+        "designers worked on prototyping and the second was to work together to incorporate the two into one project. ",
+        "It was created from Aug. 2020 to Apr. 2021. The second half of the project was worked on almost entirely ",
+        "online."
+      ]
+    },
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "I designed and implemented the ability to use JSON to read and write levels and objects. I implemented ",
+        "<a href=\"https://github.com/ocornut/imgui\">Dear ImGUi</a> to help the designers in working in our engine. ",
+        "I create the backend systems of the game state, finite state machine behaviors, the ",
+        "<a href=\"https://github.com/g-truc/glm\">OpenGL Mathematics or glm math library</a> and FMOD for sounds and ",
+        "music. I also spend time bug fixing."
+      ]
+    },
+    {
+      "Tags": [
+        "col-12"
+      ],
+      "Content": [
+        "We were required to create a custom game engine for this project. We used C++, Visual Studio (community), ",
+        "<a href=\",https://rapidjson.org/\">Rapid JSON</a>, <a href=\"https://github.com/ocornut/imgui\">Dear ImGUi",
+        "</a>, <a href=\",https://www.opengl.org/\">OpenGL</a>, <a href=\"https://www.fmod.com/\">FMOD</a>, ",
+        "and git in this project. We also used Discord to communicate with each other and Microsoft Teams to ",
+        "communicate our professors once we went online."
+      ]
+    },
+    {
+      "Header": "The Process",
+      "Tags": [
+        "col-6",
+        "col-12-narrow"
+      ],
+      "Content": [
+        "I had wanted to use xml, but the professors had said that the industry standard was to use JSON. I used ",
+        "ImGUi because I had previously work in it with another project and I wanted the designers not to have to go ",
+        "to the programmers when ever they wanted to add a new project."
+      ]
+    },
+    {
+      "Header": "Results & Impact",
+      "Tags": [
+        "col-6",
+        "col-12-narrow"
+      ],
+      "Content": [
+        "We had succeeded in getting a high grade at the end of the project. I learned that implementing ImGUi is ",
+        "difficult combining that with trying to save and load the data was banging my head against the table. We ",
+        "spent more time working in the JSON files the the level designer, and often times a programmer would be ",
+        "helping the designers anyways. Integrated tools are difficult to implement and maintain, there is a point ",
+        "where the time is useful, but on a small project like this I should not have tried to implement it."
+      ]
+    }
+  ]
+}
