@@ -91,7 +91,7 @@
       "Content": [
         "We had succeeded in getting a high grade at the end of the project. I learned that implementing ImGUi is ",
         "difficult combining that with trying to save and load the data was banging my head against the table. We ",
-        "spent more time working in the JSON files the the level designer, and often times a programmer would be ",
+        "spent more time working in the JSON files than the level designer, and oftentimes a programmer would be ",
         "helping the designers anyways. Integrated tools are difficult to implement and maintain, there is a point ",
         "where the time is useful, but on a small project like this I should not have tried to implement it."
       ]
