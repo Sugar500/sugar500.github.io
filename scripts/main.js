@@ -68,12 +68,13 @@ function loadSettings(fileSource) {
 }
 
 const files = [
-    { 'name': 'blogs/Apr-9-2025', 'type': 'JSON'},
+    { 'name': 'blogs/May-30-2025', 'type': 'YAML'},
+    { 'name': 'blogs/Apr-9-2025', 'type': 'YAML'},
     { 'name': 'projects/brewl', 'type': 'YAML'},
     { 'name': 'notes/User-Stories-in-Game-Development', 'type': 'YAML'},
-    { 'name': 'blogs/Apr-2-2025', 'type': 'JSON'},
+    { 'name': 'blogs/Apr-2-2025', 'type': 'YAML'},
     { 'name': 'projects/witchs-brew', 'type': 'YAML'},
-    { 'name': 'blogs/Mar-26-2025', 'type': 'JSON'},
+    { 'name': 'blogs/Mar-26-2025', 'type': 'YAML'},
     { 'name': 'projects/personal-website', 'type': 'YAML'},
 ]
 
@@ -87,9 +88,8 @@ function loadPosts(fileSource) {
 
         const request = new Request(source);
         fetch(request).then(response => {
-            const lastModified = new Date(response.headers.get('Last-Modified'));
+            //const lastModified = new Date(response.headers.get('Last-Modified'));
             response.text().then(data => {
-                console.log(file.name + " " + lastModified);
                 posts.push(data);
                 formats.push(file.type);
 
