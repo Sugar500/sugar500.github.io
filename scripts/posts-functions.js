@@ -1,9 +1,11 @@
 import { Table } from "./subpage-manipulation.js";
+import YAML from "yaml";
 
 export const Posts = {
     posts: [],
-    add: function(post) {
-        this.posts.push(post);
+    add: function(post, format) {
+        if (format === "JSON") this.posts.push(JSON.parse(post));
+        if (format === "YAML") this.posts.push(YAML.parse(post));
     },
     sortTitle: function () {
         return this.posts.sort((a, b) => {

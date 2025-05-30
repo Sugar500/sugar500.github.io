@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function init() {
     const fileSource = document.getElementById("data-files");
 
+    loadPosts(fileSource);
     loadSubpages(fileSource);
     loadSettings(fileSource);
-    loadPosts(fileSource);
 }
 
 function loadSubpages(fileSource) {
@@ -67,31 +67,36 @@ function loadSettings(fileSource) {
         });
 }
 
-function loadPosts(fileSource) {
-    const postFiles = [
-        "blogs/Apr-9-2025",
-        "projects/brewl",
-        "notes/User-Stories-in-Game-Development",
-        "blogs/Apr-2-2025",
-        "projects/witchs-brew",
-        "blogs/Mar-26-2025",
-        "projects/personal-website"
-    ];
-    let posts = [];
+const files = [
+    { 'name': 'blogs/Apr-9-2025', 'type': 'JSON'},
+    { 'name': 'projects/brewl', 'type': 'YAML'},
+    { 'name': 'notes/User-Stories-in-Game-Development', 'type': 'YAML'},
+    { 'name': 'blogs/Apr-2-2025', 'type': 'JSON'},
+    { 'name': 'projects/witchs-brew', 'type': 'YAML'},
+    { 'name': 'blogs/Mar-26-2025', 'type': 'JSON'},
+    { 'name': 'projects/personal-website', 'type': 'YAML'},
+]
 
-    postFiles.forEach(post => {
-        const source = fileSource.dataset.sourceAssets + post + '.json';
+function loadPosts(fileSource) {
+    let posts = [];
+    let formats = [];
+
+    files.forEach(file => {
+        let source = fileSource.dataset.sourceAssets + file.name + '.json';
+        if (file.type === 'YAML') source = fileSource.dataset.sourceAssets + file.name + '.yaml';
 
         const request = new Request(source);
         fetch(request).then(response => {
             const lastModified = new Date(response.headers.get('Last-Modified'));
-            response.json().then(data => {
-                data.LastModified = lastModified.toString();
+            response.text().then(data => {
+                console.log(file.name + " " + lastModified);
                 posts.push(data);
+                formats.push(file.type);
 
-                if (post === postFiles[postFiles.length - 1]) {
+                if (file === files[files.length - 1]) {
                     document.dispatchEvent(new CustomEvent('loaded-posts', {
                         detail: {
+                            formats: formats,
                             posts: posts
                         }
                     }))

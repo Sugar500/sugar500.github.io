@@ -22,8 +22,8 @@ window.onload =() => {
     })
 
     document.addEventListener('loaded-posts', function (event) {
-        event.detail.posts.forEach((post) => {
-            Posts.add(post);
+        event.detail.posts.forEach((post, index) => {
+            Posts.add(post, event.detail.formats[index]);
         })
 
         LoadedPosts = true;
