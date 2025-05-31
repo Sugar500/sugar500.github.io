@@ -1,5 +1,5 @@
 Title: Brewl
-LastModified: Sat Apr 12 2025 08:31:49 GMT-0700 (Pacific Daylight Time)
+LastModified: Sat May 31 2025 01:49:40 GMT-0700 (Pacific Daylight Time)
 Tags:
   - project
 Article-Type: none
@@ -12,8 +12,8 @@ Sections:
     Tags:
       - col-12
     Content:
-      <video controls width=\"820\">
-      <source src=\"assets/videos/brewl_trailer.mp4\" type=\"video/mp4\">Something went wrong...
+      <video controls width="820">
+      <source src="assets/videos/brewl_trailer.mp4" type="video/mp4">Something went wrong...
       </video>
   - Header: Project Goals
     Tags:

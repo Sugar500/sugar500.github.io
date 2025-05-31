@@ -1,5 +1,5 @@
 Title: Personal Website
-LastModified: Fri May 30 2025 00:55:13 GMT-0700 (Pacific Daylight Time)
+LastModified: Sat May 31 2025 01:50:01 GMT-0700 (Pacific Daylight Time)
 Tags:
   - project
 Article-Type: left
@@ -14,12 +14,14 @@ Sidebar:
     Content:
       <p><a href=\"#mar.-26,-2025\">Mar. 26th Blog</a></p>
       <p><a href=\"#apr.-2,-2025\">Apr. 2nd Blog</a></p>
+      <p><a href=\"#apr.-9,-2025\">Apr. 9th Blog</a></p>
+      <p><a href=\"#may-30,-2025\">May 30th Blog</a></p>
 Sections:
   - Tags:
       - col-12
     Content:
       I started looking into making a website, because I wanted a place to share my world-building. Now you might be 
-      thinking, \"But Jessica you're using this website as a portfolio.\" And you would be right. I am combining all of 
+      thinking, "But Jessica you're using this website as a portfolio." And you would be right. I am combining all of 
       my projects into one website due to the fact I know nothing about what I am doing... and AI (pros and cons list) 
       noted that it would be harder to maintain multiple websites, thoughts for if I can maintain one site.
   - Header: Project Goals
@@ -38,8 +40,8 @@ Sections:
       There was a previous notion website for portfolio purposes. Jetbrains Webstrom, Jetbrains AI, 
       <i class=\"fa-brands fa-google\"></i> Google Gemini, <i class=\"fa-brands fa-github\"></i> GitHub, 
       <i class=\"fa-brands fa-js\"></i> Javascript, <i class=\"fa-brands fa-html5\"></i> HTML, 
-      <i class=\"fa-brands fa-css\"></i> CSS, JSON, YAML, and <i class=\"fa-brands fa-font-awesome\"></i> Font Awesome 
-      is the current list of technologies and tools I am using.
+      <i class=\"fa-brands fa-css\"></i> CSS, JSON, YAML, vite, and <i class=\"fa-brands fa-font-awesome\"></i> Font 
+      Awesome is the current list of technologies and tools I am using.
   - Header: The Problem
     Tags:
       - col-6
@@ -56,7 +58,7 @@ Sections:
       First I found a some templates I liked the look of from <a href=\"https://html5up.net/\">HTML5 UP</a>. Which where
       Arcana, Editoral, Solid State, TXT, and Zerofour. Then I started to take parts of the templates and break them 
       into the parts I liked. Such as the banner from Solid State, or Zerofour's style. Thankfully all of the templates 
-      had a similar CSS setup or I would have a much harder time.\n
+      had a similar CSS setup or I would have a much harder time.
   - Tags:
       - col-12
     Content:
@@ -64,7 +66,7 @@ Sections:
       something, first I would look up or add console.log to solve the problem, if that didn't work I would go to one of 
       the AIs. I did find that I didn't like how the AI tended to generate code, due to it lacking an awareness of the 
       rest of the project, yes I did try. There where points where examples the AI would give would be a great starting 
-      point for something I was unsure of how to start.\n
+      point for something I was unsure of how to start.
   - Tags:
       - col-12
     Content:
@@ -76,12 +78,13 @@ Sections:
       - col-12
       - hidden
     Content:
-      Outcomes, Metrics & Data, User Feedback/Testimonials, Lessons Learned\n
+      Outcomes, Metrics & Data, User Feedback/Testimonials, Lessons Learned
       I learned quite a lot on structuring javascript, and how to get both javascript and CSS to interact with HTML, and 
       that website (frontend, static) development is simpler than I thought (I did start with templates...). Fun fact - 
       JSON has origins in <a href\"https://www.w3schools.com/js/js_json.asp\">Javascript (Object Notation)</a>. Also got 
-      to experience the process of coding and debugging with AI.
-      <p><b>Outcomes:</b> Highlight the positives outcomes of the project.</p>\n
-      <p><b>Metrics and Data:</b> If possible, quantify the results with data or metrics.</p>\n
-      <p><b>User Feedback/Testimonials:</b> Include positive  feedback or testimonials from clients or users.</p>\n
-      <p><b>Lessons Learned:</b> Reflect on what you learned from teh project and how it has improved your skills.</p>\n
+      to experience the process of coding and debugging with AI. I ended up learning some about vite due to this project
+      because that was the only want to not have errors and not commit the node_modules.
+      <p><b>Outcomes:</b> Highlight the positives outcomes of the project.</p>
+      <p><b>Metrics and Data:</b> If possible, quantify the results with data or metrics.</p>
+      <p><b>User Feedback/Testimonials:</b> Include positive  feedback or testimonials from clients or users.</p>
+      <p><b>Lessons Learned:</b> Reflect on what you learned from teh project and how it has improved your skills.</p>

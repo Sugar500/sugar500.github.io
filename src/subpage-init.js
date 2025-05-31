@@ -99,9 +99,10 @@ export function initDirectory(tables, posts) {
     ]);
 
     posts.posts.forEach(function (post) {
+        let page = post["Title"].replace(/ /g, '-').toLowerCase();
+        page = page.replace(/'/g, '&#39').toLowerCase();
         tables.addRow(table, [
-            "<a href='./article-page.html#" + post["Title"].toLowerCase().
-            replaceAll(' ', '-') + "'>" + post["Title"] + "</a>",
+            "<a href='./article-page.html#" + page + "'>" + post["Title"] + "</a>",
             post["Tags"].join(", "),
             post["Short Summary"]
         ])
@@ -174,9 +175,10 @@ export function initProjectPage(hash, tables, posts) {
     tables.addHeader(table, ["Title", "Description"]);
     tables.clearBody('table');
     filtered.forEach(function (post) {
+        let page = post["Title"].replace(/ /g, '-').toLowerCase();
+        page = page.replace(/'/g, '&#39').toLowerCase();
         tables.addRow(table, [
-            "<a href='./article-page.html#" + post["Title"].toLowerCase().
-            replaceAll(' ', '-') + "'>" + post["Title"] + "</a>",
+            "<a href='./article-page.html#" + page + "'>" + post["Title"] + "</a>",
             post["Short Summary"]
         ])
     })
