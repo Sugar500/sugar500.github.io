@@ -3,10 +3,22 @@
 import {} from '../src/listeners';
 import {Table} from "../src/subpage-manipulation";
 import {initPosts, Posts} from "../src/posts-functions";
-const fs = require('fs'); // Node.js file system module
+import {initArticle, initBanner, initDirectory, initFeaturedPosts, initFooter, initHeader, initMenu, initProjectPage}
+    from "../src/subpage-init";
 
 jest.mock("../src/subpage-manipulation");
 jest.mock("../src/posts-functions");
+
+jest.mock("../src/subpage-init", () => ({
+    initMenu: jest.fn(),
+    initHeader: jest.fn(),
+    initBanner: jest.fn(),
+    initFooter: jest.fn(),
+    initDirectory: jest.fn(),
+    initFeaturedPosts: jest.fn(),
+    initArticle: jest.fn(),
+    initProjectPage: jest.fn()
+}));
 
 afterEach(() => {
     jest.clearAllMocks();
@@ -25,81 +37,53 @@ describe('window.onload event', () => {
 
 describe('loaded-component events', () => {
     beforeEach(() => {
-        // Load subpage-init.js into the simulated DOM
-        const scriptContent = fs.readFileSync('src/scripts/subpage-init.js', 'utf8');
-        const script = document.createElement('script');
-        script.textContent = scriptContent;
-        document.body.appendChild(script);
+        window.onload(null);
     });
 
     test('initMenu', () => {
-        const spy = jest.spyOn(window, 'initMenu');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('loaded-component', {
             bubbles: true,
             detail: {
                 page: "menu"
             }
         }));
-
-        expect(spy).toHaveBeenCalled();
-        spy.mockRestore();
+        expect(jest.mocked(initMenu)).toHaveBeenCalled();
     });
     test('initHeader', () => {
-        const spy = jest.spyOn(window, 'initHeader');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('loaded-component', {
             bubbles: true,
             detail: {
                 page: "header"
             }
         }));
-
-        expect(spy).toHaveBeenCalled();
-        spy.mockRestore();
+        expect(jest.mocked(initHeader)).toHaveBeenCalled();
     });
     test('initBanner', () => {
-        const spy = jest.spyOn(window, 'initBanner');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('loaded-component', {
             bubbles: true,
             detail: {
                 page: "banner"
             }
         }));
-
-        expect(spy).toHaveBeenCalled();
-        spy.mockRestore();
+        expect(jest.mocked(initBanner)).toHaveBeenCalled();
     });
     test('initFooter', () => {
-        const spy = jest.spyOn(window, 'initFooter');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('loaded-component', {
             bubbles: true,
             detail: {
                 page: "footer"
             }
         }));
-
-        expect(spy).toHaveBeenCalled();
-        spy.mockRestore();
+        expect(jest.mocked(initFooter)).toHaveBeenCalled();
     });
 })
 
 describe('initialized-posts events', () => {
     beforeEach(() => {
-        // Load subpage-init.js into the simulated DOM
-        const scriptContent = fs.readFileSync('src/scripts/subpage-init.js', 'utf8');
-        const script = document.createElement('script');
-        script.textContent = scriptContent;
-        document.body.appendChild(script);
-
-        window.onload();
+        window.onload(null);
     });
 
     test('initDirectory', () => {
-        const spy = jest.spyOn(window, 'initDirectory');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('initialized-posts', {
             bubbles: true,
             detail: {
@@ -108,13 +92,9 @@ describe('initialized-posts events', () => {
                 posts: Posts
             }
         }));
-
-        expect(spy).toHaveBeenCalledWith(Table, Posts);
-        spy.mockRestore();
+        expect(jest.mocked(initDirectory)).toHaveBeenCalledWith(Table, Posts);
     });
     test('initArticle', () => {
-        const spy = jest.spyOn(window, 'initArticle');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('initialized-posts', {
             bubbles: true,
             detail: {
@@ -124,13 +104,9 @@ describe('initialized-posts events', () => {
                 posts: Posts
             }
         }));
-
-        expect(spy).toHaveBeenCalledWith('test', Posts);
-        spy.mockRestore();
+        expect(jest.mocked(initArticle)).toHaveBeenCalledWith("test", Posts);
     });
     test('initProjectPage', () => {
-        const spy = jest.spyOn(window, 'initProjectPage');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('initialized-posts', {
             bubbles: true,
             detail: {
@@ -140,13 +116,9 @@ describe('initialized-posts events', () => {
                 posts: Posts
             }
         }));
-
-        expect(spy).toHaveBeenCalledWith("test", Table, Posts);
-        spy.mockRestore();
+        expect(jest.mocked(initProjectPage)).toHaveBeenCalledWith("test", Table, Posts);
     });
     test('initFeaturedPosts', () => {
-        const spy = jest.spyOn(window, 'initFeaturedPosts');
-        spy.mockImplementation(() => {})
         document.dispatchEvent(new CustomEvent('initialized-posts', {
             bubbles: true,
             detail: {
@@ -157,9 +129,7 @@ describe('initialized-posts events', () => {
                 posts: Posts
             }
         }));
-
-        expect(spy).toHaveBeenCalledWith(null, Posts);
-        spy.mockRestore();
+        expect(jest.mocked(initFeaturedPosts)).toHaveBeenCalledWith(null, Posts);
     });
 })
 
