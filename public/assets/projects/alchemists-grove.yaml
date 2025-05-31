@@ -1,0 +1,61 @@
+Title: Alchemist's Grove
+LastModified:
+Tags:
+  - project
+Article-Type: none
+Short Summary: A real-time 3D combat potion game.
+Long Summary:
+  A 3D combat game with potion crafting mechanics. Each of the 15 potions lend themselves to different play styles. Made 
+  in Unity at DigiPen Institute of Technology.
+Sections:
+  - Header: Game Trailer
+    Tags:
+      - col-12
+    Content:
+      <video controls width="820">
+      <source src="assets/videos/alchemists-grove.mp4" type="video/mp4">Something went wrong...
+      </video>
+  - Header: Project Goals
+    Tags:
+      - col-12
+    Content:
+      <p>This game was created for the GAM3xx class at DigiPen. It was built to be a playable portfolio piece.</p>
+      <p>This game is up on the DigiPen Game Gallery at <a 
+      href="https://games.digipen.edu/games/alchemist-s-grove">GAM3xx Alchemist's Grove</a></p>
+  - Header: Technical Overview
+    Tags:
+      - col-6
+      - col-12-narrow
+    Content:
+      Created at DigiPen Institute of Technology on a team that switched from five to seven. The project was a two 
+      semester project from fall of 2021 to spring of 2022 using the Unity 3D engine (C#). I designed and implemented 
+      Procedural Content Generation for levels. I helped with both level and puzzle design, and implemented the basic 
+      logic behind the potions and the potion crafting system.
+  - Header: The Challenge/Problem
+    Tags:
+      - col-6
+      - col-12-narrow
+    Content:
+      Context, Problem Statement, Research & Planning
+      <p><b>Context:</b> Explain the context of the project and the challenges you faced.</p>
+      <p><b>Problem Statement:</b> Clearly articulate the problem or need that the project addressed.</p>
+      <p><b>Research and Planning:</b> Briefly describe any research or panning you conducted.</p>
+  - Header: The Process/Solution
+    Tags:
+      - col-12
+    Content:
+      Design Process (if applicable), Development Process (if applicable), Iterations & Feedback
+      <p><b>Design Process:</b> Showcase your design thinking, wireframes, mockups, or prototypes. Explain your design 
+      decisions and rationale.</p>
+      <p><b>Development Process:</b> Describe your development approach, any technical challenges you overcame, and how 
+      you implemented the solution. Include code snippets (if appropriate) or links to repositories.</p>
+      <p><b>Iterations and Feedback:</b> Mention any iterations or revisions you made based on feedback.</p>
+  - Header: Results & Impact
+    Tags:
+      - col-12
+    Content:
+      Outcomes, Metrics & Data, User Feedback/Testimonials, Lessons Learned
+      <p><b>Outcomes:</b> Highlight the positives outcomes of the project.</p>
+      <p><b>Metrics and Data:</b> If possible, quantify the results with data or metrics.</p>
+      <p><b>User Feedback/Testimonials:</b> Include positive  feedback or testimonials from clients or users.</p>
+      <p><b>Lessons Learned:</b> Reflect on what you learned from teh project and how it has improved your skills.</p>
