@@ -1,0 +1,69 @@
+Title: User Stories in Game Development
+LastModified: Sat Apr 12 2025 08:31:49 GMT-0700 (Pacific Daylight Time)
+Tags:
+  - note
+Article-Type: left
+Short Summary: Notes about user stories in game development.
+Long Summary:
+  I was thinking about a way to plan out my new project and remembered about User Stories. So, I decided to research 
+  them in more detail then the skim I had done previously.
+Sidebar:
+  - Header: links
+    Content:
+      <a href="https://www.mountaingoatsoftware.com/agile/user-stories">Agile Development User Stories</a>
+  - Content:
+      <a href=\"https://wdi-sg.github.io/gitbook-2018/01-workflow/user-stories-wireframing/readme.html\">Agile 
+      Development, Wireframes, and User Stories</a>
+  - Content:
+      <a href=\"https://wdi-sg.github.io/gitbook-2018/01-workflow/user-stories-wireframing/game-exercise.html\">User 
+      Stories in Games</a>
+Sections:
+  - Header: <a href="https://www.mountaingoatsoftware.com/agile/user-stories">Agile Development User Stories</a>
+    Tags:
+      - col-12
+    Content:
+      <p><strong>def.</strong> A <em>User Story</em> is a short, simple description of a feature as told from the point 
+      of view of (typically) the user.</p>
+      <p class=\"txt-center\">It usually follows [As a &lt type of user &gt, I want &lt some goal &gt so that &lt some 
+      reason &gt] template.</p>
+      <p><strong>note.</strong> Keeping them informal can help facilitate planning and discussion, but also allows them 
+      to easily be thrown out as more is learned about the project and new stories take their place.</p>
+  - Header: What Make a Good User Story?
+    Tags:
+      - col-12
+    Content:
+      <p>1. Card - a written description of the story</p>
+      <p>2. Conversation - a way to flush out details of the story. Or why the story is unneeded.</p>
+      <p>3. Confirmation - tests that can be used to determine when the story is complete. A way to also document the 
+      progress of the story.</p>
+  - Header: How Can Detail be Added?
+    Tags:
+      - col-6
+      - col-12-narrow
+    Content:
+      Splitting a user story into smaller stories is one way to add details. Another way is to add conditions of 
+      satisfaction or acceptance criteria to the story
+  - Header: Documentation?
+    Tags:
+      - col-6
+      - col-12-narrow
+    Content:
+      User Stories are more of a pointer to other forms of documentation such as - a workflow diagram, a spreadsheet 
+      with instructions on calculations, other other artifacts.
+  - Header:
+      <a href="https://www.mountaingoatsoftware.com/agile/user-stories">Agile Development, Wireframes, and User
+      Stories</a>
+    Tags:
+      - col-12
+    Content:
+      User Stories can be apart of agile development. Along side - Test-driven development (TDD), Continuous Integration 
+      (CI), and more.
+  - Header: User Stories in Games
+    Tags:
+      - col-12
+    Content:
+      <p>A user story in a game can be an overall game goal. In complex games like Skyrim it seems more like a narrative 
+      goal.</p>
+      <p class=\"txt-center\">As the dovakiin, I want to grow stronger so that I can defeat Alduin.</p>
+      <p>Or the main mechanic, like in Mario...</p>
+      <p class=\"txt-center\">As Mario, I want to jump, so that I can avoid or destroy obstacles.</p>

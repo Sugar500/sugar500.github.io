@@ -1,0 +1,65 @@
+Title: May 30, 2025
+LastModified: Fri May 30 2025 10:52:25 GMT-0700 (Pacific Daylight Time)
+Tags:
+  - blog
+Article-Type: right
+Short Summary: This is a template to get started on blog posts.
+Long Summary:
+  To get started clone this template then modify the title, tags, and summaries to match the blog. Actual html code
+  should work fine when used in here, the code replaces the innerHTML of the article.
+Sidebar:
+  - Header: Links
+    Content:
+      <p><a href=\"https://yaml.org/\">The Official YAML Web Site</a></p>
+      <p><a href=\"https://github.com/eemeli/yaml\">Javascript YAML library</a></p>
+Sections:
+  - Tags:
+      - col-12
+    Content:
+      <p>Last time I posted was Apr. 9, oops...</p>
+      <p>On <a href=\"https://fluent-forever.com/index.html\">Fluent Forever</a> I ended up going down for words 
+      memorized, I am currently at 110 (-1) words. On <a href=\"https://www.duolingo.com/learn\">Duolingo</a>, I am 
+      currently at Section 2 Unit 9 which is at least 8 lessons. And on Anki, I didn't create any cards, but have 
+      learned some of them with a 98 (+2) learned, 1 (0) young and 0 (-1) relearning.</p>
+  - Header: Project Updates and Insights
+    Tags:
+      - col-12
+    Content:
+      Website Project - Decided to update files to YAML, for the files are simpler to read.
+  - Tags:
+      - col-12
+    Content:
+      <p> Text-based Adventure - Many things have changed and updated. I have a tendency to refactor constantly, which
+      is both a good and bad thing. The first major refactor was adding unit testing to the command and mapping systems,
+      aka I broke down and added jest. Then I seperated maps into different types of nodes which got moved to a
+      different file. I decided that the fancy event system is fancy and all, but a list of functions to call works just
+      as well and reduces redundancies.</p>
+      <p> I added the inventory system and component for the entities. I also added the component and system for
+      attributes. With the attributes in place I can now start on the character creator.</p>
+  - Header: Skills and Learning
+    Tags:
+      - col-12
+    Content:
+      <p>YAML - I have been changing the Website Project over to YAML, due to being simpler to read and format while 
+      writing.</p>
+      <p>Javascript - I had to do some refactoring during the update to YAML in the website project.</p>
+      <p>Typescript - I have been working on the Text-based Adventure which is in Typescript.</p>
+  - Header: New Resources
+    Tags:
+      - col-6
+      - col-12-narrower
+    Content:
+      <p><a href=\"https://yaml.org/\">The Official YAML Web Site</a> is a great place to find YAML Frameworks and Tools 
+      for most languages!</p>
+      <p><a href=\"https://github.com/eemeli/yaml\">Javascript YAML library</a> doesn't quite explain all steps needed 
+      to work with the library. Other than that its a great resource to track down documentation for this library</p>
+  - Header: Skills and Learning
+    Tags:
+      - col-6
+      - col-12-narrower
+    Content:
+      The job search is not going great... over the 64+ applications in the past month alone, many are no longer 
+      accepting applications and have had no contact or rejected. 5 where left on LinkedIn viewed, 2 was left on 
+      LinkedIn downloaded, and 57+ haven't even been looked at. No call backs, no positive emails and I have even more 
+      still open from 3 months ago (more actually)... If that doesn't tell you what the tech job market looks like for 
+      people trying to break in, I don't know what would.

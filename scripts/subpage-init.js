@@ -222,14 +222,16 @@ function initArticle(hash, posts) {
     articles.forEach((article) => {
         article.querySelector('.header h2').innerHTML = post["Title"];
         article.querySelector('.header p').innerHTML = post["Short Summary"];
-        article.querySelector('.header .time-since').innerHTML = calculateTimeSince(new Date(post.LastModified));
+        article.querySelector('.header .time-since').innerHTML =
+            calculateTimeSince(new Date(post.LastModified));
         const section = article.querySelector('.content');
         section.innerHTML = "";
         post["Sections"].forEach((element) => {
             let tags = "";
             if (element.hasOwnProperty("Tags")){
                 let p = "";
-                element["Tags"].forEach((t) => {
+                if (typeof element["Tags"] === "string") element["Tags"] = [element["Tags"]];
+                else element["Tags"].forEach((t) => {
                     p += " " + t;
                 })
 
@@ -242,8 +244,9 @@ function initArticle(hash, posts) {
             }
 
             let content = "";
-            element["Content"].forEach((p) => {
-                content += p;
+            if (typeof element["Content"] === "string") content = element["Content"];
+            else element["Content"].forEach((p) => {
+                content += p + " ";
             });
 
             section.innerHTML += "<section" + tags + ">\n" + header + content + "\n</section>";
@@ -263,7 +266,8 @@ function initArticle(hash, posts) {
             }
 
             let txt = "";
-            element["Content"].forEach((p) => {
+            if (typeof element["Content"] === "string") txt = element["Content"];
+            else element["Content"].forEach((p) => {
                 txt += p;
             });
             sidebar.innerHTML += "<li>\n" + header + "<section>" + txt + "</section>\n</li>\n";
