@@ -43,11 +43,11 @@ const posts = [
 ];
 
 beforeAll(() => {
-    Posts.add(posts[1]);
-    Posts.add(posts[2]);
-    Posts.add(posts[0]);
-    Posts.add(posts[4]);
-    Posts.add(posts[3]);
+    Posts.add(JSON.stringify(posts[1]), 'JSON');
+    Posts.add(JSON.stringify(posts[2]), 'JSON');
+    Posts.add(JSON.stringify(posts[0]), 'JSON');
+    Posts.add(JSON.stringify(posts[4]), 'JSON');
+    Posts.add(JSON.stringify(posts[3]), 'JSON');
 })
 
 describe('Sort Posts Tests', () => {

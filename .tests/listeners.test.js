@@ -165,13 +165,14 @@ describe('initialized-posts events', () => {
 
 describe('initPosts', () => {
     beforeEach(() => {
-        window.onload();
+        window.onload(null);
     });
 
     test('loaded posts first', () => {
         document.dispatchEvent(new CustomEvent('loaded-posts', {
             detail: {
-                posts: ["test"]
+                posts: ["test"],
+                formats: ["JSON"]
             }
         }));
         document.dispatchEvent(new CustomEvent('loaded-settings'));
