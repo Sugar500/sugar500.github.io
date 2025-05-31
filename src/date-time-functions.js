@@ -1,5 +1,5 @@
 
-function calculateTimeSince(date) {
+export function calculateTimeSince(date) {
     const eventDate = new Date(date);
     const now = new Date();
 

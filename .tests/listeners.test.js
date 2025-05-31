@@ -1,12 +1,12 @@
 // noinspection JSUnresolvedReference,ES6UnusedImports
 
-import {} from '../src/scripts/listeners';
-import {Table} from "../src/scripts/subpage-manipulation";
-import {initPosts, Posts} from "../src/scripts/posts-functions";
+import {} from '../src/listeners';
+import {Table} from "../src/subpage-manipulation";
+import {initPosts, Posts} from "../src/posts-functions";
 const fs = require('fs'); // Node.js file system module
 
-jest.mock("../src/scripts/subpage-manipulation");
-jest.mock("../src/scripts/posts-functions");
+jest.mock("../src/subpage-manipulation");
+jest.mock("../src/posts-functions");
 
 afterEach(() => {
     jest.clearAllMocks();
