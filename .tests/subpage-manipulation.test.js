@@ -1,6 +1,6 @@
 
 // noinspection JSUnresolvedReference
-import { Table } from '../scripts/subpage-manipulation.js'
+import { Table } from '../src/scripts/subpage-manipulation.js'
 
 describe('table manipulation', function() {
     beforeEach(() => {
