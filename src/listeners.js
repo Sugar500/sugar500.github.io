@@ -1,4 +1,13 @@
 import {initPosts, Posts} from "./posts-functions.js";
+import {
+    initArticle,
+    initBanner,
+    initDirectory, initFeaturedPosts,
+    initFooter,
+    initHeader,
+    initMenu,
+    initProjectPage
+} from "./subpage-init";
 
 let LoadedPosts = false;
 let LoadedSettings = false;

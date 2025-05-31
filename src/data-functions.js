@@ -1,5 +1,5 @@
 
-async function loadData(url) {
+export async function loadData(url) {
     try {
         const response = await fetch(url);
         if (!response.ok) {

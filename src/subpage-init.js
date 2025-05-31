@@ -1,5 +1,7 @@
+import {setUpObserver} from "./main";
+import {calculateTimeSince} from "./date-time-functions";
 
-function initMenu(){
+export function initMenu(){
     let menu = document.getElementById("menu");
     const body = document.getElementsByTagName("body")[0];
 
@@ -16,7 +18,7 @@ function initMenu(){
     }
 }
 
-function initHeader() {
+export function initHeader() {
     const menu_button = document.getElementById("menu-button");
     let body = document.getElementsByTagName("body")[0];
 
@@ -36,7 +38,7 @@ function initHeader() {
     }
 }
 
-function initBanner() {
+export function initBanner() {
     const header = document.querySelector(".header");
     const banner = document.querySelector(".banner");
 
@@ -45,7 +47,7 @@ function initBanner() {
     })
 }
 
-function initFooter() {
+export function initFooter() {
     function setUpIcon(element, fileType) {
         if (element === null) {
             console.error("Element was null");
@@ -69,7 +71,7 @@ function initFooter() {
     setUpIcon(document.querySelector(".icons a.icon-roadmap-sh"), 'png');
 }
 
-function initDirectory(tables, posts) {
+export function initDirectory(tables, posts) {
     posts.sortTitle();
 
     const table = Array.from(document.getElementsByTagName('table'))[0];
@@ -106,7 +108,7 @@ function initDirectory(tables, posts) {
     })
 }
 
-function initProjectPage(hash, tables, posts) {
+export function initProjectPage(hash, tables, posts) {
     // update the banner to match the projects
     const bannerTitle = document.querySelector('.banner-small h2');
     const bannerSubtitle = document.querySelector('.banner-small p');
@@ -180,7 +182,7 @@ function initProjectPage(hash, tables, posts) {
     })
 }
 
-function initArticle(hash, posts) {
+export function initArticle(hash, posts) {
     if (hash === "") return;
 
     // find the main post
@@ -275,7 +277,7 @@ function initArticle(hash, posts) {
     })
 }
 
-function initFeaturedPosts(element, allPosts) {
+export function initFeaturedPosts(element, allPosts) {
     if (element === null) return;
 
     const postsType = element.classList.contains("project-posts") ? "project" :

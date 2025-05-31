@@ -1,3 +1,4 @@
+import {loadData} from "./data-functions";
 
 document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('initialize-clear', function () {
@@ -33,7 +34,6 @@ function loadSubpages(fileSource) {
     sections.forEach(section => {
         loadData(fileSource.dataset.sourcePages + section + ".html")
             .then((result) => {
-                console.log(result);
                 document.dispatchEvent(new CustomEvent('import-component', {
                     bubbles: true,
                     detail: {
@@ -107,7 +107,7 @@ function loadPosts(fileSource) {
     })
 }
 
-function setUpObserver(threshold, element, callback) {
+export function setUpObserver(threshold, element, callback) {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(() => {
             callback();
