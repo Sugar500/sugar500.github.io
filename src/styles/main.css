@@ -545,7 +545,7 @@ table td {
 }
 
 .style-banner {
-    background: url(../assets/images/bg01.png), url(../assets/images/header.jpg) top left, center center;
+    background: url(../../assets/images/bg01.png), url(../../assets/images/header.jpg) top left, center center;
     background-size: auto, cover;
     color: var(--accent-header);
 }
@@ -553,7 +553,7 @@ table td {
 .style-featured-1 {
     text-shadow: 1px 1px 0 var(--main-color);
     background-color: var(--main-color);
-    background-image: url(../assets/images/bg03.png), url(../assets/images/bg04.png), url(../assets/images/bg02.png);
+    background-image: url(../../assets/images/bg03.png), url(../../assets/images/bg04.png), url(../../assets/images/bg02.png);
     background-repeat: no-repeat, no-repeat, repeat;
     background-size: 100% 15em, 100% 15em, auto auto;
     background-position: top center, bottom center, top left;
@@ -587,7 +587,7 @@ table td {
 .style-featured-3 {
     text-shadow: 1px 1px 0 var(--main-color);
     background-color: var(--main-color);
-    background-image: url(../assets/images/bg03.png), url(../assets/images/bg02.png);
+    background-image: url(../../assets/images/bg03.png), url(../../assets/images/bg02.png);
     background-repeat: no-repeat, repeat;
     background-size: 100% 15em, auto auto;
     background-position: top center, top left;
@@ -628,7 +628,7 @@ body.is-menu-visible .overlay {
 
 .style-menu .inner {
     background-color: var(--accent-color);
-    background-image: url(../assets/images/bg03.png), url(../assets/images/bg04.png), url(../assets/images/bg02.png);
+    background-image: url(../../assets/images/bg03.png), url(../../assets/images/bg04.png), url(../../assets/images/bg02.png);
     background-repeat: no-repeat, no-repeat, repeat;
     background-size: 100% 15em, 100% 15em, auto auto;
     background-position: top center, bottom center, top left;
@@ -639,7 +639,7 @@ body.is-menu-visible .overlay {
 /* rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5)) */
 .style-footer {
     background-image: linear-gradient(var(--accent-color), var(--accent-color-dark)),
-        url(../assets/images/bg03.png), url(../assets/images/bg02.png);
+        url(../../assets/images/bg03.png), url(../../assets/images/bg02.png);
     background-repeat: repeat-x, no-repeat, repeat;
     background-size: 100% 100%, 100% 15em, auto auto;
     background-position: top left, top center, top left;

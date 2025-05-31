@@ -33,6 +33,7 @@ function loadSubpages(fileSource) {
     sections.forEach(section => {
         loadData(fileSource.dataset.sourcePages + section + ".html")
             .then((result) => {
+                console.log(result);
                 document.dispatchEvent(new CustomEvent('import-component', {
                     bubbles: true,
                     detail: {

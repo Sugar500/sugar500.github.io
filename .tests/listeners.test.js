@@ -1,12 +1,12 @@
 // noinspection JSUnresolvedReference,ES6UnusedImports
 
-import {} from '../scripts/listeners';
-import {Table} from "../scripts/subpage-manipulation";
-import {initPosts, Posts} from "../scripts/posts-functions";
+import {} from '../src/scripts/listeners';
+import {Table} from "../src/scripts/subpage-manipulation";
+import {initPosts, Posts} from "../src/scripts/posts-functions";
 const fs = require('fs'); // Node.js file system module
 
-jest.mock("../scripts/subpage-manipulation");
-jest.mock("../scripts/posts-functions");
+jest.mock("../src/scripts/subpage-manipulation");
+jest.mock("../src/scripts/posts-functions");
 
 afterEach(() => {
     jest.clearAllMocks();
@@ -26,7 +26,7 @@ describe('window.onload event', () => {
 describe('loaded-component events', () => {
     beforeEach(() => {
         // Load subpage-init.js into the simulated DOM
-        const scriptContent = fs.readFileSync('scripts/subpage-init.js', 'utf8');
+        const scriptContent = fs.readFileSync('src/scripts/subpage-init.js', 'utf8');
         const script = document.createElement('script');
         script.textContent = scriptContent;
         document.body.appendChild(script);
@@ -89,7 +89,7 @@ describe('loaded-component events', () => {
 describe('initialized-posts events', () => {
     beforeEach(() => {
         // Load subpage-init.js into the simulated DOM
-        const scriptContent = fs.readFileSync('scripts/subpage-init.js', 'utf8');
+        const scriptContent = fs.readFileSync('src/scripts/subpage-init.js', 'utf8');
         const script = document.createElement('script');
         script.textContent = scriptContent;
         document.body.appendChild(script);

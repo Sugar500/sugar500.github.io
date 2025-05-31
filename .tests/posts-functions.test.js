@@ -1,7 +1,7 @@
 
 // noinspection JSUnresolvedReference
 
-import {initPosts, Posts} from "../scripts/posts-functions.js"
+import {initPosts, Posts} from "../src/scripts/posts-functions.js"
 const posts = [
     {
         Title: "Secret Post",
